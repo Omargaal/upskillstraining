@@ -26,8 +26,8 @@ export function Header() {
             <a href="tel:+442039166417" className="inline-flex items-center gap-1.5 hover:opacity-80">
               <Phone className="h-3.5 w-3.5" /> 0203 916 6417
             </a>
-            <a href="mailto:hello@upskillstraining.co.uk" className="inline-flex items-center gap-1.5 hover:opacity-80">
-              <Mail className="h-3.5 w-3.5" /> hello@upskillstraining.co.uk
+            <a href="mailto:info@upskillstraining.co.uk" className="inline-flex items-center gap-1.5 hover:opacity-80">
+              <Mail className="h-3.5 w-3.5" /> info@upskillstraining.co.uk
             </a>
           </div>
           <span className="hidden md:inline text-primary-foreground/80">

@@ -28,8 +28,8 @@ function Contact() {
         <div className="space-y-6">
           {[
             { icon: Phone, title: "Phone", body: "0203 916 6417" },
-            { icon: Mail, title: "Email", body: "hello@upskillstraining.co.uk" },
-            { icon: MapPin, title: "Address", body: "1 Training House, London, UK" },
+            { icon: Mail, title: "Email", body: "info@upskillstraining.co.uk" },
+            { icon: MapPin, title: "Address", body: "Office No 6 @ 1 Empire Mews, London SW16 2BF" },
           ].map((c) => (
             <div key={c.title} className="rounded-2xl border bg-card p-5 shadow-card">
               <div className="flex items-center gap-3">

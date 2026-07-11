@@ -61,8 +61,7 @@ function Index() {
               images={[
                 { src: heroPco, alt: "PCO SERU training classroom with learners studying for the TfL test" },
                 { src: heroPcoPass, alt: "Proud learner holding her PCO licence after passing the TfL exam" },
-                { src: heroPcoCouple, alt: "Somali private hire drivers with their PCO licence beside a London private hire car" },
-                { src: heroIt, alt: "IT support training lab with learners working on computers and networks" },
+                { src: heroPcoUpload.url, alt: "London PCO Licence application costs and step-by-step requirements guide" },
               ]}
             />
           </div>

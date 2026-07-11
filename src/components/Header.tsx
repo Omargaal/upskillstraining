@@ -38,7 +38,7 @@ export function Header() {
 
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3">
         <div className="flex items-center gap-8">
-          <Logo />
+          <Logo className="bg-background rounded-md p-1" />
           <nav className="hidden lg:flex items-center gap-6">
             <Link to="/" className={navLink}>Home</Link>
             <DropdownMenu>

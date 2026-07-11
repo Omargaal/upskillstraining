@@ -51,7 +51,30 @@ function CourseDetail() {
           </div>
           <h1 className="mt-3 font-display text-4xl font-extrabold sm:text-5xl">{course.title}</h1>
           <p className="mt-4 max-w-3xl text-lg text-muted-foreground">{course.description}</p>
-        </div>
+          {course.id === "pco-seru" && (
+            <a
+              href={course.externalUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 block rounded-2xl border-2 border-primary/20 bg-card p-4 shadow-card transition hover:-translate-y-0.5 hover:shadow-elevated hover:border-primary/40"
+              aria-label="Visit PassSeruExam.com — bilingual Somali & English SERU portal"
+            >
+              <img
+                src={passSeruBadge.url}
+                alt="PassSeruExam.com — Portal for learning SERU. Pass your TfL SERU in Somali or English."
+                className="w-full max-w-2xl h-auto rounded-lg"
+                loading="lazy"
+              />
+              <div className="mt-3 flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 text-xs font-semibold text-accent-foreground">
+                  <Languages className="h-3.5 w-3.5" /> Somali ↔ English toggle
+                </span>
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+                  <ExternalLink className="h-3.5 w-3.5" /> Open PassSeruExam.com
+                </span>
+              </div>
+            </a>
+          )}
       </section>
 
       <section className="mx-auto max-w-5xl px-6 py-10 grid gap-8 lg:grid-cols-[1fr_320px]">

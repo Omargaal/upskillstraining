@@ -34,12 +34,12 @@ function CoursesPage() {
   return (
     <>
       <section className="bg-gradient-to-b from-primary-soft to-background">
-        <div className="mx-auto max-w-7xl px-6 py-16">
+        <div className="mx-auto max-w-7xl px-6 py-10">
           <h1 className="font-display text-4xl font-extrabold sm:text-5xl">Our Courses</h1>
           <p className="mt-3 max-w-2xl text-muted-foreground">
             Every course is bookable on its own, with a free consultation to make sure it's right for you.
           </p>
-          <div className="mt-8 inline-flex rounded-full border bg-background p-1 shadow-card">
+          <div className="mt-6 inline-flex rounded-full border bg-background p-1 shadow-card">
             {TABS.map((t) => (
               <Link
                 key={t.key}
@@ -57,7 +57,7 @@ function CoursesPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-16">
+      <section className="mx-auto max-w-7xl px-6 py-12">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filtered.map((c) => <CourseCard key={c.id} course={c} />)}
         </div>

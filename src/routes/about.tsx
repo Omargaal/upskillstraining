@@ -17,7 +17,7 @@ function About() {
   return (
     <>
       <section className="bg-gradient-to-b from-primary-soft to-background">
-        <div className="mx-auto max-w-4xl px-6 py-14">
+        <div className="mx-auto max-w-4xl px-6 py-10">
           <h1 className="font-display text-4xl font-extrabold sm:text-5xl">About UpskillsTraining</h1>
           <p className="mt-4 text-lg text-muted-foreground">
             We're a UK-based vocational training company on a mission to make recognised, career-changing qualifications accessible to everyone.
@@ -25,7 +25,7 @@ function About() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-6 py-16 grid gap-10 lg:grid-cols-2 lg:items-center">
+      <section className="mx-auto max-w-5xl px-6 py-12 grid gap-8 lg:grid-cols-2 lg:items-center">
         <img src={teamImg} alt="Our team" loading="lazy" className="rounded-3xl shadow-card object-cover aspect-[4/3]" />
         <div>
           <h2 className="font-display text-2xl font-bold">Our mission</h2>

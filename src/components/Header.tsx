@@ -31,7 +31,7 @@ export function Header() {
             </a>
           </div>
           <span className="hidden md:inline text-primary-foreground/80">
-            Accredited UK training · Free consultations · Funding may be available
+            Free consultations · Funding may be available
           </span>
         </div>
       </div>

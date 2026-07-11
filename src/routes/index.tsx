@@ -9,8 +9,7 @@ import { HeroSlideshow } from "@/components/HeroSlideshow";
 import { itCourses, pcoCourses } from "@/lib/courses";
 import heroPco from "@/assets/hero-pco.jpg";
 import heroPcoPass from "@/assets/hero-pco-pass.jpg";
-import heroPcoCouple from "@/assets/hero-pco-couple.jpg";
-import heroIt from "@/assets/hero-it.jpg";
+import heroPcoUpload from "@/assets/hero-pco-upload.png.asset.json";
 import teamImg from "@/assets/team.jpg";
 
 export const Route = createFileRoute("/")({

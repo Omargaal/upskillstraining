@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, CheckCircle2, Clock, GraduationCap, Mail, MapPin } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Clock, ExternalLink, GraduationCap, Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ConsultationModal } from "@/components/ConsultationModal";
@@ -95,6 +95,13 @@ function CourseDetail() {
                 <Mail className="h-4 w-4" /> Enquire by Email
               </a>
             </Button>
+            {course.externalUrl && (
+              <Button asChild variant="secondary" className="w-full">
+                <a href={course.externalUrl} target="_blank" rel="noopener noreferrer">
+                  <ExternalLink className="h-4 w-4" /> Visit PassSeruExam.com
+                </a>
+              </Button>
+            )}
           </div>
         </aside>
       </section>

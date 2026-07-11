@@ -12,6 +12,7 @@ export interface Course {
   requirements: string;
   syllabus: string[];
   tag?: string;
+  externalUrl?: string;
 }
 
 export const courses: Course[] = [
@@ -37,20 +38,26 @@ export const courses: Course[] = [
   {
     id: "pco-seru",
     category: "pco",
-    title: "SERU & English Language Assessment Training",
-    short: "TfL SERU knowledge, safety and English assessment preparation.",
+    title: "SERU Assessment Training",
+    short: "TfL SERU prep with bilingual English/Somali support, 350+ questions and mock tests via PassSeruExam.com.",
     description:
-      "A complete prep programme for TfL's Safety, Equality and Regulatory Understanding assessment together with the English Language requirement. Covers all 12 topic areas.",
-    duration: "2 weeks",
+      "Prepare for TfL's Safety, Equality and Regulatory Understanding (SERU) assessment with trainer-led support plus full access to PassSeruExam.com — a bilingual English/Somali portal built for London drivers. It includes 350+ realistic TfL questions, 10 study sections, mock tests, sentence-completion practice, voice guidance and a proven pass method. Assessment: 45 minutes, 60% pass mark.",
+    duration: "2 weeks (4 or 8 weeks portal access)",
     price: "From £199",
     delivery: "Online, Hybrid or In-Person",
     requirements: "Provisional PCO application or intent to apply.",
+    externalUrl: "https://passseruexam.com/",
     syllabus: [
-      "Safeguarding vulnerable passengers",
-      "Equality, disability and inclusion",
-      "Driver conduct and regulatory obligations",
-      "Route knowledge and fare structures",
-      "English reading, writing and comprehension practice",
+      "London PHV Driver Licensing",
+      "Licensing Requirements for PHVs",
+      "Carrying out Private Hire Journeys",
+      "Staying Safe",
+      "Driver Behaviour",
+      "Driving and Parking in London",
+      "Safer Driving",
+      "Being Aware of Equality and Disability",
+      "Safeguarding Children and Adults at Risk",
+      "Ridesharing",
     ],
   },
   {

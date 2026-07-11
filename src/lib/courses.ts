@@ -179,6 +179,25 @@ export const courses: Course[] = [
     ],
     tag: "Part 5 of 5",
   },
+  {
+    id: "it-cv-interview",
+    category: "it",
+    title: "CV Workshop and Interview Sessions",
+    short: "Build a standout IT CV and practise interview techniques with expert feedback.",
+    description:
+      "Practical CV writing and interview preparation for IT job seekers. Learn how to present your skills, tailor applications to job descriptions, and answer common interview questions with confidence.",
+    duration: "2 Hrs Session",
+    price: "Included in each course",
+    delivery: "Online or In-Person",
+    requirements: "None. Open to anyone preparing for IT roles.",
+    syllabus: [
+      "CV structure and formatting for IT roles",
+      "Tailoring your CV to job descriptions",
+      "Highlighting transferable and technical skills",
+      "Common interview questions and model answers",
+      "Mock interview practice and feedback",
+    ],
+  },
 ];
 
 export const getCourse = (id: string) => courses.find((c) => c.id === id);

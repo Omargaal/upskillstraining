@@ -7,9 +7,10 @@ export function Logo({ className = "" }: { className?: string }) {
       <img
         src={logoAsset.url}
         alt="UpskillsTraining"
-        className="h-10 w-auto md:h-12"
+        className="h-[52px] w-auto md:h-[62px]"
         loading="eager"
       />
     </Link>
   );
 }
+

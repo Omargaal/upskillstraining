@@ -23,9 +23,9 @@ export const courses: Course[] = [
     short: "Master London route planning and map reading for the TfL topographical test.",
     description:
       "Prepare confidently for the TfL Topographical Skills Assessment with structured practice on maps, route planning and A–Z navigation. Includes mock tests and one-to-one feedback.",
-    duration: "1–2 weeks",
-    price: "From £149",
-    delivery: "Online or In-Person (London)",
+    duration: "4 weeks in-class training",
+    price: "£400",
+    delivery: "In-Person (London)",
     requirements: "None. Suitable for aspiring PCO/PHV drivers.",
     syllabus: [
       "Reading and interpreting London street maps",
@@ -42,9 +42,9 @@ export const courses: Course[] = [
     short: "TfL SERU prep with bilingual English/Somali support, 350+ questions and mock tests via PassSeruExam.com.",
     description:
       "Prepare for TfL's Safety, Equality and Regulatory Understanding (SERU) assessment with trainer-led support plus full access to PassSeruExam.com — a bilingual English/Somali portal built for London drivers. It includes 350+ realistic TfL questions, 10 study sections, mock tests, sentence-completion practice, voice guidance and a proven pass method. Assessment: 45 minutes, 60% pass mark.",
-    duration: "2 weeks (4 or 8 weeks portal access)",
-    price: "£100 (4 weeks) or £150 (8 weeks)",
-    delivery: "Online, Hybrid or In-Person",
+    duration: "4 weeks",
+    price: "£200 (4 weeks online) or £400 (4 weeks in-class)",
+    delivery: "Online or In-Person",
     requirements: "Provisional PCO application or intent to apply.",
     externalUrl: "https://passseruexam.com/",
     syllabus: [

@@ -9,6 +9,7 @@ import { HeroSlideshow } from "@/components/HeroSlideshow";
 import { itCourses, pcoCourses } from "@/lib/courses";
 import heroPco from "@/assets/hero-pco.jpg";
 import heroPcoPass from "@/assets/hero-pco-pass.jpg";
+import heroPcoCouple from "@/assets/hero-pco-couple.jpg";
 import heroIt from "@/assets/hero-it.jpg";
 import teamImg from "@/assets/team.jpg";
 
@@ -61,6 +62,7 @@ function Index() {
               images={[
                 { src: heroPco, alt: "PCO SERU training classroom with learners studying for the TfL test" },
                 { src: heroPcoPass, alt: "Proud learner holding her PCO licence after passing the TfL exam" },
+                { src: heroPcoCouple, alt: "Somali private hire drivers with their PCO licence beside a London private hire car" },
                 { src: heroIt, alt: "IT support training lab with learners working on computers and networks" },
               ]}
             />

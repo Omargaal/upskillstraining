@@ -27,7 +27,7 @@ function Contact() {
       <section className="mx-auto max-w-6xl px-6 py-14 grid gap-10 lg:grid-cols-[320px_1fr]">
         <div className="space-y-6">
           {[
-            { icon: Phone, title: "Phone", body: "+44 20 8000 0000" },
+            { icon: Phone, title: "Phone", body: "0203 916 6417" },
             { icon: Mail, title: "Email", body: "hello@upskillstraining.co.uk" },
             { icon: MapPin, title: "Address", body: "1 Training House, London, UK" },
           ].map((c) => (

@@ -8,6 +8,7 @@ import { Newsletter } from "@/components/Newsletter";
 import { HeroSlideshow } from "@/components/HeroSlideshow";
 import { itCourses, pcoCourses } from "@/lib/courses";
 import heroPco from "@/assets/hero-pco.jpg";
+import heroPcoPass from "@/assets/hero-pco-pass.jpg";
 import heroIt from "@/assets/hero-it.jpg";
 import teamImg from "@/assets/team.jpg";
 

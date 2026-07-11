@@ -116,7 +116,7 @@ function CourseDetail() {
               trigger={<Button variant="accent" className="w-full" size="lg">Book a Free Consultation</Button>}
             />
             <Button asChild variant="outline" className="w-full">
-              <a href={`mailto:hello@upskillstraining.co.uk?subject=Enquiry: ${encodeURIComponent(course.title)}`}>
+              <a href={`mailto:info@upskillstraining.co.uk?subject=Enquiry: ${encodeURIComponent(course.title)}`}>
                 <Mail className="h-4 w-4" /> Enquire by Email
               </a>
             </Button>

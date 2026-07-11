@@ -75,6 +75,7 @@ function CourseDetail() {
               </div>
             </a>
           )}
+        </div>
       </section>
 
       <section className="mx-auto max-w-5xl px-6 py-10 grid gap-8 lg:grid-cols-[1fr_320px]">

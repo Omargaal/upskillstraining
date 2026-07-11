@@ -56,12 +56,11 @@ function Index() {
           <div className="relative fade-in-up">
             <div className="absolute -top-6 -left-6 h-40 w-40 rounded-full bg-accent/40 blur-3xl" />
             <div className="absolute -bottom-8 -right-6 h-52 w-52 rounded-full bg-primary/20 blur-3xl" />
-            <img
-              src={heroImg}
-              alt="Diverse learners in a modern classroom"
-              width={1600}
-              height={1100}
-              className="relative rounded-3xl shadow-elevated object-cover w-full aspect-[4/3]"
+            <HeroSlideshow
+              images={[
+                { src: heroPco, alt: "PCO SERU training classroom with learners studying for the TfL test" },
+                { src: heroIt, alt: "IT support training lab with learners working on computers and networks" },
+              ]}
             />
           </div>
         </div>

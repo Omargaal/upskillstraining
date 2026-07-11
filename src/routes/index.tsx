@@ -21,7 +21,7 @@ function Index() {
         <div className="mx-auto grid max-w-7xl gap-8 px-6 py-10 lg:grid-cols-2 lg:items-center lg:py-14">
           <div className="fade-in-up">
             <Badge className="bg-accent text-accent-foreground hover:bg-accent">
-              <Sparkles className="h-3.5 w-3.5" /> Accredited UK Training
+              <Sparkles className="h-3.5 w-3.5" /> UK Training Provider
             </Badge>
             <h1 className="mt-4 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
               Gain tomorrow's<br />

@@ -5,8 +5,10 @@ import { Badge } from "@/components/ui/badge";
 import { CourseCard } from "@/components/CourseCard";
 import { ConsultationModal } from "@/components/ConsultationModal";
 import { Newsletter } from "@/components/Newsletter";
+import { HeroSlideshow } from "@/components/HeroSlideshow";
 import { itCourses, pcoCourses } from "@/lib/courses";
-import heroImg from "@/assets/hero-learners.jpg";
+import heroPco from "@/assets/hero-pco.jpg";
+import heroIt from "@/assets/hero-it.jpg";
 import teamImg from "@/assets/team.jpg";
 
 export const Route = createFileRoute("/")({

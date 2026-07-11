@@ -60,6 +60,7 @@ function Index() {
             <HeroSlideshow
               images={[
                 { src: heroPco, alt: "PCO SERU training classroom with learners studying for the TfL test" },
+                { src: heroPcoPass, alt: "Proud learner holding her PCO licence after passing the TfL exam" },
                 { src: heroIt, alt: "IT support training lab with learners working on computers and networks" },
               ]}
             />

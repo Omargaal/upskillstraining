@@ -12,6 +12,7 @@ export interface Course {
   requirements: string;
   syllabus: string[];
   tag?: string;
+  externalUrl?: string;
 }
 
 export const courses: Course[] = [

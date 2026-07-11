@@ -43,7 +43,7 @@ export const courses: Course[] = [
     description:
       "Prepare for TfL's Safety, Equality and Regulatory Understanding (SERU) assessment with trainer-led support plus full access to PassSeruExam.com — a bilingual English/Somali portal built for London drivers. It includes 350+ realistic TfL questions, 10 study sections, mock tests, sentence-completion practice, voice guidance and a proven pass method. Assessment: 45 minutes, 60% pass mark.",
     duration: "2 weeks (4 or 8 weeks portal access)",
-    price: "From £199",
+    price: "£100 (4 weeks) or £150 (8 weeks)",
     delivery: "Online, Hybrid or In-Person",
     requirements: "Provisional PCO application or intent to apply.",
     externalUrl: "https://passseruexam.com/",

@@ -87,7 +87,7 @@ export const courses: Course[] = [
     description:
       "Your foundation for a career in IT support. Learn how computers work end-to-end, common failure modes, and a repeatable troubleshooting method used by real service desks.",
     duration: "4 weeks",
-    price: "From £249 · Funding may be available",
+    price: "From £300 · Funding may be available",
     delivery: "Online or Hybrid",
     requirements: "None. Absolute beginners welcome.",
     syllabus: [
@@ -107,7 +107,7 @@ export const courses: Course[] = [
     description:
       "Understand how networks really work — from an office LAN to the wider internet — and diagnose the connectivity problems that make up most helpdesk tickets.",
     duration: "4 weeks",
-    price: "From £249 · Funding may be available",
+    price: "From £300 · Funding may be available",
     delivery: "Online or Hybrid",
     requirements: "Basic IT familiarity recommended.",
     syllabus: [
@@ -127,7 +127,7 @@ export const courses: Course[] = [
     description:
       "Get hands-on with the day-to-day tools of a Windows administrator. Manage users, secure files, configure remote access and support end-users at scale.",
     duration: "4 weeks",
-    price: "From £279 · Funding may be available",
+    price: "From £350 · Funding may be available",
     delivery: "Online or Hybrid",
     requirements: "Comfort with Windows OS.",
     syllabus: [
@@ -147,7 +147,7 @@ export const courses: Course[] = [
     description:
       "Build the security mindset every modern IT professional needs. Understand common attacks, protective controls, and how policy and compliance shape real workplaces.",
     duration: "4 weeks",
-    price: "From £279 · Funding may be available",
+    price: "From £350 · Funding may be available",
     delivery: "Online or Hybrid",
     requirements: "Recommended after Networking Essentials.",
     syllabus: [
@@ -162,12 +162,12 @@ export const courses: Course[] = [
   {
     id: "it-sysadmin-capstone",
     category: "it",
-    title: "System Admin, Automation & Capstone",
-    short: "Directory services, scripting and a live ticket-queue capstone project.",
+    title: "System Admin, Automation & Ticketing System",
+    short: "Directory services, scripting and real-world ticketing system practice.",
     description:
-      "Tie it all together. Manage users at scale with directory services, automate repetitive tasks with scripting, and complete a capstone working a live ticket queue.",
+      "Tie it all together. Manage users at scale with directory services, automate repetitive tasks with scripting, and apply your skills in a real-world ticketing system.",
     duration: "4 weeks",
-    price: "From £299 · Funding may be available",
+    price: "From £400 · Funding may be available",
     delivery: "Hybrid",
     requirements: "Recommended after Parts 1–4 or equivalent experience.",
     syllabus: [
@@ -175,7 +175,7 @@ export const courses: Course[] = [
       "Group Policy and configuration management",
       "PowerShell / Bash scripting for automation",
       "Monitoring, logging and incident response",
-      "Capstone: live ticket queue simulation",
+      "Ticketing system: live ticket queue simulation",
     ],
     tag: "Part 5 of 5",
   },

@@ -21,12 +21,12 @@ function Blog() {
   return (
     <>
       <section className="bg-gradient-to-b from-primary-soft to-background">
-        <div className="mx-auto max-w-4xl px-6 py-14">
+        <div className="mx-auto max-w-4xl px-6 py-10">
           <h1 className="font-display text-4xl font-extrabold sm:text-5xl">The blog</h1>
           <p className="mt-3 text-muted-foreground">Career tips, course guides and industry news.</p>
         </div>
       </section>
-      <section className="mx-auto max-w-6xl px-6 py-14 grid gap-6 md:grid-cols-3">
+      <section className="mx-auto max-w-6xl px-6 py-12 grid gap-6 md:grid-cols-3">
         {posts.map((p) => (
           <article key={p.t} className="rounded-2xl border bg-card p-6 shadow-card">
             <div className="aspect-[16/10] rounded-xl bg-gradient-to-br from-primary to-accent mb-4" />

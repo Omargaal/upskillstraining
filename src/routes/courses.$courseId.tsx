@@ -40,7 +40,7 @@ function CourseDetail() {
   return (
     <>
       <section className="bg-gradient-to-b from-primary-soft to-background">
-        <div className="mx-auto max-w-5xl px-6 py-14">
+        <div className="mx-auto max-w-5xl px-6 py-10">
           <Link to="/courses" search={{ category: course.category }} className="inline-flex items-center gap-1 text-sm text-primary font-medium hover:underline">
             <ArrowLeft className="h-4 w-4" /> Back to {course.category === "pco" ? "PCO" : "IT"} courses
           </Link>
@@ -53,7 +53,7 @@ function CourseDetail() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-6 py-14 grid gap-10 lg:grid-cols-[1fr_320px]">
+      <section className="mx-auto max-w-5xl px-6 py-10 grid gap-8 lg:grid-cols-[1fr_320px]">
         <div>
           <h2 className="font-display text-2xl font-bold">What you'll learn</h2>
           <ul className="mt-4 space-y-3">
@@ -66,7 +66,7 @@ function CourseDetail() {
           </ul>
         </div>
 
-        <aside className="rounded-2xl border bg-card p-6 shadow-card h-fit lg:sticky lg:top-28">
+        <aside className="rounded-2xl border bg-card p-5 shadow-card h-fit lg:sticky lg:top-28">
           <div className="space-y-4 text-sm">
             <div className="flex items-start gap-3">
               <Clock className="h-4 w-4 text-primary mt-0.5" />

@@ -4,8 +4,8 @@ import { Logo } from "./Logo";
 
 export function Footer() {
   return (
-    <footer className="bg-primary text-primary-foreground mt-24">
-      <div className="mx-auto max-w-7xl px-6 py-14 grid gap-10 md:grid-cols-4">
+    <footer className="bg-primary text-primary-foreground mt-16">
+      <div className="mx-auto max-w-7xl px-6 py-10 grid gap-10 md:grid-cols-4">
         <div className="space-y-4">
           <div className="bg-background/10 rounded-xl inline-block p-1 pr-3">
             <Logo />
@@ -53,7 +53,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-primary-foreground/10">
-        <div className="mx-auto max-w-7xl px-6 py-5 text-xs text-primary-foreground/70 flex flex-wrap gap-2 justify-between">
+        <div className="mx-auto max-w-7xl px-6 py-4 text-xs text-primary-foreground/70 flex flex-wrap gap-2 justify-between">
           <span>© 2026 UpskillsTraining. All rights reserved.</span>
           <span>Made with care in the UK</span>
         </div>

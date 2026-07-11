@@ -7,7 +7,7 @@ export function Newsletter() {
   const [done, setDone] = useState(false);
   return (
     <section className="mx-auto max-w-7xl px-6 -mb-12">
-      <div className="rounded-3xl bg-primary text-primary-foreground shadow-elevated p-8 md:p-10 grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
+      <div className="rounded-3xl bg-primary text-primary-foreground shadow-elevated p-6 md:p-8 grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
         <div>
           <h3 className="text-2xl font-bold">Get course updates & career tips</h3>
           <p className="text-sm text-primary-foreground/80 mt-1">

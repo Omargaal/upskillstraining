@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, CheckCircle2, Clock, GraduationCap, Mail, MapPin } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Clock, ExternalLink, GraduationCap, Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ConsultationModal } from "@/components/ConsultationModal";

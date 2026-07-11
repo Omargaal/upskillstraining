@@ -1,9 +1,10 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, CheckCircle2, Clock, ExternalLink, GraduationCap, Mail, MapPin } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Clock, ExternalLink, GraduationCap, Languages, Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ConsultationModal } from "@/components/ConsultationModal";
 import { getCourse } from "@/lib/courses";
+import passSeruBadge from "@/assets/passseruexam-badge.png.asset.json";
 
 export const Route = createFileRoute("/courses/$courseId")({
   loader: ({ params }) => {

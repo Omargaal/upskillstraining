@@ -57,7 +57,7 @@ function CourseDetail() {
         <div>
           <h2 className="font-display text-2xl font-bold">What you'll learn</h2>
           <ul className="mt-4 space-y-3">
-            {course.syllabus.map((s) => (
+            {course.syllabus.map((s: string) => (
               <li key={s} className="flex gap-3">
                 <CheckCircle2 className="h-5 w-5 shrink-0 text-primary mt-0.5" />
                 <span className="text-foreground">{s}</span>

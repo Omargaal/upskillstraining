@@ -5,7 +5,7 @@ interface HeroSlideshowProps {
   interval?: number;
 }
 
-export function HeroSlideshow({ images, interval = 5000 }: HeroSlideshowProps) {
+export function HeroSlideshow({ images, interval = 6000 }: HeroSlideshowProps) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export function HeroSlideshow({ images, interval = 5000 }: HeroSlideshowProps) {
             src={img.src}
             alt={img.alt}
             className={
-              "absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-1500 ease-[cubic-bezier(0.4,0,0.2,1)]" +
+              "absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-[1500ms] ease-[cubic-bezier(0.4,0,0.2,1)]" +
               (isActive ? " opacity-100 scale-100" : " opacity-0 scale-105")
             }
           />

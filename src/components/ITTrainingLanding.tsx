@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ConsultationModal } from "@/components/ConsultationModal";
+import { CareerJourneyMap } from "@/components/CareerJourneyMap";
 
 const pillars = [
   { icon: Target, title: "Proven Process", description: "A practical, step-by-step curriculum validated by industry professionals and successful IT candidates." },
@@ -138,7 +139,7 @@ export function ITTrainingLanding() {
             </div>
             <div className="relative">
               <div className="rounded-3xl border bg-card p-6 shadow-glow">
-                <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">Career journey</p>
+                <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">Career journey preview</p>
                 <div className="space-y-3">
                   {journeyStages.map((s, i) => (
                     <div key={s.title} className="flex items-center gap-3 p-3 rounded-xl bg-muted/40 border border-border/60">
@@ -152,11 +153,18 @@ export function ITTrainingLanding() {
                     </div>
                   ))}
                 </div>
+                <p className="mt-4 text-xs text-muted-foreground text-center">
+                  Explore the interactive map below ↓
+                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* CAREER JOURNEY MAP (interactive) */}
+      <CareerJourneyMap />
+
 
       {/* HOW IT WORKS */}
       <section className="py-16 bg-muted/40">

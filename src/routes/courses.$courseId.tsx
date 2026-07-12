@@ -148,7 +148,7 @@ function CourseDetail() {
                       </tr>
                     </thead>
                     <tbody>
-                      {course.pricing.map((tier) => (
+                      {course.pricing.map((tier: PricingTier) => (
                         <tr key={tier.course} className="border-t">
                           <td className="px-2 py-1.5 font-medium">{tier.course}</td>
                           <td className="px-2 py-1.5 text-muted-foreground">{tier.duration}</td>

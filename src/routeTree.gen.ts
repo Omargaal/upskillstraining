@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as PcoLicenceRouteImport } from './routes/pco-licence'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BookConsultationRouteImport } from './routes/book-consultation'
 import { Route as BlogRouteImport } from './routes/blog'
@@ -21,6 +22,11 @@ import { Route as CoursesCourseIdRouteImport } from './routes/courses.$courseId'
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PcoLicenceRoute = PcoLicenceRouteImport.update({
+  id: '/pco-licence',
+  path: '/pco-licence',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -65,6 +71,7 @@ export interface FileRoutesByFullPath {
   '/blog': typeof BlogRoute
   '/book-consultation': typeof BookConsultationRoute
   '/contact': typeof ContactRoute
+  '/pco-licence': typeof PcoLicenceRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/courses/$courseId': typeof CoursesCourseIdRoute
   '/courses/': typeof CoursesIndexRoute
@@ -75,6 +82,7 @@ export interface FileRoutesByTo {
   '/blog': typeof BlogRoute
   '/book-consultation': typeof BookConsultationRoute
   '/contact': typeof ContactRoute
+  '/pco-licence': typeof PcoLicenceRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/courses/$courseId': typeof CoursesCourseIdRoute
   '/courses': typeof CoursesIndexRoute
@@ -86,6 +94,7 @@ export interface FileRoutesById {
   '/blog': typeof BlogRoute
   '/book-consultation': typeof BookConsultationRoute
   '/contact': typeof ContactRoute
+  '/pco-licence': typeof PcoLicenceRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/courses/$courseId': typeof CoursesCourseIdRoute
   '/courses/': typeof CoursesIndexRoute
@@ -98,6 +107,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/book-consultation'
     | '/contact'
+    | '/pco-licence'
     | '/sitemap.xml'
     | '/courses/$courseId'
     | '/courses/'
@@ -108,6 +118,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/book-consultation'
     | '/contact'
+    | '/pco-licence'
     | '/sitemap.xml'
     | '/courses/$courseId'
     | '/courses'
@@ -118,6 +129,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/book-consultation'
     | '/contact'
+    | '/pco-licence'
     | '/sitemap.xml'
     | '/courses/$courseId'
     | '/courses/'
@@ -129,6 +141,7 @@ export interface RootRouteChildren {
   BlogRoute: typeof BlogRoute
   BookConsultationRoute: typeof BookConsultationRoute
   ContactRoute: typeof ContactRoute
+  PcoLicenceRoute: typeof PcoLicenceRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   CoursesCourseIdRoute: typeof CoursesCourseIdRoute
   CoursesIndexRoute: typeof CoursesIndexRoute
@@ -141,6 +154,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pco-licence': {
+      id: '/pco-licence'
+      path: '/pco-licence'
+      fullPath: '/pco-licence'
+      preLoaderRoute: typeof PcoLicenceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -201,6 +221,7 @@ const rootRouteChildren: RootRouteChildren = {
   BlogRoute: BlogRoute,
   BookConsultationRoute: BookConsultationRoute,
   ContactRoute: ContactRoute,
+  PcoLicenceRoute: PcoLicenceRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   CoursesCourseIdRoute: CoursesCourseIdRoute,
   CoursesIndexRoute: CoursesIndexRoute,

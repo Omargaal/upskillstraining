@@ -47,6 +47,9 @@ export function Header() {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="w-64">
                 <DropdownMenuItem asChild>
+                  <Link to="/pco-licence">PCO Licence</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
                   <Link to="/courses" search={{ category: "pco" }}>PCO Licence Courses</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>

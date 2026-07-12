@@ -27,9 +27,15 @@ export function CourseCard({ course }: { course: Course }) {
       </div>
       <div className="mt-4 flex flex-col gap-2 sm:flex-row">
         <Button asChild variant="outline" className="flex-1">
-          <Link to="/courses/$courseId" params={{ courseId: course.id }}>
-            View Course <ArrowRight className="h-4 w-4" />
-          </Link>
+          {course.externalUrl ? (
+            <a href={course.externalUrl} target="_blank" rel="noopener noreferrer">
+              View Course <ArrowRight className="h-4 w-4" />
+            </a>
+          ) : (
+            <Link to="/courses/$courseId" params={{ courseId: course.id }}>
+              View Course <ArrowRight className="h-4 w-4" />
+            </Link>
+          )}
         </Button>
         <ConsultationModal
           courseId={course.id}

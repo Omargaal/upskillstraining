@@ -13,6 +13,7 @@ import heroPcoPass from "@/assets/hero-pco-pass.jpg";
 import heroPcoUpload from "@/assets/hero-pco-upload.png.asset.json";
 
 import teamImg from "@/assets/team.jpg";
+import aboutHero from "@/assets/about-us-hero.png.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -115,8 +116,8 @@ function Index() {
           </div>
         </div>
         <img
-          src={teamImg}
-          alt="The UpskillsTraining team"
+          src={aboutHero.url}
+          alt="Welcome to UpskillsTraining — comprehensive training from fundamentals to advanced admin and security"
           width={1200}
           height={900}
           loading="lazy"

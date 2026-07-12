@@ -63,9 +63,9 @@ function Index() {
               <HeroSlideshow
                 images={[
                   { src: md102JobRoles.url, alt: "MD-102 Endpoint Administrator job roles and career pathways" },
-                  { src: heroPco, alt: "PCO SERU training classroom with learners studying for the TfL test", fit: "contain" },
-                  { src: heroPcoPass, alt: "Proud learner holding her PCO licence after passing the TfL exam", fit: "contain" },
-                  { src: heroPcoUpload.url, alt: "London PCO Licence application costs and step-by-step requirements guide", fit: "contain" },
+                  { src: heroPco, alt: "PCO SERU training classroom with learners studying for the TfL test" },
+                  { src: heroPcoPass, alt: "Proud learner holding her PCO licence after passing the TfL exam" },
+                  { src: heroPcoUpload.url, alt: "London PCO Licence application costs and step-by-step requirements guide" },
                 ]}
               />
             </div>

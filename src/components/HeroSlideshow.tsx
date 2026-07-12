@@ -7,6 +7,7 @@ interface HeroImage {
   to?: string;
   search?: Record<string, string>;
   fit?: "cover" | "contain";
+  scale?: number;
 }
 
 interface HeroSlideshowProps {
@@ -33,8 +34,14 @@ export function HeroSlideshow({ images, interval = 6000 }: HeroSlideshowProps) {
           <img
             src={img.src}
             alt={img.alt}
+            style={
+              img.scale
+                ? { width: `${img.scale * 100}%`, height: `${img.scale * 100}%`, margin: "auto" }
+                : undefined
+            }
             className={
-              "absolute inset-0 h-full w-full transition-[opacity,transform] duration-[1500ms] ease-[cubic-bezier(0.4,0,0.2,1)] object-" + (img.fit || "cover") +
+              "absolute inset-0 transition-[opacity,transform] duration-[1500ms] ease-[cubic-bezier(0.4,0,0.2,1)] object-" + (img.fit || "cover") +
+              (img.scale ? "" : " h-full w-full") +
               (isActive ? " opacity-100 scale-100" : " opacity-0 scale-105 pointer-events-none")
             }
           />

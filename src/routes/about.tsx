@@ -22,7 +22,7 @@ function About() {
           <img
             src={aboutHero.url}
             alt="Welcome to UpskillsTraining — comprehensive training from fundamentals to advanced admin and security"
-            className="w-full object-cover aspect-[21/9] rounded-3xl shadow-card"
+            className="w-full object-contain aspect-[21/9] rounded-3xl shadow-card bg-card"
           />
         </div>
         <div className="mx-auto max-w-4xl px-6 py-10 text-center">

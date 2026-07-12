@@ -36,26 +36,36 @@ function CoursesPage() {
   return (
     <>
       <section className="bg-gradient-to-b from-primary-soft to-background">
-        <div className="mx-auto max-w-7xl px-6 py-10">
-          <h1 className="font-display text-4xl font-extrabold sm:text-5xl">Our Courses</h1>
-          <p className="mt-3 max-w-2xl text-muted-foreground">
-            Every course is bookable on its own, with a free consultation to make sure it's right for you.
-          </p>
-          <div className="mt-6 inline-flex rounded-full border bg-background p-1 shadow-card">
-            {TABS.map((t) => (
-              <Link
-                key={t.key}
-                to="/courses"
-                search={{ category: t.key }}
-                className={cn(
-                  "px-4 py-2 text-sm font-medium rounded-full transition",
-                  category === t.key ? "bg-primary text-primary-foreground" : "text-foreground/70 hover:text-foreground"
-                )}
-              >
-                {t.label}
-              </Link>
-            ))}
+        <div className="mx-auto max-w-7xl px-6 py-10 grid gap-8 lg:grid-cols-[1fr_minmax(0,520px)] lg:items-center">
+          <div>
+            <h1 className="font-display text-4xl font-extrabold sm:text-5xl">Our Courses</h1>
+            <p className="mt-3 max-w-2xl text-muted-foreground">
+              Every course is bookable on its own, with a free consultation to make sure it's right for you.
+            </p>
+            <div className="mt-6 inline-flex rounded-full border bg-background p-1 shadow-card">
+              {TABS.map((t) => (
+                <Link
+                  key={t.key}
+                  to="/courses"
+                  search={{ category: t.key }}
+                  className={cn(
+                    "px-4 py-2 text-sm font-medium rounded-full transition",
+                    category === t.key ? "bg-primary text-primary-foreground" : "text-foreground/70 hover:text-foreground"
+                  )}
+                >
+                  {t.label}
+                </Link>
+              ))}
+            </div>
           </div>
+          {category === "pco" && (
+            <img
+              src={heroPcoCost.url}
+              alt="London PCO Licence application cost breakdown — total £525 including medical, DBS, PHL, SERU, topographical"
+              className="w-full h-auto rounded-2xl shadow-elevated object-cover"
+              loading="lazy"
+            />
+          )}
         </div>
       </section>
 

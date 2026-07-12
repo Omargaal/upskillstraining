@@ -17,15 +17,13 @@ export function HeroSlideshow({ images, interval = 5000 }: HeroSlideshowProps) {
   }, [images.length, interval]);
 
   return (
-    <div className="relative aspect-video w-full overflow-hidden rounded-3xl shadow-elevated">
+    <div className="relative aspect-video w-full overflow-hidden rounded-3xl bg-card shadow-elevated">
       {images.map((img, i) => (
         <img
           key={img.src}
           src={img.src}
           alt={img.alt}
-          width={1600}
-          height={1100}
-          className="absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ease-in-out"
+          className="absolute inset-0 h-full w-full object-contain transition-opacity duration-1000 ease-in-out"
           style={{ opacity: i === index ? 1 : 0 }}
         />
       ))}

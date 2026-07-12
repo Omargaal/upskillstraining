@@ -13,6 +13,7 @@ import heroPcoPass from "@/assets/hero-pco-pass.jpg";
 import heroPcoUpload from "@/assets/hero-pco-upload.png.asset.json";
 
 import teamImg from "@/assets/team.jpg";
+import aboutHero from "@/assets/about-us-hero.png.asset.json";
 
 export const Route = createFileRoute("/")({
   component: Index,

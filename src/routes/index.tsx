@@ -24,7 +24,7 @@ function Index() {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-b from-primary-soft to-background">
-        <div className="mx-auto grid max-w-7xl gap-8 px-6 py-10 lg:grid-cols-2 lg:items-center lg:py-14">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 py-3 lg:grid-cols-2 lg:items-center lg:py-4">
           <div className="fade-in-up">
             <Badge className="bg-accent text-accent-foreground hover:bg-accent">
               <Sparkles className="h-3.5 w-3.5" /> UK Training Provider

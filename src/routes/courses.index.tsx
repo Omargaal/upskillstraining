@@ -34,7 +34,7 @@ function CoursesPage() {
   return (
     <>
       <section className="bg-gradient-to-b from-primary-soft to-background">
-        <div className="mx-auto max-w-7xl px-6 py-10">
+        <div className="mx-auto max-w-7xl px-6 py-3">
           <div>
             <h1 className="font-display text-4xl font-extrabold sm:text-5xl">Our Courses</h1>
             <p className="mt-3 max-w-2xl text-muted-foreground">

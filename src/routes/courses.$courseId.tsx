@@ -41,7 +41,7 @@ function CourseDetail() {
   return (
     <>
       <section className="bg-gradient-to-b from-primary-soft to-background">
-        <div className="mx-auto max-w-5xl px-6 py-10">
+        <div className="mx-auto max-w-5xl px-6 py-3">
           <Link to="/courses" search={{ category: course.category }} className="inline-flex items-center gap-1 text-sm text-primary font-medium hover:underline">
             <ArrowLeft className="h-4 w-4" /> Back to {course.category === "pco" ? "PCO" : "IT"} courses
           </Link>

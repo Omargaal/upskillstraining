@@ -18,7 +18,7 @@ function Contact() {
   return (
     <>
       <section className="bg-gradient-to-b from-primary-soft to-background">
-        <div className="mx-auto max-w-4xl px-6 py-10">
+        <div className="mx-auto max-w-4xl px-6 py-3">
           <h1 className="font-display text-4xl font-extrabold sm:text-5xl">Contact us</h1>
           <p className="mt-3 text-muted-foreground">Questions before you book? We're friendly, UK-based and happy to help.</p>
         </div>

@@ -102,7 +102,7 @@ export function ITTrainingLanding() {
   return (
     <>
       {/* HERO */}
-      <section className="relative overflow-hidden pt-16 pb-12">
+      <section className="relative overflow-hidden pt-3 pb-12">
         <div className="absolute inset-0 -z-10">
           <div className="absolute inset-0 hero-gradient opacity-[0.08]" />
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />

@@ -63,7 +63,7 @@ function Index() {
               <HeroSlideshow
                 images={[
                   { src: md102JobRoles.url, alt: "MD-102 Endpoint Administrator job roles and career pathways", to: "/courses", search: { category: "it" } },
-                  { src: heroPcoLicence.url, alt: "London PCO Licence application cost breakdown — total £525 including medical, DBS, PHL, SERU, topographical", to: "/courses", search: { category: "pco" } },
+                  { src: heroPcoLicence.url, alt: "London PCO Licence application cost breakdown — total £525 including medical, DBS, PHL, SERU, topographical", to: "/courses", search: { category: "pco" }, fit: "contain" },
                   { src: heroPco, alt: "PCO SERU training classroom with learners studying for the TfL test", to: "/courses", search: { category: "pco" } },
                   { src: heroPcoPass, alt: "Proud learner holding her PCO licence after passing the TfL exam", to: "/courses", search: { category: "pco" } },
                   { src: heroPcoUpload.url, alt: "London PCO Licence application costs and step-by-step requirements guide", to: "/courses", search: { category: "pco" } },

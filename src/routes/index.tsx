@@ -59,13 +59,13 @@ function Index() {
             <div className="absolute -top-6 -left-6 h-40 w-40 rounded-full bg-accent/40 blur-3xl" />
             <div className="absolute -bottom-8 -right-6 h-52 w-52 rounded-full bg-primary/20 blur-3xl" />
             <Link to="/courses" search={{ category: "it" }} className="block overflow-hidden rounded-3xl shadow-elevated transition-transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
-              <img
-                src={md102JobRoles.url}
-                alt="MD-102 Endpoint Administrator job roles and career pathways"
-                width={1200}
-                height={675}
-                loading="eager"
-                className="aspect-[4/3] w-full object-cover"
+              <HeroSlideshow
+                images={[
+                  { src: md102JobRoles.url, alt: "MD-102 Endpoint Administrator job roles and career pathways" },
+                  { src: heroPco, alt: "PCO SERU training classroom with learners studying for the TfL test" },
+                  { src: heroPcoPass, alt: "Proud learner holding her PCO licence after passing the TfL exam" },
+                  { src: heroPcoUpload.url, alt: "London PCO Licence application costs and step-by-step requirements guide" },
+                ]}
               />
             </Link>
           </div>

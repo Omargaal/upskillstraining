@@ -18,15 +18,20 @@ export function HeroSlideshow({ images, interval = 5000 }: HeroSlideshowProps) {
 
   return (
     <div className="relative aspect-video w-full overflow-hidden rounded-3xl bg-card shadow-elevated">
-      {images.map((img, i) => (
-        <img
-          key={img.src}
-          src={img.src}
-          alt={img.alt}
-          className="absolute inset-0 h-full w-full object-contain transition-opacity duration-1000 ease-in-out"
-          style={{ opacity: i === index ? 1 : 0 }}
-        />
-      ))}
+      {images.map((img, i) => {
+        const isActive = i === index;
+        return (
+          <img
+            key={img.src}
+            src={img.src}
+            alt={img.alt}
+            className={
+              "absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-1500 ease-[cubic-bezier(0.4,0,0.2,1)]" +
+              (isActive ? " opacity-100 scale-100" : " opacity-0 scale-105")
+            }
+          />
+        );
+      })}
     </div>
   );
 }

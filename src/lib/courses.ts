@@ -13,6 +13,7 @@ export interface Course {
   syllabus: string[];
   tag?: string;
   externalUrl?: string;
+  embedUrl?: string;
 }
 
 export const courses: Course[] = [

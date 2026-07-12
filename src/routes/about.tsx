@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import teamImg from "@/assets/team.jpg";
+import aboutHero from "@/assets/about-us-hero.png.asset.json";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -17,7 +18,14 @@ function About() {
   return (
     <>
       <section className="bg-gradient-to-b from-primary-soft to-background">
-        <div className="mx-auto max-w-4xl px-6 py-10">
+        <div className="mx-auto max-w-7xl px-6 pt-6">
+          <img
+            src={aboutHero.url}
+            alt="Welcome to UpskillsTraining — comprehensive training from fundamentals to advanced admin and security"
+            className="w-full object-cover aspect-[21/9] rounded-3xl shadow-card"
+          />
+        </div>
+        <div className="mx-auto max-w-4xl px-6 py-10 text-center">
           <h1 className="font-display text-4xl font-extrabold sm:text-5xl">About UpskillsTraining</h1>
           <p className="mt-4 text-lg text-muted-foreground">
             We're a UK-based vocational training company on a mission to make recognised, career-changing qualifications accessible to everyone.

@@ -25,7 +25,7 @@ export function Footer() {
         <div>
           <h4 className="font-bold text-primary-foreground mb-4">Quick links</h4>
           <ul className="space-y-2 text-sm text-primary-foreground/80">
-            <li><Link to="/courses" search={{ category: "pco" }} className="hover:text-accent">PCO Courses</Link></li>
+            <li><Link to="/pco-licence" className="hover:text-accent">PCO Licence</Link></li>
             <li><Link to="/courses" search={{ category: "it" }} className="hover:text-accent">IT Training Courses</Link></li>
             <li><Link to="/book-consultation" className="hover:text-accent">Book a Consultation</Link></li>
             <li><Link to="/about" className="hover:text-accent">About</Link></li>

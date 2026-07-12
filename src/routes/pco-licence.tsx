@@ -35,7 +35,7 @@ function PcoLicence() {
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button asChild size="lg" variant="hero">
-                <Link to="/courses" search={{ category: "pco" }}>Explore PCO Courses</Link>
+                <Link to="/courses" search={{ category: "it" }}>Explore IT Courses</Link>
               </Button>
               <ConsultationModal
                 trigger={<Button size="lg" variant="accent">Book a Free Consultation <ArrowRight className="h-4 w-4" /></Button>}

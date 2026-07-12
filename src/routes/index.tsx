@@ -121,7 +121,7 @@ function Index() {
           width={1200}
           height={900}
           loading="lazy"
-          className="rounded-3xl shadow-card object-cover aspect-[4/3] w-full"
+          className="rounded-3xl shadow-card object-contain aspect-[1024/410] w-full bg-card"
         />
       </section>
 

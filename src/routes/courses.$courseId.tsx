@@ -137,7 +137,30 @@ function CourseDetail() {
             </div>
             <div className="border-t pt-4">
               <div className="text-xs uppercase tracking-wide text-muted-foreground">Investment</div>
-              <div className="text-lg font-bold text-foreground mt-1">{course.price}</div>
+              {course.pricing ? (
+                <div className="mt-2 overflow-hidden rounded-lg border">
+                  <table className="w-full text-sm">
+                    <thead className="bg-muted/50">
+                      <tr>
+                        <th className="px-2 py-1.5 text-left text-xs font-medium text-muted-foreground">Course</th>
+                        <th className="px-2 py-1.5 text-left text-xs font-medium text-muted-foreground">Duration</th>
+                        <th className="px-2 py-1.5 text-left text-xs font-medium text-muted-foreground">Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {course.pricing.map((tier) => (
+                        <tr key={tier.course} className="border-t">
+                          <td className="px-2 py-1.5 font-medium">{tier.course}</td>
+                          <td className="px-2 py-1.5 text-muted-foreground">{tier.duration}</td>
+                          <td className="px-2 py-1.5 font-semibold">{tier.price}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <div className="text-lg font-bold text-foreground mt-1">{course.price}</div>
+              )}
             </div>
           </div>
           <div className="mt-6 space-y-3">

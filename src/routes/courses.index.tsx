@@ -62,7 +62,7 @@ function CoursesPage() {
             <img
               src={heroPcoLicence.url}
               alt="London PCO Licence application cost breakdown — total £525 including medical, DBS, PHL, SERU, topographical"
-              className="w-full max-h-[280px] rounded-2xl shadow-elevated object-contain self-center"
+              className="w-full max-h-[280px] rounded-2xl shadow-elevated object-fill self-center"
               loading="lazy"
             />
           )}

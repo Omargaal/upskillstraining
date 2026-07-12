@@ -115,8 +115,8 @@ function Index() {
           </div>
         </div>
         <img
-          src={teamImg}
-          alt="The UpskillsTraining team"
+          src={aboutHero.url}
+          alt="Welcome to UpskillsTraining — comprehensive training from fundamentals to advanced admin and security"
           width={1200}
           height={900}
           loading="lazy"

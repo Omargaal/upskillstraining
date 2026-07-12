@@ -13,6 +13,7 @@ export interface Course {
   syllabus: string[];
   tag?: string;
   externalUrl?: string;
+  embedUrl?: string;
 }
 
 export const courses: Course[] = [
@@ -197,6 +198,28 @@ export const courses: Course[] = [
       "Common interview questions and model answers",
       "Mock interview practice and feedback",
     ],
+  },
+  {
+    id: "it-endpoint-management",
+    category: "it",
+    title: "Endpoint Management Mastery",
+    short: "Specialise in modern endpoint management — devices, policies, deployment and security.",
+    description:
+      "A dedicated online course covering modern endpoint management for IT professionals. Learn how to enrol, configure, secure and monitor devices at scale using industry-standard tools, with modules, quizzes and exams delivered through our Endpoint Mastery Hub.",
+    duration: "Self-paced online",
+    price: "From £400 · Funding may be available",
+    delivery: "Online (Endpoint Mastery Hub)",
+    requirements: "Basic IT / Windows administration familiarity.",
+    embedUrl: "https://memhero.lovable.app",
+    syllabus: [
+      "Endpoint management fundamentals and architecture",
+      "Device enrolment and configuration profiles",
+      "Application deployment and patching",
+      "Compliance policies and conditional access",
+      "Monitoring, reporting and troubleshooting",
+      "Module quizzes and final exam",
+    ],
+    tag: "Specialisation",
   },
 ];
 

@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ConsultationModal } from "@/components/ConsultationModal";
+import { CareerJourneyMap } from "@/components/CareerJourneyMap";
 
 const pillars = [
   { icon: Target, title: "Proven Process", description: "A practical, step-by-step curriculum validated by industry professionals and successful IT candidates." },

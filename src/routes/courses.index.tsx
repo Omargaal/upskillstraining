@@ -4,6 +4,7 @@ import { CourseCard } from "@/components/CourseCard";
 import { ITTrainingLanding } from "@/components/ITTrainingLanding";
 import { courses } from "@/lib/courses";
 import { cn } from "@/lib/utils";
+import heroPcoCost from "@/assets/hero-pco-cost.png.asset.json";
 
 const searchSchema = z.object({
   category: z.enum(["all", "pco", "it"]).catch("all"),

@@ -4,10 +4,9 @@ import { CourseCard } from "@/components/CourseCard";
 import { ITTrainingLanding } from "@/components/ITTrainingLanding";
 import { courses } from "@/lib/courses";
 import { cn } from "@/lib/utils";
-import heroPcoLicence from "@/assets/hero-pco-licence.png.asset.json";
 
 const searchSchema = z.object({
-  category: z.enum(["all", "pco", "it"]).catch("all"),
+  category: z.enum(["all", "it"]).catch("all"),
 });
 
 export const Route = createFileRoute("/courses/")({
@@ -15,9 +14,9 @@ export const Route = createFileRoute("/courses/")({
   head: () => ({
     meta: [
       { title: "Courses — UpskillsTraining" },
-      { name: "description", content: "Browse PCO Licence and IT Training courses at UpskillsTraining." },
+      { name: "description", content: "Browse IT Training courses at UpskillsTraining. PCO Licence training now lives on its own dedicated page." },
       { property: "og:title", content: "Courses — UpskillsTraining" },
-      { property: "og:description", content: "PCO Licence and IT Training — pick the course that fits your goals." },
+      { property: "og:description", content: "IT Training courses to build your tech career. PCO Licence training has its own dedicated page." },
     ],
   }),
   component: CoursesPage,
@@ -25,22 +24,21 @@ export const Route = createFileRoute("/courses/")({
 
 const TABS = [
   { key: "all", label: "All Courses" },
-  { key: "pco", label: "PCO Licence" },
   { key: "it", label: "IT Training" },
 ] as const;
 
 function CoursesPage() {
   const { category } = Route.useSearch();
-  const filtered = category === "all" ? courses : courses.filter((c) => c.category === category);
+  const filtered = category === "all" ? courses.filter((c) => c.category === "it") : courses.filter((c) => c.category === category);
 
   return (
     <>
       <section className="bg-gradient-to-b from-primary-soft to-background">
-        <div className="mx-auto max-w-7xl px-6 py-10 grid gap-8 lg:grid-cols-[1fr_minmax(0,520px)] lg:items-center">
+        <div className="mx-auto max-w-7xl px-6 py-10">
           <div>
             <h1 className="font-display text-4xl font-extrabold sm:text-5xl">Our Courses</h1>
             <p className="mt-3 max-w-2xl text-muted-foreground">
-              Every course is bookable on its own, with a free consultation to make sure it's right for you.
+              IT training courses you can book on their own, with a free consultation to make sure they're right for you. PCO Licence training has moved to its own page.
             </p>
             <div className="mt-6 inline-flex rounded-full border bg-background p-1 shadow-card">
               {TABS.map((t) => (
@@ -58,14 +56,6 @@ function CoursesPage() {
               ))}
             </div>
           </div>
-          {category === "pco" && (
-            <img
-              src={heroPcoLicence.url}
-              alt="London PCO Licence application cost breakdown — total £525 including medical, DBS, PHL, SERU, topographical"
-              className="w-full max-h-[280px] rounded-2xl shadow-elevated object-fill self-center"
-              loading="lazy"
-            />
-          )}
         </div>
       </section>
 

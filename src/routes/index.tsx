@@ -38,7 +38,7 @@ function Index() {
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button asChild size="lg" variant="hero">
-                <Link to="/courses" search={{ category: "pco" }}>Explore PCO Courses</Link>
+                <Link to="/pco-licence">Explore PCO Licence</Link>
               </Button>
               <Button asChild size="lg" variant="outline">
                 <Link to="/courses" search={{ category: "it" }}>Explore IT Courses</Link>
@@ -136,7 +136,7 @@ function Index() {
                 From your first TfL assessment to your issued PCO badge — pick a focused course or take our full support package.
               </p>
             </div>
-            <Link to="/courses" search={{ category: "pco" }} className="text-sm font-semibold text-primary hover:underline">
+            <Link to="/pco-licence" className="text-sm font-semibold text-primary hover:underline">
               View all PCO courses →
             </Link>
           </div>

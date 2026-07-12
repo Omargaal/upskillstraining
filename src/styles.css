@@ -123,6 +123,25 @@
   animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+@utility hero-gradient {
+  background: linear-gradient(135deg, #0b1a3b 0%, #0057b7 55%, #0fa3b1 100%);
+}
+
+@utility text-gradient {
+  background: linear-gradient(135deg, #0057b7 0%, #0fa3b1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility accent-gradient {
+  background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
+}
+
+@utility shadow-glow {
+  box-shadow: 0 0 40px oklch(0.34 0.13 264 / 0.25);
+}
+
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }

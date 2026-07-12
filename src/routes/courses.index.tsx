@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { z } from "zod";
 import { CourseCard } from "@/components/CourseCard";
+import { ITTrainingLanding } from "@/components/ITTrainingLanding";
 import { courses } from "@/lib/courses";
 import { cn } from "@/lib/utils";
 
@@ -57,11 +58,15 @@ function CoursesPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-12">
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((c) => <CourseCard key={c.id} course={c} />)}
-        </div>
-      </section>
+      {category === "it" ? (
+        <ITTrainingLanding />
+      ) : (
+        <section className="mx-auto max-w-7xl px-6 py-12">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {filtered.map((c) => <CourseCard key={c.id} course={c} />)}
+          </div>
+        </section>
+      )}
     </>
   );
 }

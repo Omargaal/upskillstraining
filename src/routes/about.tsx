@@ -18,11 +18,13 @@ function About() {
   return (
     <>
       <section className="bg-gradient-to-b from-primary-soft to-background">
-        <img
-          src={aboutHero.url}
-          alt="Welcome to UpskillsTraining — comprehensive training from fundamentals to advanced admin and security"
-          className="mx-auto max-w-7xl w-full object-cover aspect-[21/9] rounded-3xl shadow-card px-6 pt-6"
-        />
+        <div className="mx-auto max-w-7xl px-6 pt-6">
+          <img
+            src={aboutHero.url}
+            alt="Welcome to UpskillsTraining — comprehensive training from fundamentals to advanced admin and security"
+            className="w-full object-cover aspect-[21/9] rounded-3xl shadow-card"
+          />
+        </div>
         <div className="mx-auto max-w-4xl px-6 py-10 text-center">
           <h1 className="font-display text-4xl font-extrabold sm:text-5xl">About UpskillsTraining</h1>
           <p className="mt-4 text-lg text-muted-foreground">

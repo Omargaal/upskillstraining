@@ -11,6 +11,7 @@ import md102JobRoles from "@/assets/md102-job-roles.png.asset.json";
 import heroPco from "@/assets/hero-pco.jpg";
 import heroPcoPass from "@/assets/hero-pco-pass.jpg";
 import heroPcoUpload from "@/assets/hero-pco-upload.png.asset.json";
+import heroPcoCost from "@/assets/hero-pco-cost.png.asset.json";
 import teamImg from "@/assets/team.jpg";
 
 export const Route = createFileRoute("/")({
@@ -58,16 +59,17 @@ function Index() {
           <div className="relative fade-in-up">
             <div className="absolute -top-6 -left-6 h-40 w-40 rounded-full bg-accent/40 blur-3xl" />
             <div className="absolute -bottom-8 -right-6 h-52 w-52 rounded-full bg-primary/20 blur-3xl" />
-            <Link to="/courses" search={{ category: "it" }} className="block overflow-hidden rounded-3xl shadow-elevated transition-transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+            <div className="block overflow-hidden rounded-3xl shadow-elevated">
               <HeroSlideshow
                 images={[
-                  { src: md102JobRoles.url, alt: "MD-102 Endpoint Administrator job roles and career pathways" },
-                  { src: heroPco, alt: "PCO SERU training classroom with learners studying for the TfL test" },
-                  { src: heroPcoPass, alt: "Proud learner holding her PCO licence after passing the TfL exam" },
-                  { src: heroPcoUpload.url, alt: "London PCO Licence application costs and step-by-step requirements guide" },
+                  { src: md102JobRoles.url, alt: "MD-102 Endpoint Administrator job roles and career pathways", to: "/courses", search: { category: "it" } },
+                  { src: heroPcoCost.url, alt: "London PCO Licence application cost breakdown — total £525 including medical, DBS, PHL, SERU, topographical", to: "/courses", search: { category: "pco" } },
+                  { src: heroPco, alt: "PCO SERU training classroom with learners studying for the TfL test", to: "/courses", search: { category: "pco" } },
+                  { src: heroPcoPass, alt: "Proud learner holding her PCO licence after passing the TfL exam", to: "/courses", search: { category: "pco" } },
+                  { src: heroPcoUpload.url, alt: "London PCO Licence application costs and step-by-step requirements guide", to: "/courses", search: { category: "pco" } },
                 ]}
               />
-            </Link>
+            </div>
           </div>
         </div>
       </section>

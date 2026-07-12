@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
+
+interface HeroImage {
+  src: string;
+  alt: string;
+  to?: string;
+  search?: Record<string, string>;
+}
 
 interface HeroSlideshowProps {
-  images: { src: string; alt: string }[];
+  images: HeroImage[];
   interval?: number;
 }
 
@@ -20,17 +28,30 @@ export function HeroSlideshow({ images, interval = 6000 }: HeroSlideshowProps) {
     <div className="relative aspect-video w-full overflow-hidden rounded-3xl bg-card shadow-elevated">
       {images.map((img, i) => {
         const isActive = i === index;
-        return (
+        const imgEl = (
           <img
-            key={img.src}
             src={img.src}
             alt={img.alt}
             className={
               "absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-[1500ms] ease-[cubic-bezier(0.4,0,0.2,1)]" +
-              (isActive ? " opacity-100 scale-100" : " opacity-0 scale-105")
+              (isActive ? " opacity-100 scale-100" : " opacity-0 scale-105 pointer-events-none")
             }
           />
         );
+        if (img.to) {
+          return (
+            <Link
+              key={img.src}
+              to={img.to}
+              search={img.search as never}
+              className="absolute inset-0 block focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-label={img.alt}
+            >
+              {imgEl}
+            </Link>
+          );
+        }
+        return <div key={img.src} className="absolute inset-0">{imgEl}</div>;
       })}
     </div>
   );

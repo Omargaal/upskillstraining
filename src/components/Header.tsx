@@ -36,10 +36,10 @@ export function Header() {
         </div>
       </div>
 
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-2">
-        <div className="flex items-center gap-6">
-          <Logo className="bg-background rounded-md p-1" />
-          <nav className="hidden lg:flex items-center gap-5">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-2">
+        <div className="flex items-center gap-4">
+          <Logo className="bg-background rounded-md" />
+          <nav className="hidden lg:flex items-center gap-4">
             <Link to="/" className={navLink}>Home</Link>
             <DropdownMenu>
               <DropdownMenuTrigger className={`${navLink} inline-flex items-center gap-1 outline-none`}>

@@ -96,12 +96,14 @@ function CourseDetail() {
               <iframe
                 src={course.embedUrl}
                 title={`${course.title} — course platform`}
-                className="absolute inset-0 h-full w-full"
+                className="absolute left-0 w-full"
+                style={{ top: "-72px", height: "calc(100% + 72px)" }}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 allow="fullscreen; clipboard-read; clipboard-write"
               />
             </div>
+
           </div>
         </section>
       )}

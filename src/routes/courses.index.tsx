@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { z } from "zod";
 import { CourseCard } from "@/components/CourseCard";
+import { ITTrainingLanding } from "@/components/ITTrainingLanding";
 import { courses } from "@/lib/courses";
 import { cn } from "@/lib/utils";
 

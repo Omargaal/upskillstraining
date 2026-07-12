@@ -47,6 +47,9 @@ export function Header() {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="w-64">
                 <DropdownMenuItem asChild>
+                  <Link to="/pco-licence">PCO Licence</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
                   <Link to="/courses" search={{ category: "pco" }}>PCO Licence Courses</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
@@ -83,6 +86,7 @@ export function Header() {
         <div className="lg:hidden border-t bg-background">
           <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-6 py-2">
             <Link to="/" className="py-1.5 font-medium" onClick={() => setMobileOpen(false)}>Home</Link>
+            <Link to="/pco-licence" className="py-1.5 font-medium" onClick={() => setMobileOpen(false)}>PCO Licence</Link>
             <Link to="/courses" search={{ category: "pco" }} className="py-1.5 font-medium" onClick={() => setMobileOpen(false)}>PCO Licence Courses</Link>
             <Link to="/courses" search={{ category: "it" }} className="py-1.5 font-medium" onClick={() => setMobileOpen(false)}>IT Training Courses</Link>
             <Link to="/about" className="py-1.5 font-medium" onClick={() => setMobileOpen(false)}>About</Link>

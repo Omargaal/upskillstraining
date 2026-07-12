@@ -6,7 +6,7 @@ interface HeroImage {
   alt: string;
   to?: string;
   search?: Record<string, string>;
-  fit?: "cover" | "contain";
+  fit?: "cover" | "contain" | "fill";
 }
 
 interface HeroSlideshowProps {

@@ -91,7 +91,6 @@ export const courses: Course[] = [
     price: "From £600 · Funding may be available",
     delivery: "Online (Endpoint Mastery Hub) + Hybrid mentoring",
     requirements: "None. Absolute beginners welcome.",
-    embedUrl: "https://memhero.lovable.app",
     syllabus: [
       "Week 1 — IT Fundamentals: hardware, software, IT career paths",
       "Week 2 — Networking Basics: IP, DNS, DHCP, topologies",
@@ -119,7 +118,6 @@ export const courses: Course[] = [
     price: "From £500 · Funding may be available",
     delivery: "Online (Endpoint Mastery Hub) + Hybrid mentoring",
     requirements: "Existing IT support experience or completion of the Beginner Path.",
-    embedUrl: "https://memhero.lovable.app",
     syllabus: [
       "Modern management: from on-prem to cloud",
       "Intune deep dive: architecture and advanced enrolment",
@@ -143,7 +141,6 @@ export const courses: Course[] = [
     price: "Included in the Endpoint Mastery Hub",
     delivery: "Online (Endpoint Mastery Hub)",
     requirements: "None.",
-    embedUrl: "https://memhero.lovable.app",
     syllabus: [
       "What is endpoint management?",
       "The evolution of device management",
@@ -164,7 +161,6 @@ export const courses: Course[] = [
     price: "Included in the Endpoint Mastery Hub",
     delivery: "Online (Endpoint Mastery Hub)",
     requirements: "Basic IT / Windows familiarity.",
-    embedUrl: "https://memhero.lovable.app",
     syllabus: [
       "Introduction to Microsoft Intune",
       "Intune architecture and components",
@@ -186,7 +182,6 @@ export const courses: Course[] = [
     price: "Included in the Endpoint Mastery Hub",
     delivery: "Online (Endpoint Mastery Hub)",
     requirements: "Completion of Intune Fundamentals recommended.",
-    embedUrl: "https://memhero.lovable.app",
     syllabus: [
       "Understanding configuration profiles",
       "Creating Windows device profiles (lab)",
@@ -208,7 +203,6 @@ export const courses: Course[] = [
     price: "Included in the Endpoint Mastery Hub",
     delivery: "Online (Endpoint Mastery Hub)",
     requirements: "Completion of Intune Fundamentals recommended.",
-    embedUrl: "https://memhero.lovable.app",
     syllabus: [
       "Application types in Intune",
       "Deploying Win32 applications (lab)",
@@ -230,7 +224,6 @@ export const courses: Course[] = [
     price: "Included in the Endpoint Mastery Hub",
     delivery: "Online (Endpoint Mastery Hub)",
     requirements: "Completion of Intune Fundamentals recommended.",
-    embedUrl: "https://memhero.lovable.app",
     syllabus: [
       "Endpoint security overview",
       "Microsoft Defender for Endpoint integration",
@@ -252,7 +245,6 @@ export const courses: Course[] = [
     price: "Included in the Endpoint Mastery Hub",
     delivery: "Online (Endpoint Mastery Hub)",
     requirements: "Completion of Intune Fundamentals recommended.",
-    embedUrl: "https://memhero.lovable.app",
     syllabus: [
       "Introduction to Windows Autopilot",
       "Autopilot deployment profiles",

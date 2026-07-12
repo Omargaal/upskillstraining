@@ -11,6 +11,7 @@ import md102JobRoles from "@/assets/md102-job-roles.png.asset.json";
 import heroPco from "@/assets/hero-pco.jpg";
 import heroPcoPass from "@/assets/hero-pco-pass.jpg";
 import heroPcoUpload from "@/assets/hero-pco-upload.png.asset.json";
+import heroPcoCost from "@/assets/hero-pco-cost.png.asset.json";
 import teamImg from "@/assets/team.jpg";
 
 export const Route = createFileRoute("/")({

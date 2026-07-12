@@ -78,6 +78,34 @@ function CourseDetail() {
         </div>
       </section>
 
+      {course.embedUrl && (
+        <section className="mx-auto max-w-6xl px-6 pt-8">
+          <div className="rounded-2xl border bg-card p-3 shadow-card">
+            <div className="flex items-center justify-between px-2 py-2">
+              <h2 className="font-display text-lg font-bold">Course platform</h2>
+              <a
+                href={course.embedUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
+              >
+                Open in new tab <ExternalLink className="h-3.5 w-3.5" />
+              </a>
+            </div>
+            <div className="relative w-full overflow-hidden rounded-xl border" style={{ aspectRatio: "16 / 10" }}>
+              <iframe
+                src={course.embedUrl}
+                title={`${course.title} — course platform`}
+                className="absolute inset-0 h-full w-full"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allow="fullscreen; clipboard-read; clipboard-write"
+              />
+            </div>
+          </div>
+        </section>
+      )}
+
       <section className="mx-auto max-w-5xl px-6 py-10 grid gap-8 lg:grid-cols-[1fr_320px]">
         <div>
           <h2 className="font-display text-2xl font-bold">What you'll learn</h2>

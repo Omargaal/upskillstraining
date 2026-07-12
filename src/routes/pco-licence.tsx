@@ -10,9 +10,9 @@ export const Route = createFileRoute("/pco-licence")({
   head: () => ({
     meta: [
       { title: "PCO Licence — Drive & Earn with UpskillsTraining" },
-      { name: "description", content: "Become a licensed PCO driver in London. Drive school runs, earn up to £2,500 a month, and enjoy flexible hours with reliable income." },
+      { name: "description", content: "Become a licensed PCO driver in London. Drive school runs or Uber, earn up to £3,500 a month, and enjoy flexible hours with reliable income." },
       { property: "og:title", content: "PCO Licence — Drive & Earn with UpskillsTraining" },
-      { property: "og:description", content: "Become a licensed PCO driver in London. Drive school runs, earn up to £2,500 a month, and enjoy flexible hours with reliable income." },
+      { property: "og:description", content: "Become a licensed PCO driver in London. Drive school runs or Uber, earn up to £3,500 a month, and enjoy flexible hours with reliable income." },
     ],
   }),
   component: PcoLicence,
@@ -27,15 +27,15 @@ function PcoLicence() {
           <div className="fade-in-up">
             <p className="text-sm font-semibold uppercase tracking-wider text-primary">PCO Licence</p>
             <h1 className="mt-4 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-              Drive school runs.<br />
-              <span className="text-primary">Earn up to £2,500 a month.</span>
+              Drive school runs or Uber.<br />
+              <span className="text-primary">Earn up to £3,500 a month.</span>
             </h1>
             <p className="mt-4 max-w-xl text-lg text-muted-foreground">
               Become a licensed PCO driver in London — flexible hours, reliable income, and full training support from application to your first job.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button asChild size="lg" variant="hero">
-                <Link to="/courses" search={{ category: "it" }}>Explore IT Courses</Link>
+                <a href="#pco-courses">Explore PCO PHV Courses</a>
               </Button>
               <ConsultationModal
                 trigger={<Button size="lg" variant="accent">Book a Free Consultation <ArrowRight className="h-4 w-4" /></Button>}
@@ -61,7 +61,7 @@ function PcoLicence() {
       <section className="border-y bg-background">
         <div className="mx-auto grid max-w-7xl gap-8 px-6 py-6 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            { icon: PoundSterling, title: "Earn up to £2,500/mo", body: "Reliable income for school runs, private hire and more." },
+            { icon: PoundSterling, title: "Earn up to £3,500/mo", body: "Reliable income for school runs, Uber and private hire." },
             { icon: Calendar, title: "Flexible hours", body: "Choose shifts that fit around your family and lifestyle." },
             { icon: Shield, title: "Licensed & insured", body: "We guide you through TfL licensing, DBS and medical steps." },
             { icon: BadgeCheck, title: "Recognised training", body: "SERU, Topographical and English prep from expert trainers." },
@@ -80,7 +80,7 @@ function PcoLicence() {
       </section>
 
       {/* Courses */}
-      <section className="mx-auto max-w-7xl px-6 py-14">
+      <section id="pco-courses" className="mx-auto max-w-7xl px-6 py-14">
         <div className="flex items-end justify-between gap-6 flex-wrap">
           <div>
             <p className="text-sm font-semibold uppercase tracking-wider text-primary">PCO Licence Training</p>

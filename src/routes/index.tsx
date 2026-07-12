@@ -5,8 +5,12 @@ import { Badge } from "@/components/ui/badge";
 import { CourseCard } from "@/components/CourseCard";
 import { ConsultationModal } from "@/components/ConsultationModal";
 import { Newsletter } from "@/components/Newsletter";
+import { HeroSlideshow } from "@/components/HeroSlideshow";
 import { itCourses, pcoCourses } from "@/lib/courses";
-import heroPcoCouple from "@/assets/hero-pco-couple.jpg";
+import md102JobRoles from "@/assets/md102-job-roles.png.asset.json";
+import heroPco from "@/assets/hero-pco.jpg";
+import heroPcoPass from "@/assets/hero-pco-pass.jpg";
+import heroPcoUpload from "@/assets/hero-pco-upload.png.asset.json";
 import teamImg from "@/assets/team.jpg";
 
 export const Route = createFileRoute("/")({
@@ -54,14 +58,14 @@ function Index() {
           <div className="relative fade-in-up">
             <div className="absolute -top-6 -left-6 h-40 w-40 rounded-full bg-accent/40 blur-3xl" />
             <div className="absolute -bottom-8 -right-6 h-52 w-52 rounded-full bg-primary/20 blur-3xl" />
-            <Link to="/courses" search={{ category: "pco" }} className="block overflow-hidden rounded-3xl shadow-elevated transition-transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
-              <img
-                src={heroPcoCouple}
-                alt="Licensed PCO drivers in London with a private hire vehicle"
-                width={1600}
-                height={1104}
-                loading="eager"
-                className="aspect-[4/3] w-full object-cover"
+            <Link to="/courses" search={{ category: "it" }} className="block overflow-hidden rounded-3xl shadow-elevated transition-transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+              <HeroSlideshow
+                images={[
+                  { src: md102JobRoles.url, alt: "MD-102 Endpoint Administrator job roles and career pathways" },
+                  { src: heroPco, alt: "PCO SERU training classroom with learners studying for the TfL test" },
+                  { src: heroPcoPass, alt: "Proud learner holding her PCO licence after passing the TfL exam" },
+                  { src: heroPcoUpload.url, alt: "London PCO Licence application costs and step-by-step requirements guide" },
+                ]}
               />
             </Link>
           </div>

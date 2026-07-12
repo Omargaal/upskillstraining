@@ -17,7 +17,7 @@ export function HeroSlideshow({ images, interval = 5000 }: HeroSlideshowProps) {
   }, [images.length, interval]);
 
   return (
-    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl shadow-elevated">
+    <div className="relative aspect-video w-full overflow-hidden rounded-3xl shadow-elevated">
       {images.map((img, i) => (
         <img
           key={img.src}

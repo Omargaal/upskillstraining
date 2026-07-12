@@ -5,8 +5,12 @@ import { Badge } from "@/components/ui/badge";
 import { CourseCard } from "@/components/CourseCard";
 import { ConsultationModal } from "@/components/ConsultationModal";
 import { Newsletter } from "@/components/Newsletter";
+import { HeroSlideshow } from "@/components/HeroSlideshow";
 import { itCourses, pcoCourses } from "@/lib/courses";
 import md102JobRoles from "@/assets/md102-job-roles.png.asset.json";
+import heroPco from "@/assets/hero-pco.jpg";
+import heroPcoPass from "@/assets/hero-pco-pass.jpg";
+import heroPcoUpload from "@/assets/hero-pco-upload.png.asset.json";
 import teamImg from "@/assets/team.jpg";
 
 export const Route = createFileRoute("/")({

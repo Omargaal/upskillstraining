@@ -4,7 +4,7 @@ import { CourseCard } from "@/components/CourseCard";
 import { ITTrainingLanding } from "@/components/ITTrainingLanding";
 import { courses } from "@/lib/courses";
 import { cn } from "@/lib/utils";
-import heroPcoCost from "@/assets/hero-pco-cost.png.asset.json";
+import heroPcoLicence from "@/assets/hero-pco-licence.png.asset.json";
 
 const searchSchema = z.object({
   category: z.enum(["all", "pco", "it"]).catch("all"),
@@ -60,7 +60,7 @@ function CoursesPage() {
           </div>
           {category === "pco" && (
             <img
-              src={heroPcoCost.url}
+              src={heroPcoLicence.url}
               alt="London PCO Licence application cost breakdown — total £525 including medical, DBS, PHL, SERU, topographical"
               className="w-full h-auto rounded-2xl shadow-elevated object-cover"
               loading="lazy"

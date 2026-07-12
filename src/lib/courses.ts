@@ -1,5 +1,12 @@
 export type CourseCategory = "pco" | "it";
 
+export interface PricingTier {
+  course: string;
+  duration: string;
+  format: string;
+  price: string;
+}
+
 export interface Course {
   id: string;
   category: CourseCategory;
@@ -14,6 +21,7 @@ export interface Course {
   tag?: string;
   externalUrl?: string;
   embedUrl?: string;
+  pricing?: PricingTier[];
 }
 
 export const courses: Course[] = [

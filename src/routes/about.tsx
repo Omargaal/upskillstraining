@@ -18,7 +18,7 @@ function About() {
   return (
     <>
       <section className="bg-gradient-to-b from-primary-soft to-background">
-        <div className="mx-auto max-w-7xl px-6 pt-6">
+        <div className="mx-auto max-w-7xl px-6 pt-2">
           <img
             src={aboutHero.url}
             alt="Welcome to UpskillsTraining — comprehensive training from fundamentals to advanced admin and security"

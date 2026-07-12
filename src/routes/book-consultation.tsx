@@ -17,7 +17,7 @@ function BookConsultation() {
   return (
     <>
       <section className="bg-gradient-to-b from-primary-soft to-background">
-        <div className="mx-auto max-w-4xl px-6 py-10 text-center">
+        <div className="mx-auto max-w-4xl px-6 py-3 text-center">
           <h1 className="font-display text-4xl font-extrabold sm:text-5xl">Book a Free Consultation</h1>
           <p className="mt-3 text-muted-foreground max-w-2xl mx-auto">
             Chat with a UK training advisor about the right course for your goals. No obligation, no cost.

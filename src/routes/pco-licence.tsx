@@ -23,7 +23,7 @@ function PcoLicence() {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-b from-primary-soft to-background">
-        <div className="mx-auto grid max-w-7xl gap-8 px-6 py-10 lg:grid-cols-2 lg:items-center lg:py-14">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 py-3 lg:grid-cols-2 lg:items-center lg:py-4">
           <div className="fade-in-up">
             <p className="text-sm font-semibold uppercase tracking-wider text-primary">PCO Licence</p>
             <h1 className="mt-4 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl">

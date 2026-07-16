@@ -163,7 +163,7 @@ export function ConsultationForm({ defaultCourseId, compact, footer }: Props) {
         <Textarea id="notes" rows={3} value={notes} onChange={(e) => setNotes(e.target.value)} />
       </div>
       <div className="sm:col-span-2">
-        <Button type="submit" size="lg" variant="accent" className="w-full sm:w-auto">
+        <Button type="submit" size="lg" variant="accent" className="w-full sm:w-auto" disabled={submitting}>
           Request my free consultation
         </Button>
       </div>

@@ -48,10 +48,13 @@ function AuthPage() {
           <Input id="password" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
         <Button type="submit" disabled={loading}>{loading ? "Signing in…" : "Sign in"}</Button>
-        <p className="text-xs text-muted-foreground">
-          Need an admin account? <Link to="/auth/signup" className="underline">Create one</Link>, then ask an existing admin to grant access.
-        </p>
       </form>
+      <div className="mt-6 rounded-2xl border bg-card p-4 text-center shadow-card">
+        <p className="text-sm text-muted-foreground">Don't have an account yet?</p>
+        <Button asChild variant="outline" className="mt-3 w-full">
+          <Link to="/auth/signup">Create an admin account</Link>
+        </Button>
+      </div>
     </section>
   );
 }

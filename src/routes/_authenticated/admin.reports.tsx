@@ -132,7 +132,17 @@ function ReportsPage() {
     contact: contacts.length,
     newConsult: consultations.filter((r) => r.status === "new").length,
     newContact: contacts.filter((r) => r.status === "new").length,
+    users: users.length,
+    adminCreatedUsers: users.filter((u) => u.source !== "self_signup").length,
   };
+
+  const filteredUsers = q
+    ? users.filter((u) => (u.email ?? "").toLowerCase().includes(q.toLowerCase()))
+    : users;
+
+  const sourceLabel = (s: SignupUser["source"]) =>
+    s === "admin_invited" ? "Admin invited" : s === "admin_created" ? "Admin created" : "Self signup";
+
 
   return (
     <section className="mx-auto max-w-7xl px-6 py-8">

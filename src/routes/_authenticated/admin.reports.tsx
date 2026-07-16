@@ -186,7 +186,9 @@ function ReportsPage() {
         <TabsList>
           <TabsTrigger value="consultations">Consultations ({filteredConsult.length})</TabsTrigger>
           <TabsTrigger value="contact">Contact Us ({filteredContact.length})</TabsTrigger>
+          <TabsTrigger value="users">User Signups ({filteredUsers.length})</TabsTrigger>
         </TabsList>
+
 
         <TabsContent value="consultations" className="mt-4">
           <div className="mb-3 flex justify-end">

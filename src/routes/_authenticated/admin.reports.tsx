@@ -1,4 +1,5 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -12,6 +13,8 @@ import { toast } from "sonner";
 import { getCourse } from "@/lib/courses";
 import { format } from "date-fns";
 import { ArrowLeft, Download, Search, ShieldAlert } from "lucide-react";
+import { listSignupUsers, type SignupUser } from "@/lib/admin-users.functions";
+
 
 export const Route = createFileRoute("/_authenticated/admin/reports")({
   head: () => ({

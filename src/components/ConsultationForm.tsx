@@ -17,6 +17,8 @@ import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
 import { courses } from "@/lib/courses";
 import { saveConsultation } from "@/lib/consultation-store";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 const TIME_SLOTS = [
   "Morning (9am–12pm)",
@@ -32,6 +34,7 @@ interface Props {
 
 export function ConsultationForm({ defaultCourseId, compact, footer }: Props) {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -41,18 +44,32 @@ export function ConsultationForm({ defaultCourseId, compact, footer }: Props) {
   const [slot, setSlot] = useState(TIME_SLOTS[0]);
   const [notes, setNotes] = useState("");
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    saveConsultation({
-      fullName,
+    setSubmitting(true);
+    const payload = {
+      full_name: fullName,
       email,
       phone,
-      courseId,
+      course_id: courseId,
       format: fmt,
+      preferred_date: date ? date.toISOString() : null,
+      time_slot: slot,
+      notes: notes || null,
+    };
+    const { error } = await supabase.from("consultations").insert(payload);
+    if (error) {
+      console.error(error);
+      toast.error("Couldn't submit your request. Please try again or call us.");
+      setSubmitting(false);
+      return;
+    }
+    saveConsultation({
+      fullName, email, phone, courseId, format: fmt,
       date: date ? date.toISOString() : "",
-      timeSlot: slot,
-      notes,
+      timeSlot: slot, notes,
     });
+    setSubmitting(false);
     setSubmitted(true);
   };
 

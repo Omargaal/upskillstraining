@@ -13,7 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { getCourse } from "@/lib/courses";
 import { format } from "date-fns";
-import { LogOut, Search } from "lucide-react";
+import { FileBarChart2, LogOut, Search } from "lucide-react";
 
 export const Route = createFileRoute("/_authenticated/admin/follow-up")({
   head: () => ({

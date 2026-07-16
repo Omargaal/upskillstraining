@@ -46,6 +46,7 @@ function FollowUpPage() {
   const [rows, setRows] = useState<Consultation[]>([]);
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
+  const [isOgAdmin, setIsOgAdmin] = useState(false);
   const [query, setQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
 
@@ -56,10 +57,11 @@ function FollowUpPage() {
       const { data: roles } = await supabase
         .from("user_roles")
         .select("role")
-        .eq("user_id", userData.user.id)
-        .eq("role", "admin");
-      const admin = !!(roles && roles.length > 0);
+        .eq("user_id", userData.user.id);
+      const roleSet = new Set((roles ?? []).map((r) => r.role));
+      const admin = roleSet.has("admin") || roleSet.has("ogadmin");
       setIsAdmin(admin);
+      setIsOgAdmin(roleSet.has("ogadmin"));
       if (!admin) { setLoading(false); return; }
       const { data, error } = await supabase
         .from("consultations")

@@ -14,10 +14,14 @@ import { Route as PcoLicenceRouteImport } from './routes/pco-licence'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BookConsultationRouteImport } from './routes/book-consultation'
 import { Route as BlogRouteImport } from './routes/blog'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CoursesIndexRouteImport } from './routes/courses.index'
 import { Route as CoursesCourseIdRouteImport } from './routes/courses.$courseId'
+import { Route as AuthSignupRouteImport } from './routes/auth.signup'
+import { Route as AuthenticatedAdminFollowUpRouteImport } from './routes/_authenticated/admin.follow-up'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -44,9 +48,18 @@ const BlogRoute = BlogRouteImport.update({
   path: '/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -64,80 +77,113 @@ const CoursesCourseIdRoute = CoursesCourseIdRouteImport.update({
   path: '/courses/$courseId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthSignupRoute = AuthSignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => AuthRoute,
+} as any)
+const AuthenticatedAdminFollowUpRoute =
+  AuthenticatedAdminFollowUpRouteImport.update({
+    id: '/admin/follow-up',
+    path: '/admin/follow-up',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRouteWithChildren
   '/blog': typeof BlogRoute
   '/book-consultation': typeof BookConsultationRoute
   '/contact': typeof ContactRoute
   '/pco-licence': typeof PcoLicenceRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/auth/signup': typeof AuthSignupRoute
   '/courses/$courseId': typeof CoursesCourseIdRoute
   '/courses/': typeof CoursesIndexRoute
+  '/admin/follow-up': typeof AuthenticatedAdminFollowUpRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRouteWithChildren
   '/blog': typeof BlogRoute
   '/book-consultation': typeof BookConsultationRoute
   '/contact': typeof ContactRoute
   '/pco-licence': typeof PcoLicenceRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/auth/signup': typeof AuthSignupRoute
   '/courses/$courseId': typeof CoursesCourseIdRoute
   '/courses': typeof CoursesIndexRoute
+  '/admin/follow-up': typeof AuthenticatedAdminFollowUpRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRouteWithChildren
   '/blog': typeof BlogRoute
   '/book-consultation': typeof BookConsultationRoute
   '/contact': typeof ContactRoute
   '/pco-licence': typeof PcoLicenceRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/auth/signup': typeof AuthSignupRoute
   '/courses/$courseId': typeof CoursesCourseIdRoute
   '/courses/': typeof CoursesIndexRoute
+  '/_authenticated/admin/follow-up': typeof AuthenticatedAdminFollowUpRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about'
+    | '/auth'
     | '/blog'
     | '/book-consultation'
     | '/contact'
     | '/pco-licence'
     | '/sitemap.xml'
+    | '/auth/signup'
     | '/courses/$courseId'
     | '/courses/'
+    | '/admin/follow-up'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/auth'
     | '/blog'
     | '/book-consultation'
     | '/contact'
     | '/pco-licence'
     | '/sitemap.xml'
+    | '/auth/signup'
     | '/courses/$courseId'
     | '/courses'
+    | '/admin/follow-up'
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
     | '/about'
+    | '/auth'
     | '/blog'
     | '/book-consultation'
     | '/contact'
     | '/pco-licence'
     | '/sitemap.xml'
+    | '/auth/signup'
     | '/courses/$courseId'
     | '/courses/'
+    | '/_authenticated/admin/follow-up'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
+  AuthRoute: typeof AuthRouteWithChildren
   BlogRoute: typeof BlogRoute
   BookConsultationRoute: typeof BookConsultationRoute
   ContactRoute: typeof ContactRoute
@@ -184,11 +230,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -212,12 +272,49 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CoursesCourseIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth/signup': {
+      id: '/auth/signup'
+      path: '/signup'
+      fullPath: '/auth/signup'
+      preLoaderRoute: typeof AuthSignupRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_authenticated/admin/follow-up': {
+      id: '/_authenticated/admin/follow-up'
+      path: '/admin/follow-up'
+      fullPath: '/admin/follow-up'
+      preLoaderRoute: typeof AuthenticatedAdminFollowUpRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminFollowUpRoute: typeof AuthenticatedAdminFollowUpRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminFollowUpRoute: AuthenticatedAdminFollowUpRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
+interface AuthRouteChildren {
+  AuthSignupRoute: typeof AuthSignupRoute
+}
+
+const AuthRouteChildren: AuthRouteChildren = {
+  AuthSignupRoute: AuthSignupRoute,
+}
+
+const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AboutRoute: AboutRoute,
+  AuthRoute: AuthRouteWithChildren,
   BlogRoute: BlogRoute,
   BookConsultationRoute: BookConsultationRoute,
   ContactRoute: ContactRoute,

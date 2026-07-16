@@ -61,7 +61,9 @@ function ReportsPage() {
   const [isOgAdmin, setIsOgAdmin] = useState<boolean | null>(null);
   const [consultations, setConsultations] = useState<Consultation[]>([]);
   const [contacts, setContacts] = useState<Contact[]>([]);
+  const [users, setUsers] = useState<SignupUser[]>([]);
   const [q, setQ] = useState("");
+  const fetchUsers = useServerFn(listSignupUsers);
 
   useEffect(() => {
     (async () => {
@@ -75,15 +77,17 @@ function ReportsPage() {
       const ok = !!(roles && roles.length > 0);
       setIsOgAdmin(ok);
       if (!ok) { setLoading(false); return; }
-      const [c1, c2] = await Promise.all([
+      const [c1, c2, u] = await Promise.all([
         supabase.from("consultations").select("*").order("created_at", { ascending: false }),
         supabase.from("contact_submissions").select("*").order("created_at", { ascending: false }),
+        fetchUsers().catch((e: unknown) => { toast.error(e instanceof Error ? e.message : "Failed to load users"); return [] as SignupUser[]; }),
       ]);
       if (c1.error) toast.error(c1.error.message); else setConsultations((c1.data as Consultation[]) ?? []);
       if (c2.error) toast.error(c2.error.message); else setContacts((c2.data as Contact[]) ?? []);
+      setUsers(u);
       setLoading(false);
     })();
-  }, []);
+  }, [fetchUsers]);
 
   const filteredConsult = useMemo(() => {
     if (!q) return consultations;
@@ -98,6 +102,7 @@ function ReportsPage() {
     const s = q.toLowerCase();
     return contacts.filter((r) =>
       [r.full_name, r.email, r.phone ?? "", r.subject ?? "", r.message].some((v) => v.toLowerCase().includes(s))
+
     );
   }, [contacts, q]);
 

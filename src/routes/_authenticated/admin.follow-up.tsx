@@ -122,10 +122,20 @@ function FollowUpPage() {
             All consultation & contact form submissions. {rows.length} total.
           </p>
         </div>
-        <Button variant="outline" size="sm" onClick={signOut}>
-          <LogOut className="mr-2 h-4 w-4" /> Sign out
-        </Button>
+        <div className="flex items-center gap-2">
+          {isOgAdmin && (
+            <Button asChild variant="default" size="sm">
+              <Link to="/admin/reports">
+                <FileBarChart2 className="mr-2 h-4 w-4" /> View Full Report
+              </Link>
+            </Button>
+          )}
+          <Button variant="outline" size="sm" onClick={signOut}>
+            <LogOut className="mr-2 h-4 w-4" /> Sign out
+          </Button>
+        </div>
       </div>
+
 
       <div className="mt-6 flex flex-wrap gap-3">
         <div className="relative flex-1 min-w-[220px]">

@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, Link, Outlet, useLocation } from "@tanstack/react-router";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -17,6 +17,7 @@ export const Route = createFileRoute("/auth")({
 });
 
 function AuthPage() {
+  const location = useLocation();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,6 +32,8 @@ function AuthPage() {
     toast.success("Signed in");
     navigate({ to: "/admin/follow-up" });
   };
+
+  if (location.pathname !== "/auth") return <Outlet />;
 
   return (
     <section className="mx-auto max-w-md px-6 py-16">

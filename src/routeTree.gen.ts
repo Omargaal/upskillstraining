@@ -19,6 +19,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CoursesIndexRouteImport } from './routes/courses.index'
 import { Route as CoursesCourseIdRouteImport } from './routes/courses.$courseId'
+import { Route as AuthSignupRouteImport } from './routes/auth.signup'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -70,28 +71,35 @@ const CoursesCourseIdRoute = CoursesCourseIdRouteImport.update({
   path: '/courses/$courseId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthSignupRoute = AuthSignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => AuthRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/auth': typeof AuthRoute
+  '/auth': typeof AuthRouteWithChildren
   '/blog': typeof BlogRoute
   '/book-consultation': typeof BookConsultationRoute
   '/contact': typeof ContactRoute
   '/pco-licence': typeof PcoLicenceRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/auth/signup': typeof AuthSignupRoute
   '/courses/$courseId': typeof CoursesCourseIdRoute
   '/courses/': typeof CoursesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/auth': typeof AuthRoute
+  '/auth': typeof AuthRouteWithChildren
   '/blog': typeof BlogRoute
   '/book-consultation': typeof BookConsultationRoute
   '/contact': typeof ContactRoute
   '/pco-licence': typeof PcoLicenceRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/auth/signup': typeof AuthSignupRoute
   '/courses/$courseId': typeof CoursesCourseIdRoute
   '/courses': typeof CoursesIndexRoute
 }
@@ -99,12 +107,13 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/auth': typeof AuthRoute
+  '/auth': typeof AuthRouteWithChildren
   '/blog': typeof BlogRoute
   '/book-consultation': typeof BookConsultationRoute
   '/contact': typeof ContactRoute
   '/pco-licence': typeof PcoLicenceRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/auth/signup': typeof AuthSignupRoute
   '/courses/$courseId': typeof CoursesCourseIdRoute
   '/courses/': typeof CoursesIndexRoute
 }
@@ -119,6 +128,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/pco-licence'
     | '/sitemap.xml'
+    | '/auth/signup'
     | '/courses/$courseId'
     | '/courses/'
   fileRoutesByTo: FileRoutesByTo
@@ -131,6 +141,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/pco-licence'
     | '/sitemap.xml'
+    | '/auth/signup'
     | '/courses/$courseId'
     | '/courses'
   id:
@@ -143,6 +154,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/pco-licence'
     | '/sitemap.xml'
+    | '/auth/signup'
     | '/courses/$courseId'
     | '/courses/'
   fileRoutesById: FileRoutesById
@@ -150,7 +162,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  AuthRoute: typeof AuthRoute
+  AuthRoute: typeof AuthRouteWithChildren
   BlogRoute: typeof BlogRoute
   BookConsultationRoute: typeof BookConsultationRoute
   ContactRoute: typeof ContactRoute
@@ -232,13 +244,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CoursesCourseIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth/signup': {
+      id: '/auth/signup'
+      path: '/signup'
+      fullPath: '/auth/signup'
+      preLoaderRoute: typeof AuthSignupRouteImport
+      parentRoute: typeof AuthRoute
+    }
   }
 }
+
+interface AuthRouteChildren {
+  AuthSignupRoute: typeof AuthSignupRoute
+}
+
+const AuthRouteChildren: AuthRouteChildren = {
+  AuthSignupRoute: AuthSignupRoute,
+}
+
+const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  AuthRoute: AuthRoute,
+  AuthRoute: AuthRouteWithChildren,
   BlogRoute: BlogRoute,
   BookConsultationRoute: BookConsultationRoute,
   ContactRoute: ContactRoute,

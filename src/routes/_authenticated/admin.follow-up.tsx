@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -13,7 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { getCourse } from "@/lib/courses";
 import { format } from "date-fns";
-import { LogOut, Search } from "lucide-react";
+import { FileBarChart2, LogOut, Search } from "lucide-react";
 
 export const Route = createFileRoute("/_authenticated/admin/follow-up")({
   head: () => ({
@@ -46,6 +46,7 @@ function FollowUpPage() {
   const [rows, setRows] = useState<Consultation[]>([]);
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
+  const [isOgAdmin, setIsOgAdmin] = useState(false);
   const [query, setQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
 
@@ -56,10 +57,11 @@ function FollowUpPage() {
       const { data: roles } = await supabase
         .from("user_roles")
         .select("role")
-        .eq("user_id", userData.user.id)
-        .eq("role", "admin");
-      const admin = !!(roles && roles.length > 0);
+        .eq("user_id", userData.user.id);
+      const roleSet = new Set((roles ?? []).map((r) => r.role));
+      const admin = roleSet.has("admin") || roleSet.has("ogadmin");
       setIsAdmin(admin);
+      setIsOgAdmin(roleSet.has("ogadmin"));
       if (!admin) { setLoading(false); return; }
       const { data, error } = await supabase
         .from("consultations")
@@ -120,10 +122,20 @@ function FollowUpPage() {
             All consultation & contact form submissions. {rows.length} total.
           </p>
         </div>
-        <Button variant="outline" size="sm" onClick={signOut}>
-          <LogOut className="mr-2 h-4 w-4" /> Sign out
-        </Button>
+        <div className="flex items-center gap-2">
+          {isOgAdmin && (
+            <Button asChild variant="default" size="sm">
+              <Link to="/admin/reports">
+                <FileBarChart2 className="mr-2 h-4 w-4" /> View Full Report
+              </Link>
+            </Button>
+          )}
+          <Button variant="outline" size="sm" onClick={signOut}>
+            <LogOut className="mr-2 h-4 w-4" /> Sign out
+          </Button>
+        </div>
       </div>
+
 
       <div className="mt-6 flex flex-wrap gap-3">
         <div className="relative flex-1 min-w-[220px]">

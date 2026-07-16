@@ -1,4 +1,5 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -12,6 +13,8 @@ import { toast } from "sonner";
 import { getCourse } from "@/lib/courses";
 import { format } from "date-fns";
 import { ArrowLeft, Download, Search, ShieldAlert } from "lucide-react";
+import { listSignupUsers, type SignupUser } from "@/lib/admin-users.functions";
+
 
 export const Route = createFileRoute("/_authenticated/admin/reports")({
   head: () => ({
@@ -58,7 +61,9 @@ function ReportsPage() {
   const [isOgAdmin, setIsOgAdmin] = useState<boolean | null>(null);
   const [consultations, setConsultations] = useState<Consultation[]>([]);
   const [contacts, setContacts] = useState<Contact[]>([]);
+  const [users, setUsers] = useState<SignupUser[]>([]);
   const [q, setQ] = useState("");
+  const fetchUsers = useServerFn(listSignupUsers);
 
   useEffect(() => {
     (async () => {
@@ -72,15 +77,17 @@ function ReportsPage() {
       const ok = !!(roles && roles.length > 0);
       setIsOgAdmin(ok);
       if (!ok) { setLoading(false); return; }
-      const [c1, c2] = await Promise.all([
+      const [c1, c2, u] = await Promise.all([
         supabase.from("consultations").select("*").order("created_at", { ascending: false }),
         supabase.from("contact_submissions").select("*").order("created_at", { ascending: false }),
+        fetchUsers().catch((e: unknown) => { toast.error(e instanceof Error ? e.message : "Failed to load users"); return [] as SignupUser[]; }),
       ]);
       if (c1.error) toast.error(c1.error.message); else setConsultations((c1.data as Consultation[]) ?? []);
       if (c2.error) toast.error(c2.error.message); else setContacts((c2.data as Contact[]) ?? []);
+      setUsers(u);
       setLoading(false);
     })();
-  }, []);
+  }, [fetchUsers]);
 
   const filteredConsult = useMemo(() => {
     if (!q) return consultations;
@@ -95,6 +102,7 @@ function ReportsPage() {
     const s = q.toLowerCase();
     return contacts.filter((r) =>
       [r.full_name, r.email, r.phone ?? "", r.subject ?? "", r.message].some((v) => v.toLowerCase().includes(s))
+
     );
   }, [contacts, q]);
 
@@ -124,7 +132,17 @@ function ReportsPage() {
     contact: contacts.length,
     newConsult: consultations.filter((r) => r.status === "new").length,
     newContact: contacts.filter((r) => r.status === "new").length,
+    users: users.length,
+    adminCreatedUsers: users.filter((u) => u.source !== "self_signup").length,
   };
+
+  const filteredUsers = q
+    ? users.filter((u) => (u.email ?? "").toLowerCase().includes(q.toLowerCase()))
+    : users;
+
+  const sourceLabel = (s: SignupUser["source"]) =>
+    s === "admin_invited" ? "Admin invited" : s === "admin_created" ? "Admin created" : "Self signup";
+
 
   return (
     <section className="mx-auto max-w-7xl px-6 py-8">
@@ -168,7 +186,9 @@ function ReportsPage() {
         <TabsList>
           <TabsTrigger value="consultations">Consultations ({filteredConsult.length})</TabsTrigger>
           <TabsTrigger value="contact">Contact Us ({filteredContact.length})</TabsTrigger>
+          <TabsTrigger value="users">User Signups ({filteredUsers.length})</TabsTrigger>
         </TabsList>
+
 
         <TabsContent value="consultations" className="mt-4">
           <div className="mb-3 flex justify-end">

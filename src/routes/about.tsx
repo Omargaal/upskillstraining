@@ -34,7 +34,7 @@ function About() {
       </section>
 
       <section className="mx-auto max-w-5xl px-6 py-12 grid gap-8 lg:grid-cols-2 lg:items-center">
-        <img src={teamImg} alt="Our team" loading="lazy" className="rounded-3xl shadow-card object-cover aspect-[4/3]" />
+        <img src={teamImg.url} alt="Our team" loading="lazy" className="rounded-3xl shadow-card object-cover aspect-[4/3]" />
         <div>
           <h2 className="font-display text-2xl font-bold">Our mission</h2>
           <p className="mt-3 text-muted-foreground">

@@ -3,7 +3,7 @@ import { ArrowLeft, CheckCircle2, Clock, ExternalLink, GraduationCap, Languages,
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ConsultationModal } from "@/components/ConsultationModal";
-import { getCourse, type PricingTier } from "@/lib/courses";
+import { getCourse } from "@/lib/courses";
 import passSeruBadge from "@/assets/passseruexam-badge.png.asset.json";
 
 export const Route = createFileRoute("/courses/$courseId")({

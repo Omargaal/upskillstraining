@@ -22,8 +22,6 @@ export function CourseCard({ course }: { course: Course }) {
       <p className="mt-2 text-sm text-muted-foreground">{course.short}</p>
       <div className="mt-3 flex items-center gap-4 text-xs text-muted-foreground">
         <span className="inline-flex items-center gap-1"><Clock className="h-3.5 w-3.5" /> {course.duration}</span>
-        <span>·</span>
-        <span className="font-medium text-foreground">{course.price}</span>
       </div>
       <div className="mt-4 flex flex-col gap-2 sm:flex-row">
         <Button asChild variant="outline" className="flex-1">

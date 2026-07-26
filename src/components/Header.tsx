@@ -77,7 +77,14 @@ export function Header() {
         </div>
 
         <div className="hidden lg:flex items-center gap-3">
-          <Button variant="ghost" size="sm">Login</Button>
+          {signedIn ? (
+            <>
+              <Button asChild variant="ghost" size="sm"><Link to="/dashboard">My Learning</Link></Button>
+              <Button variant="outline" size="sm" onClick={handleSignOut}>Sign out</Button>
+            </>
+          ) : (
+            <Button asChild variant="ghost" size="sm"><Link to="/auth">Login</Link></Button>
+          )}
           <ConsultationModal
             trigger={<Button variant="accent" size="sm">Book a Free Consultation</Button>}
           />

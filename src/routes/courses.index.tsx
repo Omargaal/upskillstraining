@@ -31,35 +31,39 @@ function CoursesPage() {
   const { category } = Route.useSearch();
   const filtered = category === "all" ? courses.filter((c) => c.category === "it") : courses.filter((c) => c.category === category);
 
+  const isIT = category === "it";
   return (
     <>
-      <section className="bg-gradient-to-b from-primary-soft to-background">
-        <div className="mx-auto max-w-7xl px-6 py-3">
-          <div>
-            <h1 className="font-display text-4xl font-extrabold sm:text-5xl">Our Courses</h1>
-            <p className="mt-3 max-w-2xl text-muted-foreground">
-              IT training courses you can book on their own, with a free consultation to make sure they're right for you. PCO Licence training has moved to its own page.
-            </p>
-            <div className="mt-6 inline-flex rounded-full border bg-background p-1 shadow-card">
-              {TABS.map((t) => (
-                <Link
-                  key={t.key}
-                  to="/courses"
-                  search={{ category: t.key }}
-                  className={cn(
-                    "px-4 py-2 text-sm font-medium rounded-full transition",
-                    category === t.key ? "bg-primary text-primary-foreground" : "text-foreground/70 hover:text-foreground"
-                  )}
-                >
-                  {t.label}
-                </Link>
-              ))}
+      {!isIT && (
+        <section className="bg-gradient-to-b from-primary-soft to-background">
+          <div className="mx-auto max-w-7xl px-6 py-3">
+            <div>
+              <h1 className="font-display text-4xl font-extrabold sm:text-5xl">Our Courses</h1>
+              <p className="mt-3 max-w-2xl text-muted-foreground">
+                IT training courses you can book on their own, with a free consultation to make sure they're right for you. PCO Licence training has moved to its own page.
+              </p>
+              <div className="mt-6 inline-flex rounded-full border bg-background p-1 shadow-card">
+                {TABS.map((t) => (
+                  <Link
+                    key={t.key}
+                    to="/courses"
+                    search={{ category: t.key }}
+                    className={cn(
+                      "px-4 py-2 text-sm font-medium rounded-full transition",
+                      category === t.key ? "bg-primary text-primary-foreground" : "text-foreground/70 hover:text-foreground"
+                    )}
+                  >
+                    {t.label}
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      {category === "it" ? (
+      {isIT ? (
+
         <ITTrainingLanding />
       ) : (
         <section className="mx-auto max-w-7xl px-6 py-12">

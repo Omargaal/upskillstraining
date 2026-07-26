@@ -146,7 +146,9 @@ export const adminUpdateModule = createServerFn({ method: "POST" })
   .handler(async ({ context, data }) => {
     await assertAdmin(context);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const patch: Record<string, unknown> = { updated_at: new Date().toISOString() };
+    const patch: { updated_at: string; lesson_content?: string; video_url?: string | null } = {
+      updated_at: new Date().toISOString(),
+    };
     if (data.lesson_content !== undefined) patch.lesson_content = data.lesson_content;
     if (data.video_url !== undefined) patch.video_url = data.video_url;
     const { error } = await supabaseAdmin.from("modules").update(patch).eq("id", data.moduleId);

@@ -5,6 +5,7 @@ import { getModule, markModuleComplete } from "@/lib/lms.functions";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, CheckCircle2, Circle, Lock } from "lucide-react";
 import { toast } from "sonner";
+import { QuizSection } from "@/components/QuizSection";
 
 export const Route = createFileRoute("/_authenticated/learn/$moduleId")({
   head: () => ({

@@ -108,6 +108,9 @@ function LearnModule() {
             <div className="mt-1 font-medium">{m.lab}</div>
           </div>
 
+          <QuizSection moduleId={moduleId} />
+
+
           <div className="mt-10 flex flex-wrap items-center gap-3 border-t pt-6">
             <Button
               size="lg"

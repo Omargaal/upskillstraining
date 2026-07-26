@@ -123,6 +123,9 @@ function FollowUpPage() {
           </p>
         </div>
         <div className="flex items-center gap-2">
+          <Button asChild variant="outline" size="sm">
+            <Link to="/admin/enrollments">Enrollments</Link>
+          </Button>
           {isOgAdmin && (
             <Button asChild variant="default" size="sm">
               <Link to="/admin/reports">

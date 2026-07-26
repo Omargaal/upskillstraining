@@ -89,6 +89,138 @@ export type Database = {
         }
         Relationships: []
       }
+      enrollments: {
+        Row: {
+          created_at: string
+          id: string
+          tier_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          tier_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          tier_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "enrollments_tier_id_fkey"
+            columns: ["tier_id"]
+            isOneToOne: false
+            referencedRelation: "tiers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      module_progress: {
+        Row: {
+          completed_at: string
+          id: string
+          module_id: string
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string
+          id?: string
+          module_id: string
+          user_id: string
+        }
+        Update: {
+          completed_at?: string
+          id?: string
+          module_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "module_progress_module_id_fkey"
+            columns: ["module_id"]
+            isOneToOne: false
+            referencedRelation: "modules"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      modules: {
+        Row: {
+          created_at: string
+          id: string
+          lab: string
+          lesson_content: string
+          number: string
+          sort_order: number
+          tier_id: string
+          title: string
+          topic: string
+          updated_at: string
+          video_url: string | null
+        }
+        Insert: {
+          created_at?: string
+          id: string
+          lab: string
+          lesson_content?: string
+          number: string
+          sort_order: number
+          tier_id: string
+          title: string
+          topic: string
+          updated_at?: string
+          video_url?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          lab?: string
+          lesson_content?: string
+          number?: string
+          sort_order?: number
+          tier_id?: string
+          title?: string
+          topic?: string
+          updated_at?: string
+          video_url?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "modules_tier_id_fkey"
+            columns: ["tier_id"]
+            isOneToOne: false
+            referencedRelation: "tiers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tiers: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          sort_order: number
+          tagline: string
+        }
+        Insert: {
+          created_at?: string
+          id: string
+          name: string
+          sort_order: number
+          tagline: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          sort_order?: number
+          tagline?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string

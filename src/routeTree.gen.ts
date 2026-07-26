@@ -21,6 +21,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as CoursesIndexRouteImport } from './routes/courses.index'
 import { Route as CoursesCourseIdRouteImport } from './routes/courses.$courseId'
 import { Route as AuthSignupRouteImport } from './routes/auth.signup'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedAdminReportsRouteImport } from './routes/_authenticated/admin.reports'
 import { Route as AuthenticatedAdminFollowUpRouteImport } from './routes/_authenticated/admin.follow-up'
 
@@ -83,6 +84,11 @@ const AuthSignupRoute = AuthSignupRouteImport.update({
   path: '/signup',
   getParentRoute: () => AuthRoute,
 } as any)
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedAdminReportsRoute =
   AuthenticatedAdminReportsRouteImport.update({
     id: '/admin/reports',
@@ -105,6 +111,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/pco-licence': typeof PcoLicenceRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
   '/auth/signup': typeof AuthSignupRoute
   '/courses/$courseId': typeof CoursesCourseIdRoute
   '/courses/': typeof CoursesIndexRoute
@@ -120,6 +127,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/pco-licence': typeof PcoLicenceRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
   '/auth/signup': typeof AuthSignupRoute
   '/courses/$courseId': typeof CoursesCourseIdRoute
   '/courses': typeof CoursesIndexRoute
@@ -137,6 +145,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/pco-licence': typeof PcoLicenceRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/auth/signup': typeof AuthSignupRoute
   '/courses/$courseId': typeof CoursesCourseIdRoute
   '/courses/': typeof CoursesIndexRoute
@@ -154,6 +163,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/pco-licence'
     | '/sitemap.xml'
+    | '/dashboard'
     | '/auth/signup'
     | '/courses/$courseId'
     | '/courses/'
@@ -169,6 +179,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/pco-licence'
     | '/sitemap.xml'
+    | '/dashboard'
     | '/auth/signup'
     | '/courses/$courseId'
     | '/courses'
@@ -185,6 +196,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/pco-licence'
     | '/sitemap.xml'
+    | '/_authenticated/dashboard'
     | '/auth/signup'
     | '/courses/$courseId'
     | '/courses/'
@@ -292,6 +304,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthSignupRouteImport
       parentRoute: typeof AuthRoute
     }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/admin/reports': {
       id: '/_authenticated/admin/reports'
       path: '/admin/reports'
@@ -310,11 +329,13 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedAdminFollowUpRoute: typeof AuthenticatedAdminFollowUpRoute
   AuthenticatedAdminReportsRoute: typeof AuthenticatedAdminReportsRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedAdminFollowUpRoute: AuthenticatedAdminFollowUpRoute,
   AuthenticatedAdminReportsRoute: AuthenticatedAdminReportsRoute,
 }

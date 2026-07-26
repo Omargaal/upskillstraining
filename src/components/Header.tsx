@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
 import { Mail, Phone, Menu, X, ChevronDown } from "lucide-react";
 import { Logo } from "./Logo";
 import { Button } from "@/components/ui/button";
 import { ConsultationModal } from "./ConsultationModal";
+import { supabase } from "@/integrations/supabase/client";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,6 +17,18 @@ const navLink =
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [signedIn, setSignedIn] = useState(false);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => setSignedIn(!!data.session));
+    const { data: sub } = supabase.auth.onAuthStateChange((_e, s) => setSignedIn(!!s));
+    return () => sub.subscription.unsubscribe();
+  }, []);
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    window.location.href = "/";
+  };
 
   return (
     <header className="sticky top-0 z-40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b">
@@ -64,7 +77,14 @@ export function Header() {
         </div>
 
         <div className="hidden lg:flex items-center gap-3">
-          <Button variant="ghost" size="sm">Login</Button>
+          {signedIn ? (
+            <>
+              <Button asChild variant="ghost" size="sm"><Link to="/dashboard">My Learning</Link></Button>
+              <Button variant="outline" size="sm" onClick={handleSignOut}>Sign out</Button>
+            </>
+          ) : (
+            <Button asChild variant="ghost" size="sm"><Link to="/auth">Login</Link></Button>
+          )}
           <ConsultationModal
             trigger={<Button variant="accent" size="sm">Book a Free Consultation</Button>}
           />
@@ -89,7 +109,14 @@ export function Header() {
             <Link to="/blog" className="py-1.5 font-medium" onClick={() => setMobileOpen(false)}>Blog</Link>
             <Link to="/contact" className="py-1.5 font-medium" onClick={() => setMobileOpen(false)}>Contact</Link>
             <div className="mt-2 flex flex-col gap-2">
-              <Button variant="outline">Login</Button>
+              {signedIn ? (
+                <>
+                  <Button asChild variant="outline"><Link to="/dashboard" onClick={() => setMobileOpen(false)}>My Learning</Link></Button>
+                  <Button variant="ghost" onClick={handleSignOut}>Sign out</Button>
+                </>
+              ) : (
+                <Button asChild variant="outline"><Link to="/auth" onClick={() => setMobileOpen(false)}>Login</Link></Button>
+              )}
               <ConsultationModal
                 trigger={<Button variant="accent">Book a Free Consultation</Button>}
               />

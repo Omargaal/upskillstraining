@@ -21,8 +21,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as CoursesIndexRouteImport } from './routes/courses.index'
 import { Route as CoursesCourseIdRouteImport } from './routes/courses.$courseId'
 import { Route as AuthSignupRouteImport } from './routes/auth.signup'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedLearnModuleIdRouteImport } from './routes/_authenticated/learn.$moduleId'
 import { Route as AuthenticatedAdminReportsRouteImport } from './routes/_authenticated/admin.reports'
 import { Route as AuthenticatedAdminFollowUpRouteImport } from './routes/_authenticated/admin.follow-up'
+import { Route as AuthenticatedAdminEnrollmentsRouteImport } from './routes/_authenticated/admin.enrollments'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -83,6 +86,17 @@ const AuthSignupRoute = AuthSignupRouteImport.update({
   path: '/signup',
   getParentRoute: () => AuthRoute,
 } as any)
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedLearnModuleIdRoute =
+  AuthenticatedLearnModuleIdRouteImport.update({
+    id: '/learn/$moduleId',
+    path: '/learn/$moduleId',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedAdminReportsRoute =
   AuthenticatedAdminReportsRouteImport.update({
     id: '/admin/reports',
@@ -95,6 +109,12 @@ const AuthenticatedAdminFollowUpRoute =
     path: '/admin/follow-up',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedAdminEnrollmentsRoute =
+  AuthenticatedAdminEnrollmentsRouteImport.update({
+    id: '/admin/enrollments',
+    path: '/admin/enrollments',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -105,11 +125,14 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/pco-licence': typeof PcoLicenceRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
   '/auth/signup': typeof AuthSignupRoute
   '/courses/$courseId': typeof CoursesCourseIdRoute
   '/courses/': typeof CoursesIndexRoute
+  '/admin/enrollments': typeof AuthenticatedAdminEnrollmentsRoute
   '/admin/follow-up': typeof AuthenticatedAdminFollowUpRoute
   '/admin/reports': typeof AuthenticatedAdminReportsRoute
+  '/learn/$moduleId': typeof AuthenticatedLearnModuleIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -120,11 +143,14 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/pco-licence': typeof PcoLicenceRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
   '/auth/signup': typeof AuthSignupRoute
   '/courses/$courseId': typeof CoursesCourseIdRoute
   '/courses': typeof CoursesIndexRoute
+  '/admin/enrollments': typeof AuthenticatedAdminEnrollmentsRoute
   '/admin/follow-up': typeof AuthenticatedAdminFollowUpRoute
   '/admin/reports': typeof AuthenticatedAdminReportsRoute
+  '/learn/$moduleId': typeof AuthenticatedLearnModuleIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -137,11 +163,14 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/pco-licence': typeof PcoLicenceRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/auth/signup': typeof AuthSignupRoute
   '/courses/$courseId': typeof CoursesCourseIdRoute
   '/courses/': typeof CoursesIndexRoute
+  '/_authenticated/admin/enrollments': typeof AuthenticatedAdminEnrollmentsRoute
   '/_authenticated/admin/follow-up': typeof AuthenticatedAdminFollowUpRoute
   '/_authenticated/admin/reports': typeof AuthenticatedAdminReportsRoute
+  '/_authenticated/learn/$moduleId': typeof AuthenticatedLearnModuleIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -154,11 +183,14 @@ export interface FileRouteTypes {
     | '/contact'
     | '/pco-licence'
     | '/sitemap.xml'
+    | '/dashboard'
     | '/auth/signup'
     | '/courses/$courseId'
     | '/courses/'
+    | '/admin/enrollments'
     | '/admin/follow-up'
     | '/admin/reports'
+    | '/learn/$moduleId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -169,11 +201,14 @@ export interface FileRouteTypes {
     | '/contact'
     | '/pco-licence'
     | '/sitemap.xml'
+    | '/dashboard'
     | '/auth/signup'
     | '/courses/$courseId'
     | '/courses'
+    | '/admin/enrollments'
     | '/admin/follow-up'
     | '/admin/reports'
+    | '/learn/$moduleId'
   id:
     | '__root__'
     | '/'
@@ -185,11 +220,14 @@ export interface FileRouteTypes {
     | '/contact'
     | '/pco-licence'
     | '/sitemap.xml'
+    | '/_authenticated/dashboard'
     | '/auth/signup'
     | '/courses/$courseId'
     | '/courses/'
+    | '/_authenticated/admin/enrollments'
     | '/_authenticated/admin/follow-up'
     | '/_authenticated/admin/reports'
+    | '/_authenticated/learn/$moduleId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -292,6 +330,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthSignupRouteImport
       parentRoute: typeof AuthRoute
     }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/learn/$moduleId': {
+      id: '/_authenticated/learn/$moduleId'
+      path: '/learn/$moduleId'
+      fullPath: '/learn/$moduleId'
+      preLoaderRoute: typeof AuthenticatedLearnModuleIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/admin/reports': {
       id: '/_authenticated/admin/reports'
       path: '/admin/reports'
@@ -306,17 +358,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminFollowUpRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/admin/enrollments': {
+      id: '/_authenticated/admin/enrollments'
+      path: '/admin/enrollments'
+      fullPath: '/admin/enrollments'
+      preLoaderRoute: typeof AuthenticatedAdminEnrollmentsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedAdminEnrollmentsRoute: typeof AuthenticatedAdminEnrollmentsRoute
   AuthenticatedAdminFollowUpRoute: typeof AuthenticatedAdminFollowUpRoute
   AuthenticatedAdminReportsRoute: typeof AuthenticatedAdminReportsRoute
+  AuthenticatedLearnModuleIdRoute: typeof AuthenticatedLearnModuleIdRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedAdminEnrollmentsRoute: AuthenticatedAdminEnrollmentsRoute,
   AuthenticatedAdminFollowUpRoute: AuthenticatedAdminFollowUpRoute,
   AuthenticatedAdminReportsRoute: AuthenticatedAdminReportsRoute,
+  AuthenticatedLearnModuleIdRoute: AuthenticatedLearnModuleIdRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =

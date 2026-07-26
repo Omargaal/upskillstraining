@@ -30,7 +30,7 @@ function AuthPage() {
     setLoading(false);
     if (error) return toast.error(error.message);
     toast.success("Signed in");
-    navigate({ to: "/admin/follow-up" });
+    navigate({ to: "/dashboard" });
   };
 
   if (location.pathname !== "/auth") return <Outlet />;

@@ -126,6 +126,9 @@ function FollowUpPage() {
           <Button asChild variant="outline" size="sm">
             <Link to="/admin/enrollments">Enrollments</Link>
           </Button>
+          <Button asChild variant="outline" size="sm">
+            <Link to="/admin/quizzes">Quizzes</Link>
+          </Button>
           {isOgAdmin && (
             <Button asChild variant="default" size="sm">
               <Link to="/admin/reports">

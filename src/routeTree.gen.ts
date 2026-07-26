@@ -24,8 +24,10 @@ import { Route as AuthSignupRouteImport } from './routes/auth.signup'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedLearnModuleIdRouteImport } from './routes/_authenticated/learn.$moduleId'
 import { Route as AuthenticatedAdminReportsRouteImport } from './routes/_authenticated/admin.reports'
+import { Route as AuthenticatedAdminQuizzesRouteImport } from './routes/_authenticated/admin.quizzes'
 import { Route as AuthenticatedAdminFollowUpRouteImport } from './routes/_authenticated/admin.follow-up'
 import { Route as AuthenticatedAdminEnrollmentsRouteImport } from './routes/_authenticated/admin.enrollments'
+import { Route as AuthenticatedAdminQuizzesModuleIdRouteImport } from './routes/_authenticated/admin.quizzes.$moduleId'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -103,6 +105,12 @@ const AuthenticatedAdminReportsRoute =
     path: '/admin/reports',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedAdminQuizzesRoute =
+  AuthenticatedAdminQuizzesRouteImport.update({
+    id: '/admin/quizzes',
+    path: '/admin/quizzes',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedAdminFollowUpRoute =
   AuthenticatedAdminFollowUpRouteImport.update({
     id: '/admin/follow-up',
@@ -114,6 +122,12 @@ const AuthenticatedAdminEnrollmentsRoute =
     id: '/admin/enrollments',
     path: '/admin/enrollments',
     getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAdminQuizzesModuleIdRoute =
+  AuthenticatedAdminQuizzesModuleIdRouteImport.update({
+    id: '/$moduleId',
+    path: '/$moduleId',
+    getParentRoute: () => AuthenticatedAdminQuizzesRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -131,8 +145,10 @@ export interface FileRoutesByFullPath {
   '/courses/': typeof CoursesIndexRoute
   '/admin/enrollments': typeof AuthenticatedAdminEnrollmentsRoute
   '/admin/follow-up': typeof AuthenticatedAdminFollowUpRoute
+  '/admin/quizzes': typeof AuthenticatedAdminQuizzesRouteWithChildren
   '/admin/reports': typeof AuthenticatedAdminReportsRoute
   '/learn/$moduleId': typeof AuthenticatedLearnModuleIdRoute
+  '/admin/quizzes/$moduleId': typeof AuthenticatedAdminQuizzesModuleIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -149,8 +165,10 @@ export interface FileRoutesByTo {
   '/courses': typeof CoursesIndexRoute
   '/admin/enrollments': typeof AuthenticatedAdminEnrollmentsRoute
   '/admin/follow-up': typeof AuthenticatedAdminFollowUpRoute
+  '/admin/quizzes': typeof AuthenticatedAdminQuizzesRouteWithChildren
   '/admin/reports': typeof AuthenticatedAdminReportsRoute
   '/learn/$moduleId': typeof AuthenticatedLearnModuleIdRoute
+  '/admin/quizzes/$moduleId': typeof AuthenticatedAdminQuizzesModuleIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -169,8 +187,10 @@ export interface FileRoutesById {
   '/courses/': typeof CoursesIndexRoute
   '/_authenticated/admin/enrollments': typeof AuthenticatedAdminEnrollmentsRoute
   '/_authenticated/admin/follow-up': typeof AuthenticatedAdminFollowUpRoute
+  '/_authenticated/admin/quizzes': typeof AuthenticatedAdminQuizzesRouteWithChildren
   '/_authenticated/admin/reports': typeof AuthenticatedAdminReportsRoute
   '/_authenticated/learn/$moduleId': typeof AuthenticatedLearnModuleIdRoute
+  '/_authenticated/admin/quizzes/$moduleId': typeof AuthenticatedAdminQuizzesModuleIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -189,8 +209,10 @@ export interface FileRouteTypes {
     | '/courses/'
     | '/admin/enrollments'
     | '/admin/follow-up'
+    | '/admin/quizzes'
     | '/admin/reports'
     | '/learn/$moduleId'
+    | '/admin/quizzes/$moduleId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -207,8 +229,10 @@ export interface FileRouteTypes {
     | '/courses'
     | '/admin/enrollments'
     | '/admin/follow-up'
+    | '/admin/quizzes'
     | '/admin/reports'
     | '/learn/$moduleId'
+    | '/admin/quizzes/$moduleId'
   id:
     | '__root__'
     | '/'
@@ -226,8 +250,10 @@ export interface FileRouteTypes {
     | '/courses/'
     | '/_authenticated/admin/enrollments'
     | '/_authenticated/admin/follow-up'
+    | '/_authenticated/admin/quizzes'
     | '/_authenticated/admin/reports'
     | '/_authenticated/learn/$moduleId'
+    | '/_authenticated/admin/quizzes/$moduleId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -351,6 +377,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminReportsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/admin/quizzes': {
+      id: '/_authenticated/admin/quizzes'
+      path: '/admin/quizzes'
+      fullPath: '/admin/quizzes'
+      preLoaderRoute: typeof AuthenticatedAdminQuizzesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/admin/follow-up': {
       id: '/_authenticated/admin/follow-up'
       path: '/admin/follow-up'
@@ -365,13 +398,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminEnrollmentsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/admin/quizzes/$moduleId': {
+      id: '/_authenticated/admin/quizzes/$moduleId'
+      path: '/$moduleId'
+      fullPath: '/admin/quizzes/$moduleId'
+      preLoaderRoute: typeof AuthenticatedAdminQuizzesModuleIdRouteImport
+      parentRoute: typeof AuthenticatedAdminQuizzesRoute
+    }
   }
 }
+
+interface AuthenticatedAdminQuizzesRouteChildren {
+  AuthenticatedAdminQuizzesModuleIdRoute: typeof AuthenticatedAdminQuizzesModuleIdRoute
+}
+
+const AuthenticatedAdminQuizzesRouteChildren: AuthenticatedAdminQuizzesRouteChildren =
+  {
+    AuthenticatedAdminQuizzesModuleIdRoute:
+      AuthenticatedAdminQuizzesModuleIdRoute,
+  }
+
+const AuthenticatedAdminQuizzesRouteWithChildren =
+  AuthenticatedAdminQuizzesRoute._addFileChildren(
+    AuthenticatedAdminQuizzesRouteChildren,
+  )
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedAdminEnrollmentsRoute: typeof AuthenticatedAdminEnrollmentsRoute
   AuthenticatedAdminFollowUpRoute: typeof AuthenticatedAdminFollowUpRoute
+  AuthenticatedAdminQuizzesRoute: typeof AuthenticatedAdminQuizzesRouteWithChildren
   AuthenticatedAdminReportsRoute: typeof AuthenticatedAdminReportsRoute
   AuthenticatedLearnModuleIdRoute: typeof AuthenticatedLearnModuleIdRoute
 }
@@ -380,6 +436,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedAdminEnrollmentsRoute: AuthenticatedAdminEnrollmentsRoute,
   AuthenticatedAdminFollowUpRoute: AuthenticatedAdminFollowUpRoute,
+  AuthenticatedAdminQuizzesRoute: AuthenticatedAdminQuizzesRouteWithChildren,
   AuthenticatedAdminReportsRoute: AuthenticatedAdminReportsRoute,
   AuthenticatedLearnModuleIdRoute: AuthenticatedLearnModuleIdRoute,
 }

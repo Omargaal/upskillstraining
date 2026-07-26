@@ -5,6 +5,7 @@ import { getModule, markModuleComplete } from "@/lib/lms.functions";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, CheckCircle2, Circle, Lock } from "lucide-react";
 import { toast } from "sonner";
+import { QuizSection } from "@/components/QuizSection";
 
 export const Route = createFileRoute("/_authenticated/learn/$moduleId")({
   head: () => ({
@@ -106,6 +107,9 @@ function LearnModule() {
             <div className="text-xs font-mono uppercase tracking-wider text-muted-foreground">Hands-on lab</div>
             <div className="mt-1 font-medium">{m.lab}</div>
           </div>
+
+          <QuizSection moduleId={moduleId} />
+
 
           <div className="mt-10 flex flex-wrap items-center gap-3 border-t pt-6">
             <Button

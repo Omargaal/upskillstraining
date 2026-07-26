@@ -197,6 +197,94 @@ export type Database = {
           },
         ]
       }
+      quiz_attempts: {
+        Row: {
+          answers: Json
+          correct_count: number
+          created_at: string
+          id: string
+          module_id: string
+          passed: boolean
+          score: number
+          total_questions: number
+          user_id: string
+        }
+        Insert: {
+          answers?: Json
+          correct_count: number
+          created_at?: string
+          id?: string
+          module_id: string
+          passed: boolean
+          score: number
+          total_questions: number
+          user_id: string
+        }
+        Update: {
+          answers?: Json
+          correct_count?: number
+          created_at?: string
+          id?: string
+          module_id?: string
+          passed?: boolean
+          score?: number
+          total_questions?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quiz_attempts_module_id_fkey"
+            columns: ["module_id"]
+            isOneToOne: false
+            referencedRelation: "modules"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      quiz_questions: {
+        Row: {
+          correct_option_ids: string[]
+          created_at: string
+          id: string
+          module_id: string
+          options: Json
+          question_text: string
+          question_type: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          correct_option_ids?: string[]
+          created_at?: string
+          id?: string
+          module_id: string
+          options?: Json
+          question_text: string
+          question_type?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          correct_option_ids?: string[]
+          created_at?: string
+          id?: string
+          module_id?: string
+          options?: Json
+          question_text?: string
+          question_type?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quiz_questions_module_id_fkey"
+            columns: ["module_id"]
+            isOneToOne: false
+            referencedRelation: "modules"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       tiers: {
         Row: {
           created_at: string

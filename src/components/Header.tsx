@@ -109,7 +109,14 @@ export function Header() {
             <Link to="/blog" className="py-1.5 font-medium" onClick={() => setMobileOpen(false)}>Blog</Link>
             <Link to="/contact" className="py-1.5 font-medium" onClick={() => setMobileOpen(false)}>Contact</Link>
             <div className="mt-2 flex flex-col gap-2">
-              <Button variant="outline">Login</Button>
+              {signedIn ? (
+                <>
+                  <Button asChild variant="outline"><Link to="/dashboard" onClick={() => setMobileOpen(false)}>My Learning</Link></Button>
+                  <Button variant="ghost" onClick={handleSignOut}>Sign out</Button>
+                </>
+              ) : (
+                <Button asChild variant="outline"><Link to="/auth" onClick={() => setMobileOpen(false)}>Login</Link></Button>
+              )}
               <ConsultationModal
                 trigger={<Button variant="accent">Book a Free Consultation</Button>}
               />

@@ -37,9 +37,9 @@ function AuthPage() {
 
   return (
     <section className="mx-auto max-w-md px-6 py-16">
-      <h1 className="font-display text-3xl font-bold">Admin Sign In</h1>
+      <h1 className="font-display text-3xl font-bold">Student Sign In</h1>
       <p className="mt-2 text-sm text-muted-foreground">
-        Restricted area. Admins only.
+        Sign in to access your courses, or create a new account to get started.
       </p>
       <form onSubmit={signIn} className="mt-6 grid gap-4 rounded-2xl border bg-card p-6 shadow-card">
         <div className="grid gap-1.5">

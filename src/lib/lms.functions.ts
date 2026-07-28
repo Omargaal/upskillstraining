@@ -51,6 +51,36 @@ export const getModule = createServerFn({ method: "GET" })
     };
   });
 
+async function assertPrereqsMet(
+  supabase: any,
+  userId: string,
+  moduleId: string,
+) {
+  const modRes = await supabase
+    .from("modules")
+    .select("tier_id, sort_order")
+    .eq("id", moduleId)
+    .single();
+  if (modRes.error) throw modRes.error;
+  const priorRes = await supabase
+    .from("modules")
+    .select("id")
+    .eq("tier_id", modRes.data.tier_id)
+    .lt("sort_order", modRes.data.sort_order);
+  if (priorRes.error) throw priorRes.error;
+  const priorIds = (priorRes.data ?? []).map((m: any) => m.id);
+  if (priorIds.length === 0) return;
+  const doneRes = await supabase
+    .from("module_progress")
+    .select("module_id")
+    .eq("user_id", userId)
+    .in("module_id", priorIds);
+  if (doneRes.error) throw doneRes.error;
+  if ((doneRes.data ?? []).length < priorIds.length) {
+    throw new Error("Complete the previous modules in this tier first.");
+  }
+}
+
 export const markModuleComplete = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((d: { moduleId: string; completed: boolean }) =>
@@ -59,6 +89,7 @@ export const markModuleComplete = createServerFn({ method: "POST" })
   .handler(async ({ context, data }) => {
     const { supabase, userId } = context;
     if (data.completed) {
+      await assertPrereqsMet(supabase, userId, data.moduleId);
       const { error } = await supabase
         .from("module_progress")
         .upsert({ user_id: userId, module_id: data.moduleId }, { onConflict: "user_id,module_id" });
@@ -198,6 +229,7 @@ export const submitQuizAttempt = createServerFn({ method: "POST" })
   )
   .handler(async ({ context, data }) => {
     const { supabase, userId } = context;
+    await assertPrereqsMet(supabase, userId, data.moduleId);
     const qRes = await supabase
       .from("quiz_questions")
       .select("id, question_type, correct_option_ids")

@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as PcoLicenceRouteImport } from './routes/pco-licence'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BookConsultationRouteImport } from './routes/book-consultation'
@@ -21,6 +22,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as CoursesIndexRouteImport } from './routes/courses.index'
 import { Route as CoursesCourseIdRouteImport } from './routes/courses.$courseId'
 import { Route as AuthSignupRouteImport } from './routes/auth.signup'
+import { Route as AuthForgotPasswordRouteImport } from './routes/auth.forgot-password'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedLearnModuleIdRouteImport } from './routes/_authenticated/learn.$moduleId'
 import { Route as AuthenticatedAdminReportsRouteImport } from './routes/_authenticated/admin.reports'
@@ -32,6 +34,11 @@ import { Route as AuthenticatedAdminQuizzesModuleIdRouteImport } from './routes/
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PcoLicenceRoute = PcoLicenceRouteImport.update({
@@ -88,6 +95,11 @@ const AuthSignupRoute = AuthSignupRouteImport.update({
   path: '/signup',
   getParentRoute: () => AuthRoute,
 } as any)
+const AuthForgotPasswordRoute = AuthForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => AuthRoute,
+} as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -138,8 +150,10 @@ export interface FileRoutesByFullPath {
   '/book-consultation': typeof BookConsultationRoute
   '/contact': typeof ContactRoute
   '/pco-licence': typeof PcoLicenceRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/signup': typeof AuthSignupRoute
   '/courses/$courseId': typeof CoursesCourseIdRoute
   '/courses/': typeof CoursesIndexRoute
@@ -158,8 +172,10 @@ export interface FileRoutesByTo {
   '/book-consultation': typeof BookConsultationRoute
   '/contact': typeof ContactRoute
   '/pco-licence': typeof PcoLicenceRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/signup': typeof AuthSignupRoute
   '/courses/$courseId': typeof CoursesCourseIdRoute
   '/courses': typeof CoursesIndexRoute
@@ -180,8 +196,10 @@ export interface FileRoutesById {
   '/book-consultation': typeof BookConsultationRoute
   '/contact': typeof ContactRoute
   '/pco-licence': typeof PcoLicenceRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/signup': typeof AuthSignupRoute
   '/courses/$courseId': typeof CoursesCourseIdRoute
   '/courses/': typeof CoursesIndexRoute
@@ -202,8 +220,10 @@ export interface FileRouteTypes {
     | '/book-consultation'
     | '/contact'
     | '/pco-licence'
+    | '/reset-password'
     | '/sitemap.xml'
     | '/dashboard'
+    | '/auth/forgot-password'
     | '/auth/signup'
     | '/courses/$courseId'
     | '/courses/'
@@ -222,8 +242,10 @@ export interface FileRouteTypes {
     | '/book-consultation'
     | '/contact'
     | '/pco-licence'
+    | '/reset-password'
     | '/sitemap.xml'
     | '/dashboard'
+    | '/auth/forgot-password'
     | '/auth/signup'
     | '/courses/$courseId'
     | '/courses'
@@ -243,8 +265,10 @@ export interface FileRouteTypes {
     | '/book-consultation'
     | '/contact'
     | '/pco-licence'
+    | '/reset-password'
     | '/sitemap.xml'
     | '/_authenticated/dashboard'
+    | '/auth/forgot-password'
     | '/auth/signup'
     | '/courses/$courseId'
     | '/courses/'
@@ -265,6 +289,7 @@ export interface RootRouteChildren {
   BookConsultationRoute: typeof BookConsultationRoute
   ContactRoute: typeof ContactRoute
   PcoLicenceRoute: typeof PcoLicenceRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   CoursesCourseIdRoute: typeof CoursesCourseIdRoute
   CoursesIndexRoute: typeof CoursesIndexRoute
@@ -277,6 +302,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pco-licence': {
@@ -354,6 +386,13 @@ declare module '@tanstack/react-router' {
       path: '/signup'
       fullPath: '/auth/signup'
       preLoaderRoute: typeof AuthSignupRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/auth/forgot-password': {
+      id: '/auth/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/auth/forgot-password'
+      preLoaderRoute: typeof AuthForgotPasswordRouteImport
       parentRoute: typeof AuthRoute
     }
     '/_authenticated/dashboard': {
@@ -445,10 +484,12 @@ const AuthenticatedRouteRouteWithChildren =
   AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
 interface AuthRouteChildren {
+  AuthForgotPasswordRoute: typeof AuthForgotPasswordRoute
   AuthSignupRoute: typeof AuthSignupRoute
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
+  AuthForgotPasswordRoute: AuthForgotPasswordRoute,
   AuthSignupRoute: AuthSignupRoute,
 }
 
@@ -463,6 +504,7 @@ const rootRouteChildren: RootRouteChildren = {
   BookConsultationRoute: BookConsultationRoute,
   ContactRoute: ContactRoute,
   PcoLicenceRoute: PcoLicenceRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   CoursesCourseIdRoute: CoursesCourseIdRoute,
   CoursesIndexRoute: CoursesIndexRoute,
@@ -470,13 +512,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

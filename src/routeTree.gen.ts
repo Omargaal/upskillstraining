@@ -24,9 +24,12 @@ import { Route as CoursesCourseIdRouteImport } from './routes/courses.$courseId'
 import { Route as AuthSignupRouteImport } from './routes/auth.signup'
 import { Route as AuthForgotPasswordRouteImport } from './routes/auth.forgot-password'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedCertificatesRouteImport } from './routes/_authenticated/certificates'
 import { Route as AuthenticatedLearnModuleIdRouteImport } from './routes/_authenticated/learn.$moduleId'
+import { Route as AuthenticatedAdminTiersRouteImport } from './routes/_authenticated/admin.tiers'
 import { Route as AuthenticatedAdminReportsRouteImport } from './routes/_authenticated/admin.reports'
 import { Route as AuthenticatedAdminQuizzesRouteImport } from './routes/_authenticated/admin.quizzes'
+import { Route as AuthenticatedAdminProgressRouteImport } from './routes/_authenticated/admin.progress'
 import { Route as AuthenticatedAdminModulesRouteImport } from './routes/_authenticated/admin.modules'
 import { Route as AuthenticatedAdminFollowUpRouteImport } from './routes/_authenticated/admin.follow-up'
 import { Route as AuthenticatedAdminEnrollmentsRouteImport } from './routes/_authenticated/admin.enrollments'
@@ -106,12 +109,23 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedCertificatesRoute =
+  AuthenticatedCertificatesRouteImport.update({
+    id: '/certificates',
+    path: '/certificates',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedLearnModuleIdRoute =
   AuthenticatedLearnModuleIdRouteImport.update({
     id: '/learn/$moduleId',
     path: '/learn/$moduleId',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedAdminTiersRoute = AuthenticatedAdminTiersRouteImport.update({
+  id: '/admin/tiers',
+  path: '/admin/tiers',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedAdminReportsRoute =
   AuthenticatedAdminReportsRouteImport.update({
     id: '/admin/reports',
@@ -122,6 +136,12 @@ const AuthenticatedAdminQuizzesRoute =
   AuthenticatedAdminQuizzesRouteImport.update({
     id: '/admin/quizzes',
     path: '/admin/quizzes',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAdminProgressRoute =
+  AuthenticatedAdminProgressRouteImport.update({
+    id: '/admin/progress',
+    path: '/admin/progress',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedAdminModulesRoute =
@@ -159,6 +179,7 @@ export interface FileRoutesByFullPath {
   '/pco-licence': typeof PcoLicenceRoute
   '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/certificates': typeof AuthenticatedCertificatesRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/signup': typeof AuthSignupRoute
@@ -167,8 +188,10 @@ export interface FileRoutesByFullPath {
   '/admin/enrollments': typeof AuthenticatedAdminEnrollmentsRoute
   '/admin/follow-up': typeof AuthenticatedAdminFollowUpRoute
   '/admin/modules': typeof AuthenticatedAdminModulesRoute
+  '/admin/progress': typeof AuthenticatedAdminProgressRoute
   '/admin/quizzes': typeof AuthenticatedAdminQuizzesRouteWithChildren
   '/admin/reports': typeof AuthenticatedAdminReportsRoute
+  '/admin/tiers': typeof AuthenticatedAdminTiersRoute
   '/learn/$moduleId': typeof AuthenticatedLearnModuleIdRoute
   '/admin/quizzes/$moduleId': typeof AuthenticatedAdminQuizzesModuleIdRoute
 }
@@ -182,6 +205,7 @@ export interface FileRoutesByTo {
   '/pco-licence': typeof PcoLicenceRoute
   '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/certificates': typeof AuthenticatedCertificatesRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/signup': typeof AuthSignupRoute
@@ -190,8 +214,10 @@ export interface FileRoutesByTo {
   '/admin/enrollments': typeof AuthenticatedAdminEnrollmentsRoute
   '/admin/follow-up': typeof AuthenticatedAdminFollowUpRoute
   '/admin/modules': typeof AuthenticatedAdminModulesRoute
+  '/admin/progress': typeof AuthenticatedAdminProgressRoute
   '/admin/quizzes': typeof AuthenticatedAdminQuizzesRouteWithChildren
   '/admin/reports': typeof AuthenticatedAdminReportsRoute
+  '/admin/tiers': typeof AuthenticatedAdminTiersRoute
   '/learn/$moduleId': typeof AuthenticatedLearnModuleIdRoute
   '/admin/quizzes/$moduleId': typeof AuthenticatedAdminQuizzesModuleIdRoute
 }
@@ -207,6 +233,7 @@ export interface FileRoutesById {
   '/pco-licence': typeof PcoLicenceRoute
   '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/_authenticated/certificates': typeof AuthenticatedCertificatesRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/signup': typeof AuthSignupRoute
@@ -215,8 +242,10 @@ export interface FileRoutesById {
   '/_authenticated/admin/enrollments': typeof AuthenticatedAdminEnrollmentsRoute
   '/_authenticated/admin/follow-up': typeof AuthenticatedAdminFollowUpRoute
   '/_authenticated/admin/modules': typeof AuthenticatedAdminModulesRoute
+  '/_authenticated/admin/progress': typeof AuthenticatedAdminProgressRoute
   '/_authenticated/admin/quizzes': typeof AuthenticatedAdminQuizzesRouteWithChildren
   '/_authenticated/admin/reports': typeof AuthenticatedAdminReportsRoute
+  '/_authenticated/admin/tiers': typeof AuthenticatedAdminTiersRoute
   '/_authenticated/learn/$moduleId': typeof AuthenticatedLearnModuleIdRoute
   '/_authenticated/admin/quizzes/$moduleId': typeof AuthenticatedAdminQuizzesModuleIdRoute
 }
@@ -232,6 +261,7 @@ export interface FileRouteTypes {
     | '/pco-licence'
     | '/reset-password'
     | '/sitemap.xml'
+    | '/certificates'
     | '/dashboard'
     | '/auth/forgot-password'
     | '/auth/signup'
@@ -240,8 +270,10 @@ export interface FileRouteTypes {
     | '/admin/enrollments'
     | '/admin/follow-up'
     | '/admin/modules'
+    | '/admin/progress'
     | '/admin/quizzes'
     | '/admin/reports'
+    | '/admin/tiers'
     | '/learn/$moduleId'
     | '/admin/quizzes/$moduleId'
   fileRoutesByTo: FileRoutesByTo
@@ -255,6 +287,7 @@ export interface FileRouteTypes {
     | '/pco-licence'
     | '/reset-password'
     | '/sitemap.xml'
+    | '/certificates'
     | '/dashboard'
     | '/auth/forgot-password'
     | '/auth/signup'
@@ -263,8 +296,10 @@ export interface FileRouteTypes {
     | '/admin/enrollments'
     | '/admin/follow-up'
     | '/admin/modules'
+    | '/admin/progress'
     | '/admin/quizzes'
     | '/admin/reports'
+    | '/admin/tiers'
     | '/learn/$moduleId'
     | '/admin/quizzes/$moduleId'
   id:
@@ -279,6 +314,7 @@ export interface FileRouteTypes {
     | '/pco-licence'
     | '/reset-password'
     | '/sitemap.xml'
+    | '/_authenticated/certificates'
     | '/_authenticated/dashboard'
     | '/auth/forgot-password'
     | '/auth/signup'
@@ -287,8 +323,10 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/enrollments'
     | '/_authenticated/admin/follow-up'
     | '/_authenticated/admin/modules'
+    | '/_authenticated/admin/progress'
     | '/_authenticated/admin/quizzes'
     | '/_authenticated/admin/reports'
+    | '/_authenticated/admin/tiers'
     | '/_authenticated/learn/$moduleId'
     | '/_authenticated/admin/quizzes/$moduleId'
   fileRoutesById: FileRoutesById
@@ -415,11 +453,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/certificates': {
+      id: '/_authenticated/certificates'
+      path: '/certificates'
+      fullPath: '/certificates'
+      preLoaderRoute: typeof AuthenticatedCertificatesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/learn/$moduleId': {
       id: '/_authenticated/learn/$moduleId'
       path: '/learn/$moduleId'
       fullPath: '/learn/$moduleId'
       preLoaderRoute: typeof AuthenticatedLearnModuleIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin/tiers': {
+      id: '/_authenticated/admin/tiers'
+      path: '/admin/tiers'
+      fullPath: '/admin/tiers'
+      preLoaderRoute: typeof AuthenticatedAdminTiersRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/admin/reports': {
@@ -434,6 +486,13 @@ declare module '@tanstack/react-router' {
       path: '/admin/quizzes'
       fullPath: '/admin/quizzes'
       preLoaderRoute: typeof AuthenticatedAdminQuizzesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin/progress': {
+      id: '/_authenticated/admin/progress'
+      path: '/admin/progress'
+      fullPath: '/admin/progress'
+      preLoaderRoute: typeof AuthenticatedAdminProgressRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/admin/modules': {
@@ -483,22 +542,28 @@ const AuthenticatedAdminQuizzesRouteWithChildren =
   )
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedCertificatesRoute: typeof AuthenticatedCertificatesRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedAdminEnrollmentsRoute: typeof AuthenticatedAdminEnrollmentsRoute
   AuthenticatedAdminFollowUpRoute: typeof AuthenticatedAdminFollowUpRoute
   AuthenticatedAdminModulesRoute: typeof AuthenticatedAdminModulesRoute
+  AuthenticatedAdminProgressRoute: typeof AuthenticatedAdminProgressRoute
   AuthenticatedAdminQuizzesRoute: typeof AuthenticatedAdminQuizzesRouteWithChildren
   AuthenticatedAdminReportsRoute: typeof AuthenticatedAdminReportsRoute
+  AuthenticatedAdminTiersRoute: typeof AuthenticatedAdminTiersRoute
   AuthenticatedLearnModuleIdRoute: typeof AuthenticatedLearnModuleIdRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedCertificatesRoute: AuthenticatedCertificatesRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedAdminEnrollmentsRoute: AuthenticatedAdminEnrollmentsRoute,
   AuthenticatedAdminFollowUpRoute: AuthenticatedAdminFollowUpRoute,
   AuthenticatedAdminModulesRoute: AuthenticatedAdminModulesRoute,
+  AuthenticatedAdminProgressRoute: AuthenticatedAdminProgressRoute,
   AuthenticatedAdminQuizzesRoute: AuthenticatedAdminQuizzesRouteWithChildren,
   AuthenticatedAdminReportsRoute: AuthenticatedAdminReportsRoute,
+  AuthenticatedAdminTiersRoute: AuthenticatedAdminTiersRoute,
   AuthenticatedLearnModuleIdRoute: AuthenticatedLearnModuleIdRoute,
 }
 

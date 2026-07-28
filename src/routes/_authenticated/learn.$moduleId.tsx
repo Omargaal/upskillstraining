@@ -66,7 +66,7 @@ function LearnModule() {
       </div>
     );
 
-  const { module: m, enrolled, completed, prev, next, position, total } = data;
+  const { module: m, enrolled, completed, prev, next, position, total, locked, prereqBlocker } = data;
   const video = embedUrl(m.video_url);
 
   return (
@@ -88,6 +88,21 @@ function LearnModule() {
           <Lock className="mx-auto h-8 w-8 text-muted-foreground" />
           <h2 className="mt-3 font-display text-lg font-bold">You're not enrolled in this tier</h2>
           <p className="mt-1 text-sm text-muted-foreground">Contact your admin to gain access to this module.</p>
+        </div>
+      ) : locked ? (
+        <div className="mt-8 rounded-2xl border-2 border-dashed p-8 text-center">
+          <Lock className="mx-auto h-8 w-8 text-muted-foreground" />
+          <h2 className="mt-3 font-display text-lg font-bold">Module locked</h2>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Complete the previous modules in this tier to unlock this one.
+          </p>
+          {prereqBlocker && (
+            <Button asChild className="mt-4">
+              <Link to="/learn/$moduleId" params={{ moduleId: prereqBlocker.id }}>
+                Go to Module {prereqBlocker.number}
+              </Link>
+            </Button>
+          )}
         </div>
       ) : (
         <>

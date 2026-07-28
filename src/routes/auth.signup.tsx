@@ -9,7 +9,7 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/auth/signup")({
   head: () => ({
     meta: [
-      { title: "Create Admin Account — UpskillsTraining" },
+      { title: "Create Account — UpskillsTraining" },
       { name: "robots", content: "noindex" },
     ],
   }),

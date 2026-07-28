@@ -24,6 +24,7 @@ import { Route as CoursesCourseIdRouteImport } from './routes/courses.$courseId'
 import { Route as AuthSignupRouteImport } from './routes/auth.signup'
 import { Route as AuthForgotPasswordRouteImport } from './routes/auth.forgot-password'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as ApiPublicOneoffResetRouteImport } from './routes/api/public/oneoff-reset'
 import { Route as AuthenticatedLearnModuleIdRouteImport } from './routes/_authenticated/learn.$moduleId'
 import { Route as AuthenticatedAdminReportsRouteImport } from './routes/_authenticated/admin.reports'
 import { Route as AuthenticatedAdminQuizzesRouteImport } from './routes/_authenticated/admin.quizzes'
@@ -105,6 +106,11 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const ApiPublicOneoffResetRoute = ApiPublicOneoffResetRouteImport.update({
+  id: '/api/public/oneoff-reset',
+  path: '/api/public/oneoff-reset',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedLearnModuleIdRoute =
   AuthenticatedLearnModuleIdRouteImport.update({
     id: '/learn/$moduleId',
@@ -162,6 +168,7 @@ export interface FileRoutesByFullPath {
   '/admin/quizzes': typeof AuthenticatedAdminQuizzesRouteWithChildren
   '/admin/reports': typeof AuthenticatedAdminReportsRoute
   '/learn/$moduleId': typeof AuthenticatedLearnModuleIdRoute
+  '/api/public/oneoff-reset': typeof ApiPublicOneoffResetRoute
   '/admin/quizzes/$moduleId': typeof AuthenticatedAdminQuizzesModuleIdRoute
 }
 export interface FileRoutesByTo {
@@ -184,6 +191,7 @@ export interface FileRoutesByTo {
   '/admin/quizzes': typeof AuthenticatedAdminQuizzesRouteWithChildren
   '/admin/reports': typeof AuthenticatedAdminReportsRoute
   '/learn/$moduleId': typeof AuthenticatedLearnModuleIdRoute
+  '/api/public/oneoff-reset': typeof ApiPublicOneoffResetRoute
   '/admin/quizzes/$moduleId': typeof AuthenticatedAdminQuizzesModuleIdRoute
 }
 export interface FileRoutesById {
@@ -208,6 +216,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/quizzes': typeof AuthenticatedAdminQuizzesRouteWithChildren
   '/_authenticated/admin/reports': typeof AuthenticatedAdminReportsRoute
   '/_authenticated/learn/$moduleId': typeof AuthenticatedLearnModuleIdRoute
+  '/api/public/oneoff-reset': typeof ApiPublicOneoffResetRoute
   '/_authenticated/admin/quizzes/$moduleId': typeof AuthenticatedAdminQuizzesModuleIdRoute
 }
 export interface FileRouteTypes {
@@ -232,6 +241,7 @@ export interface FileRouteTypes {
     | '/admin/quizzes'
     | '/admin/reports'
     | '/learn/$moduleId'
+    | '/api/public/oneoff-reset'
     | '/admin/quizzes/$moduleId'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -254,6 +264,7 @@ export interface FileRouteTypes {
     | '/admin/quizzes'
     | '/admin/reports'
     | '/learn/$moduleId'
+    | '/api/public/oneoff-reset'
     | '/admin/quizzes/$moduleId'
   id:
     | '__root__'
@@ -277,6 +288,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/quizzes'
     | '/_authenticated/admin/reports'
     | '/_authenticated/learn/$moduleId'
+    | '/api/public/oneoff-reset'
     | '/_authenticated/admin/quizzes/$moduleId'
   fileRoutesById: FileRoutesById
 }
@@ -293,6 +305,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   CoursesCourseIdRoute: typeof CoursesCourseIdRoute
   CoursesIndexRoute: typeof CoursesIndexRoute
+  ApiPublicOneoffResetRoute: typeof ApiPublicOneoffResetRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -402,6 +415,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/api/public/oneoff-reset': {
+      id: '/api/public/oneoff-reset'
+      path: '/api/public/oneoff-reset'
+      fullPath: '/api/public/oneoff-reset'
+      preLoaderRoute: typeof ApiPublicOneoffResetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/learn/$moduleId': {
       id: '/_authenticated/learn/$moduleId'
       path: '/learn/$moduleId'
@@ -508,17 +528,8 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   CoursesCourseIdRoute: CoursesCourseIdRoute,
   CoursesIndexRoute: CoursesIndexRoute,
+  ApiPublicOneoffResetRoute: ApiPublicOneoffResetRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

@@ -148,6 +148,18 @@ export function Header() {
               {signedIn ? (
                 <>
                   <Button asChild variant="outline"><Link to="/dashboard" onClick={() => setMobileOpen(false)}>My Learning</Link></Button>
+                  {isAdmin && (
+                    <>
+                      <p className="px-1 pt-1 text-xs font-mono uppercase tracking-wider text-primary">Admin Tools</p>
+                      <Button asChild variant="ghost" size="sm"><Link to="/admin/follow-up" onClick={() => setMobileOpen(false)}>Follow-Up Enquiries</Link></Button>
+                      <Button asChild variant="ghost" size="sm"><Link to="/admin/reports" onClick={() => setMobileOpen(false)}>Reports</Link></Button>
+                      <Button asChild variant="ghost" size="sm"><Link to="/admin/enrollments" onClick={() => setMobileOpen(false)}>Enrollments</Link></Button>
+                      <Button asChild variant="ghost" size="sm"><Link to="/admin/modules" onClick={() => setMobileOpen(false)}>Modules</Link></Button>
+                      <Button asChild variant="ghost" size="sm"><Link to="/admin/tiers" onClick={() => setMobileOpen(false)}>Tiers</Link></Button>
+                      <Button asChild variant="ghost" size="sm"><Link to="/admin/quizzes" onClick={() => setMobileOpen(false)}>Quizzes</Link></Button>
+                      <Button asChild variant="ghost" size="sm"><Link to="/admin/progress" onClick={() => setMobileOpen(false)}>Progress Analytics</Link></Button>
+                    </>
+                  )}
                   <Button variant="ghost" onClick={handleSignOut}>Sign out</Button>
                 </>
               ) : (

@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as PcoLicenceRouteImport } from './routes/pco-licence'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BookConsultationRouteImport } from './routes/book-consultation'
@@ -33,6 +34,11 @@ import { Route as AuthenticatedAdminQuizzesModuleIdRouteImport } from './routes/
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PcoLicenceRoute = PcoLicenceRouteImport.update({
@@ -144,6 +150,7 @@ export interface FileRoutesByFullPath {
   '/book-consultation': typeof BookConsultationRoute
   '/contact': typeof ContactRoute
   '/pco-licence': typeof PcoLicenceRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
@@ -165,6 +172,7 @@ export interface FileRoutesByTo {
   '/book-consultation': typeof BookConsultationRoute
   '/contact': typeof ContactRoute
   '/pco-licence': typeof PcoLicenceRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
@@ -188,6 +196,7 @@ export interface FileRoutesById {
   '/book-consultation': typeof BookConsultationRoute
   '/contact': typeof ContactRoute
   '/pco-licence': typeof PcoLicenceRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
@@ -211,6 +220,7 @@ export interface FileRouteTypes {
     | '/book-consultation'
     | '/contact'
     | '/pco-licence'
+    | '/reset-password'
     | '/sitemap.xml'
     | '/dashboard'
     | '/auth/forgot-password'
@@ -232,6 +242,7 @@ export interface FileRouteTypes {
     | '/book-consultation'
     | '/contact'
     | '/pco-licence'
+    | '/reset-password'
     | '/sitemap.xml'
     | '/dashboard'
     | '/auth/forgot-password'
@@ -254,6 +265,7 @@ export interface FileRouteTypes {
     | '/book-consultation'
     | '/contact'
     | '/pco-licence'
+    | '/reset-password'
     | '/sitemap.xml'
     | '/_authenticated/dashboard'
     | '/auth/forgot-password'
@@ -277,6 +289,7 @@ export interface RootRouteChildren {
   BookConsultationRoute: typeof BookConsultationRoute
   ContactRoute: typeof ContactRoute
   PcoLicenceRoute: typeof PcoLicenceRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   CoursesCourseIdRoute: typeof CoursesCourseIdRoute
   CoursesIndexRoute: typeof CoursesIndexRoute
@@ -289,6 +302,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pco-licence': {
@@ -484,6 +504,7 @@ const rootRouteChildren: RootRouteChildren = {
   BookConsultationRoute: BookConsultationRoute,
   ContactRoute: ContactRoute,
   PcoLicenceRoute: PcoLicenceRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   CoursesCourseIdRoute: CoursesCourseIdRoute,
   CoursesIndexRoute: CoursesIndexRoute,

@@ -51,6 +51,9 @@ function AuthPage() {
           <Input id="password" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
         <Button type="submit" disabled={loading}>{loading ? "Signing in…" : "Sign in"}</Button>
+        <Link to="/auth/forgot-password" className="text-center text-sm text-muted-foreground hover:underline">
+          Forgot password?
+        </Link>
       </form>
       <div className="mt-6 rounded-2xl border bg-card p-4 text-center shadow-card">
         <p className="text-sm text-muted-foreground">Don't have an account yet?</p>

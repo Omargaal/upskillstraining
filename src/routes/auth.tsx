@@ -57,7 +57,7 @@ function AuthPage() {
       </form>
       <div className="mt-6 rounded-2xl border bg-card p-4 text-center shadow-card">
         <p className="text-sm text-muted-foreground">Don't have an account yet?</p>
-        <Button asChild variant="outline" className="mt-3 w-full">
+        <Button asChild className="mt-3 w-full">
           <Link to="/auth/signup">Create an admin account</Link>
         </Button>
       </div>

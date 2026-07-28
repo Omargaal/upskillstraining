@@ -2,8 +2,10 @@ import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useQuery } from "@tanstack/react-query";
 import { getMyDashboard } from "@/lib/lms.functions";
+import { getMyCertificates } from "@/lib/lms-phase3.functions";
 import { Button } from "@/components/ui/button";
-import { CheckCircle2, Circle, PlayCircle, Lock } from "lucide-react";
+import { CheckCircle2, Circle, PlayCircle, Lock, Award } from "lucide-react";
+import { format } from "date-fns";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => ({
@@ -18,10 +20,15 @@ export const Route = createFileRoute("/_authenticated/dashboard")({
 
 function Dashboard() {
   const fetchDashboard = useServerFn(getMyDashboard);
+  const fetchCerts = useServerFn(getMyCertificates);
   const router = useRouter();
   const { data, isLoading, error } = useQuery({
     queryKey: ["my-dashboard"],
     queryFn: () => fetchDashboard(),
+  });
+  const { data: certData } = useQuery({
+    queryKey: ["my-certificates"],
+    queryFn: () => fetchCerts(),
   });
 
   if (isLoading) return <div className="mx-auto max-w-5xl px-6 py-16">Loading…</div>;
@@ -54,14 +61,19 @@ function Dashboard() {
 
   return (
     <section className="mx-auto max-w-6xl px-6 py-10">
-      <header className="mb-8">
-        <p className="text-xs font-mono uppercase tracking-wider text-muted-foreground">My Learning</p>
-        <h1 className="font-display text-3xl font-extrabold sm:text-4xl">Dashboard</h1>
-        <p className="mt-2 text-muted-foreground">
-          {enrolledTiers.length === 0
-            ? "You're not enrolled in any tier yet. Contact your admin to get access."
-            : `${completedCount} of ${totalEnrolledModules.length} modules complete · ${overallPct}%`}
-        </p>
+      <header className="mb-8 flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <p className="text-xs font-mono uppercase tracking-wider text-muted-foreground">My Learning</p>
+          <h1 className="font-display text-3xl font-extrabold sm:text-4xl">Dashboard</h1>
+          <p className="mt-2 text-muted-foreground">
+            {enrolledTiers.length === 0
+              ? "You're not enrolled in any tier yet. Contact your admin to get access."
+              : `${completedCount} of ${totalEnrolledModules.length} modules complete · ${overallPct}%`}
+          </p>
+        </div>
+        <Button asChild variant="outline" size="sm">
+          <Link to="/certificates"><Award className="mr-2 h-4 w-4" />My Certificates{certData?.certificates?.length ? ` (${certData.certificates.length})` : ""}</Link>
+        </Button>
       </header>
 
       {nextModule && (

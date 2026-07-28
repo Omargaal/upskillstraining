@@ -43,7 +43,9 @@ export function QuizSection({ moduleId, onPassed }: { moduleId: string; onPassed
       setResult(res as SubmitResult);
       if ((res as SubmitResult).passed) {
         toast.success(`Passed with ${(res as SubmitResult).score}%`);
-        qc.invalidateQueries({ queryKey: ["module", moduleId] });
+        qc.invalidateQueries({ queryKey: ["module-nav", moduleId] });
+        qc.invalidateQueries({ queryKey: ["my-dashboard"] });
+        qc.invalidateQueries({ queryKey: ["my-certificates"] });
         qc.invalidateQueries({ queryKey: ["my-dashboard"] });
         onPassed?.();
       } else {

@@ -1,9 +1,10 @@
 import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { getModule, markModuleComplete } from "@/lib/lms.functions";
+import { markModuleComplete } from "@/lib/lms.functions";
+import { getModuleWithNav } from "@/lib/lms-phase3.functions";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, CheckCircle2, Circle, Lock } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, Circle, Lock } from "lucide-react";
 import { toast } from "sonner";
 import { QuizSection } from "@/components/QuizSection";
 
@@ -37,11 +38,11 @@ function LearnModule() {
   const { moduleId } = Route.useParams();
   const router = useRouter();
   const qc = useQueryClient();
-  const fetchModule = useServerFn(getModule);
+  const fetchModule = useServerFn(getModuleWithNav);
   const markFn = useServerFn(markModuleComplete);
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ["module", moduleId],
+    queryKey: ["module-nav", moduleId],
     queryFn: () => fetchModule({ data: { moduleId } }),
   });
 
@@ -49,8 +50,9 @@ function LearnModule() {
     mutationFn: (completed: boolean) => markFn({ data: { moduleId, completed } }),
     onSuccess: (_res, completed) => {
       toast.success(completed ? "Module marked complete" : "Marked as not complete");
-      qc.invalidateQueries({ queryKey: ["module", moduleId] });
+      qc.invalidateQueries({ queryKey: ["module-nav", moduleId] });
       qc.invalidateQueries({ queryKey: ["my-dashboard"] });
+      qc.invalidateQueries({ queryKey: ["my-certificates"] });
     },
     onError: (e: Error) => toast.error(e.message),
   });
@@ -64,7 +66,7 @@ function LearnModule() {
       </div>
     );
 
-  const { module: m, enrolled, completed } = data;
+  const { module: m, enrolled, completed, prev, next, position, total } = data;
   const video = embedUrl(m.video_url);
 
   return (
@@ -74,7 +76,9 @@ function LearnModule() {
       </Link>
 
       <header className="mt-4">
-        <div className="text-xs font-mono uppercase tracking-wider text-primary">Module {m.number}</div>
+        <div className="text-xs font-mono uppercase tracking-wider text-primary">
+          Module {m.number} · {position} of {total}
+        </div>
         <h1 className="mt-1 font-display text-3xl font-extrabold sm:text-4xl">{m.title}</h1>
         <p className="mt-2 text-muted-foreground">{m.topic}</p>
       </header>
@@ -131,6 +135,25 @@ function LearnModule() {
             <Button variant="ghost" asChild>
               <Link to="/dashboard">Back to dashboard</Link>
             </Button>
+          </div>
+
+          <div className="mt-6 flex items-center justify-between gap-3 border-t pt-6">
+            {prev ? (
+              <Button variant="outline" asChild>
+                <Link to="/learn/$moduleId" params={{ moduleId: prev.id }}>
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  <span className="hidden sm:inline">Previous:&nbsp;</span>{prev.number}
+                </Link>
+              </Button>
+            ) : <span />}
+            {next ? (
+              <Button asChild>
+                <Link to="/learn/$moduleId" params={{ moduleId: next.id }}>
+                  <span className="hidden sm:inline">Next:&nbsp;</span>{next.number}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            ) : <span />}
           </div>
         </>
       )}

@@ -9,7 +9,7 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/auth/signup")({
   head: () => ({
     meta: [
-      { title: "Create Admin Account — UpskillsTraining" },
+      { title: "Create Account — UpskillsTraining" },
       { name: "robots", content: "noindex" },
     ],
   }),
@@ -37,7 +37,7 @@ function SignupPage() {
     <section className="mx-auto max-w-md px-6 py-16">
       <h1 className="font-display text-3xl font-bold">Create Account</h1>
       <p className="mt-2 text-sm text-muted-foreground">
-        After signing up, an existing admin must grant you admin access before you can view enquiries.
+        Sign up to enroll in courses and track your learning progress.
       </p>
       <form onSubmit={signUp} className="mt-6 grid gap-4 rounded-2xl border bg-card p-6 shadow-card">
         <div className="grid gap-1.5">

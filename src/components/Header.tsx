@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
-import { Mail, Phone, Menu, X, ChevronDown } from "lucide-react";
+import { Mail, Phone, Menu, X, ChevronDown, ShieldCheck } from "lucide-react";
 import { Logo } from "./Logo";
 import { Button } from "@/components/ui/button";
 import { ConsultationModal } from "./ConsultationModal";
@@ -10,6 +10,8 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 
 const navLink =
@@ -18,10 +20,26 @@ const navLink =
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => setSignedIn(!!data.session));
-    const { data: sub } = supabase.auth.onAuthStateChange((_e, s) => setSignedIn(!!s));
+    const checkRoles = async (userId: string | undefined) => {
+      if (!userId) { setIsAdmin(false); return; }
+      const { data: roles } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", userId);
+      const roleSet = new Set((roles ?? []).map((r) => r.role));
+      setIsAdmin(roleSet.has("admin") || roleSet.has("ogadmin"));
+    };
+    supabase.auth.getSession().then(({ data }) => {
+      setSignedIn(!!data.session);
+      checkRoles(data.session?.user?.id);
+    });
+    const { data: sub } = supabase.auth.onAuthStateChange((_e, s) => {
+      setSignedIn(!!s);
+      checkRoles(s?.user?.id);
+    });
     return () => sub.subscription.unsubscribe();
   }, []);
 

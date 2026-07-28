@@ -21,6 +21,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as CoursesIndexRouteImport } from './routes/courses.index'
 import { Route as CoursesCourseIdRouteImport } from './routes/courses.$courseId'
 import { Route as AuthSignupRouteImport } from './routes/auth.signup'
+import { Route as AuthForgotPasswordRouteImport } from './routes/auth.forgot-password'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedLearnModuleIdRouteImport } from './routes/_authenticated/learn.$moduleId'
 import { Route as AuthenticatedAdminReportsRouteImport } from './routes/_authenticated/admin.reports'
@@ -88,6 +89,11 @@ const AuthSignupRoute = AuthSignupRouteImport.update({
   path: '/signup',
   getParentRoute: () => AuthRoute,
 } as any)
+const AuthForgotPasswordRoute = AuthForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => AuthRoute,
+} as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -140,6 +146,7 @@ export interface FileRoutesByFullPath {
   '/pco-licence': typeof PcoLicenceRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/signup': typeof AuthSignupRoute
   '/courses/$courseId': typeof CoursesCourseIdRoute
   '/courses/': typeof CoursesIndexRoute
@@ -160,6 +167,7 @@ export interface FileRoutesByTo {
   '/pco-licence': typeof PcoLicenceRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/signup': typeof AuthSignupRoute
   '/courses/$courseId': typeof CoursesCourseIdRoute
   '/courses': typeof CoursesIndexRoute
@@ -182,6 +190,7 @@ export interface FileRoutesById {
   '/pco-licence': typeof PcoLicenceRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/signup': typeof AuthSignupRoute
   '/courses/$courseId': typeof CoursesCourseIdRoute
   '/courses/': typeof CoursesIndexRoute
@@ -204,6 +213,7 @@ export interface FileRouteTypes {
     | '/pco-licence'
     | '/sitemap.xml'
     | '/dashboard'
+    | '/auth/forgot-password'
     | '/auth/signup'
     | '/courses/$courseId'
     | '/courses/'
@@ -224,6 +234,7 @@ export interface FileRouteTypes {
     | '/pco-licence'
     | '/sitemap.xml'
     | '/dashboard'
+    | '/auth/forgot-password'
     | '/auth/signup'
     | '/courses/$courseId'
     | '/courses'
@@ -245,6 +256,7 @@ export interface FileRouteTypes {
     | '/pco-licence'
     | '/sitemap.xml'
     | '/_authenticated/dashboard'
+    | '/auth/forgot-password'
     | '/auth/signup'
     | '/courses/$courseId'
     | '/courses/'
@@ -356,6 +368,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthSignupRouteImport
       parentRoute: typeof AuthRoute
     }
+    '/auth/forgot-password': {
+      id: '/auth/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/auth/forgot-password'
+      preLoaderRoute: typeof AuthForgotPasswordRouteImport
+      parentRoute: typeof AuthRoute
+    }
     '/_authenticated/dashboard': {
       id: '/_authenticated/dashboard'
       path: '/dashboard'
@@ -445,10 +464,12 @@ const AuthenticatedRouteRouteWithChildren =
   AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
 interface AuthRouteChildren {
+  AuthForgotPasswordRoute: typeof AuthForgotPasswordRoute
   AuthSignupRoute: typeof AuthSignupRoute
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
+  AuthForgotPasswordRoute: AuthForgotPasswordRoute,
   AuthSignupRoute: AuthSignupRoute,
 }
 
@@ -470,13 +491,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

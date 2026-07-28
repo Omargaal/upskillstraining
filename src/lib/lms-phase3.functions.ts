@@ -126,21 +126,32 @@ export const getModuleWithNav = createServerFn({ method: "GET" })
       .eq("tier_id", modRes.data.tier_id)
       .maybeSingle();
     if (enrRes.error) throw enrRes.error;
-    const progRes = await supabase
+    const tierProgRes = await supabase
       .from("module_progress")
-      .select("completed_at")
+      .select("module_id")
       .eq("user_id", userId)
-      .eq("module_id", data.moduleId)
-      .maybeSingle();
+      .in("module_id", list.map((m) => m.id));
+    if (tierProgRes.error) throw tierProgRes.error;
+    const doneSet = new Set((tierProgRes.data ?? []).map((r) => r.module_id));
+
+    // Gating: locked if any prior module in the tier is not complete
+    const priorIds = list.slice(0, Math.max(0, idx)).map((m) => m.id);
+    const missingPrereqs = priorIds.filter((id) => !doneSet.has(id));
+    const locked = missingPrereqs.length > 0;
+    const prereqBlocker = locked
+      ? list.find((m) => m.id === missingPrereqs[0]) ?? null
+      : null;
 
     return {
       module: modRes.data,
       enrolled: !!enrRes.data,
-      completed: !!progRes.data,
+      completed: doneSet.has(data.moduleId),
       prev,
       next,
       position: idx + 1,
       total: list.length,
+      locked,
+      prereqBlocker,
     };
   });
 

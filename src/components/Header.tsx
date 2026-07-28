@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
-import { Mail, Phone, Menu, X, ChevronDown } from "lucide-react";
+import { Mail, Phone, Menu, X, ChevronDown, ShieldCheck } from "lucide-react";
 import { Logo } from "./Logo";
 import { Button } from "@/components/ui/button";
 import { ConsultationModal } from "./ConsultationModal";
@@ -10,6 +10,8 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 
 const navLink =
@@ -18,10 +20,26 @@ const navLink =
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => setSignedIn(!!data.session));
-    const { data: sub } = supabase.auth.onAuthStateChange((_e, s) => setSignedIn(!!s));
+    const checkRoles = async (userId: string | undefined) => {
+      if (!userId) { setIsAdmin(false); return; }
+      const { data: roles } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", userId);
+      const roleSet = new Set((roles ?? []).map((r) => r.role));
+      setIsAdmin(roleSet.has("admin") || roleSet.has("ogadmin"));
+    };
+    supabase.auth.getSession().then(({ data }) => {
+      setSignedIn(!!data.session);
+      checkRoles(data.session?.user?.id);
+    });
+    const { data: sub } = supabase.auth.onAuthStateChange((_e, s) => {
+      setSignedIn(!!s);
+      checkRoles(s?.user?.id);
+    });
     return () => sub.subscription.unsubscribe();
   }, []);
 
@@ -80,6 +98,24 @@ export function Header() {
           {signedIn ? (
             <>
               <Button asChild variant="ghost" size="sm"><Link to="/dashboard">My Learning</Link></Button>
+              {isAdmin && (
+                <DropdownMenu>
+                  <DropdownMenuTrigger className="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-primary hover:bg-primary/10 transition-colors">
+                    <ShieldCheck className="h-4 w-4" /> Admin <ChevronDown className="h-3.5 w-3.5" />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-56">
+                    <DropdownMenuLabel>Admin Tools</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem asChild><Link to="/admin/follow-up">Follow-Up Enquiries</Link></DropdownMenuItem>
+                    <DropdownMenuItem asChild><Link to="/admin/reports">Reports</Link></DropdownMenuItem>
+                    <DropdownMenuItem asChild><Link to="/admin/enrollments">Enrollments</Link></DropdownMenuItem>
+                    <DropdownMenuItem asChild><Link to="/admin/modules">Modules</Link></DropdownMenuItem>
+                    <DropdownMenuItem asChild><Link to="/admin/tiers">Tiers</Link></DropdownMenuItem>
+                    <DropdownMenuItem asChild><Link to="/admin/quizzes">Quizzes</Link></DropdownMenuItem>
+                    <DropdownMenuItem asChild><Link to="/admin/progress">Progress Analytics</Link></DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              )}
               <Button variant="outline" size="sm" onClick={handleSignOut}>Sign out</Button>
             </>
           ) : (
@@ -112,6 +148,18 @@ export function Header() {
               {signedIn ? (
                 <>
                   <Button asChild variant="outline"><Link to="/dashboard" onClick={() => setMobileOpen(false)}>My Learning</Link></Button>
+                  {isAdmin && (
+                    <>
+                      <p className="px-1 pt-1 text-xs font-mono uppercase tracking-wider text-primary">Admin Tools</p>
+                      <Button asChild variant="ghost" size="sm"><Link to="/admin/follow-up" onClick={() => setMobileOpen(false)}>Follow-Up Enquiries</Link></Button>
+                      <Button asChild variant="ghost" size="sm"><Link to="/admin/reports" onClick={() => setMobileOpen(false)}>Reports</Link></Button>
+                      <Button asChild variant="ghost" size="sm"><Link to="/admin/enrollments" onClick={() => setMobileOpen(false)}>Enrollments</Link></Button>
+                      <Button asChild variant="ghost" size="sm"><Link to="/admin/modules" onClick={() => setMobileOpen(false)}>Modules</Link></Button>
+                      <Button asChild variant="ghost" size="sm"><Link to="/admin/tiers" onClick={() => setMobileOpen(false)}>Tiers</Link></Button>
+                      <Button asChild variant="ghost" size="sm"><Link to="/admin/quizzes" onClick={() => setMobileOpen(false)}>Quizzes</Link></Button>
+                      <Button asChild variant="ghost" size="sm"><Link to="/admin/progress" onClick={() => setMobileOpen(false)}>Progress Analytics</Link></Button>
+                    </>
+                  )}
                   <Button variant="ghost" onClick={handleSignOut}>Sign out</Button>
                 </>
               ) : (

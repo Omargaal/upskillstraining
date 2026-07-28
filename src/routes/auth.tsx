@@ -58,7 +58,7 @@ function AuthPage() {
       <div className="mt-6 rounded-2xl border bg-card p-4 text-center shadow-card">
         <p className="text-sm text-muted-foreground">Don't have an account yet?</p>
         <Button asChild className="mt-3 w-full">
-          <Link to="/auth/signup">Create an admin account</Link>
+          <Link to="/auth/signup">Create an account</Link>
         </Button>
       </div>
     </section>

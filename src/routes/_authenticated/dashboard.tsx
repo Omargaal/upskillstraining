@@ -97,7 +97,9 @@ function Dashboard() {
 
       <div className="space-y-8">
         {tiers.map((tier) => {
-          const tierModules = modules.filter((m) => m.tier_id === tier.id);
+          const tierModules = modules
+            .filter((m) => m.tier_id === tier.id)
+            .sort((a, b) => a.sort_order - b.sort_order);
           const isEnrolled = enrolledSet.has(tier.id);
           const tierCompleted = tierModules.filter((m) => completedIds.has(m.id)).length;
           const pct = tierModules.length ? Math.round((tierCompleted / tierModules.length) * 100) : 0;
@@ -127,27 +129,47 @@ function Dashboard() {
                     <div className="h-full bg-primary transition-all" style={{ width: `${pct}%` }} />
                   </div>
                   <ul className="mt-4 grid gap-2 sm:grid-cols-3">
-                    {tierModules.map((m) => {
+                    {tierModules.map((m, i) => {
                       const done = completedIds.has(m.id);
+                      const priorDone = tierModules.slice(0, i).every((p) => completedIds.has(p.id));
+                      const locked = !done && !priorDone;
+                      const inner = (
+                        <>
+                          {locked ? (
+                            <Lock className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
+                          ) : done ? (
+                            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                          ) : (
+                            <Circle className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
+                          )}
+                          <div className="min-w-0">
+                            <div className="text-sm font-medium">
+                              <span className="font-mono text-muted-foreground">{m.number}</span> {m.title}
+                            </div>
+                            <div className="truncate text-xs text-muted-foreground">
+                              {locked ? "Locked — finish previous module" : m.topic}
+                            </div>
+                          </div>
+                        </>
+                      );
                       return (
                         <li key={m.id}>
-                          <Link
-                            to="/learn/$moduleId"
-                            params={{ moduleId: m.id }}
-                            className="flex items-start gap-2 rounded-lg border p-3 hover:border-primary hover:bg-muted/30 transition-colors"
-                          >
-                            {done ? (
-                              <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                            ) : (
-                              <Circle className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
-                            )}
-                            <div className="min-w-0">
-                              <div className="text-sm font-medium">
-                                <span className="font-mono text-muted-foreground">{m.number}</span> {m.title}
-                              </div>
-                              <div className="truncate text-xs text-muted-foreground">{m.topic}</div>
+                          {locked ? (
+                            <div
+                              className="flex items-start gap-2 rounded-lg border p-3 opacity-60 cursor-not-allowed"
+                              aria-disabled="true"
+                            >
+                              {inner}
                             </div>
-                          </Link>
+                          ) : (
+                            <Link
+                              to="/learn/$moduleId"
+                              params={{ moduleId: m.id }}
+                              className="flex items-start gap-2 rounded-lg border p-3 hover:border-primary hover:bg-muted/30 transition-colors"
+                            >
+                              {inner}
+                            </Link>
+                          )}
                         </li>
                       );
                     })}

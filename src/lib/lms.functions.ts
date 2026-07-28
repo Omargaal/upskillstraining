@@ -229,6 +229,7 @@ export const submitQuizAttempt = createServerFn({ method: "POST" })
   )
   .handler(async ({ context, data }) => {
     const { supabase, userId } = context;
+    await assertPrereqsMet(supabase, userId, data.moduleId);
     const qRes = await supabase
       .from("quiz_questions")
       .select("id, question_type, correct_option_ids")

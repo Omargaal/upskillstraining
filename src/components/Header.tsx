@@ -98,6 +98,24 @@ export function Header() {
           {signedIn ? (
             <>
               <Button asChild variant="ghost" size="sm"><Link to="/dashboard">My Learning</Link></Button>
+              {isAdmin && (
+                <DropdownMenu>
+                  <DropdownMenuTrigger className="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium text-primary hover:bg-primary/10 transition-colors">
+                    <ShieldCheck className="h-4 w-4" /> Admin <ChevronDown className="h-3.5 w-3.5" />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-56">
+                    <DropdownMenuLabel>Admin Tools</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem asChild><Link to="/admin/follow-up">Follow-Up Enquiries</Link></DropdownMenuItem>
+                    <DropdownMenuItem asChild><Link to="/admin/reports">Reports</Link></DropdownMenuItem>
+                    <DropdownMenuItem asChild><Link to="/admin/enrollments">Enrollments</Link></DropdownMenuItem>
+                    <DropdownMenuItem asChild><Link to="/admin/modules">Modules</Link></DropdownMenuItem>
+                    <DropdownMenuItem asChild><Link to="/admin/tiers">Tiers</Link></DropdownMenuItem>
+                    <DropdownMenuItem asChild><Link to="/admin/quizzes">Quizzes</Link></DropdownMenuItem>
+                    <DropdownMenuItem asChild><Link to="/admin/progress">Progress Analytics</Link></DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              )}
               <Button variant="outline" size="sm" onClick={handleSignOut}>Sign out</Button>
             </>
           ) : (

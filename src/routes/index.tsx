@@ -146,7 +146,7 @@ function Index() {
         </div>
       </section>
 
-      {/* IT Courses */}
+      {/* IT Training */}
       <section className="mx-auto max-w-7xl px-6 py-14">
         <div className="flex items-end justify-between gap-6 flex-wrap">
           <div>
@@ -154,17 +154,58 @@ function Index() {
               <p className="text-sm font-semibold uppercase tracking-wider text-primary">IT Training Courses</p>
               <Badge className="bg-accent text-accent-foreground hover:bg-accent">New</Badge>
             </div>
-            <h2 className="mt-2 font-display text-3xl font-extrabold sm:text-4xl">A career in IT — one course at a time.</h2>
+            <h2 className="mt-2 font-display text-3xl font-extrabold sm:text-4xl">From zero experience to enterprise-ready IT skills.</h2>
             <p className="mt-2 max-w-2xl text-muted-foreground">
-              Build a career in IT support and systems administration. Each course can be taken individually or as a full pathway.
+              A structured, stackable programme in Microsoft Intune, Entra ID and Windows Autopilot — built for career changers, helpdesk staff and IT pros stepping into modern endpoint management.
             </p>
           </div>
-          <Link to="/courses" className="text-sm font-semibold text-primary hover:underline">
-            View all IT courses →
-          </Link>
+          <Button asChild variant="outline">
+            <Link to="/courses">View full curriculum <ArrowRight className="ml-1 h-4 w-4" /></Link>
+          </Button>
         </div>
-        <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {itCourses().map((c) => <CourseCard key={c.id} course={c} />)}
+
+        {/* Pillars */}
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            { icon: Layers, title: "4 stackable tiers", body: "Buy one tier at a time or the full bundle. Each tier builds on the last." },
+            { icon: PlayCircle, title: "Hands-on labs", body: "12 real labs — compliance policies, app packaging, Autopilot end-to-end." },
+            { icon: Video, title: "Live or self-paced", body: "Learn online at your own pace, add live labs, or join us in-class in London." },
+            { icon: Award, title: "MD-102 aligned", body: "Curriculum mapped to Microsoft's Endpoint Administrator certification track." },
+          ].map((p) => (
+            <div key={p.title} className="rounded-2xl border bg-card p-5 shadow-card">
+              <p.icon className="h-7 w-7 text-primary" />
+              <h3 className="mt-3 font-semibold">{p.title}</h3>
+              <p className="mt-1 text-sm text-muted-foreground">{p.body}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Curriculum at a glance */}
+        <div className="mt-8 rounded-3xl border bg-card p-6 shadow-elevated">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Curriculum at a glance</span>
+            <span className="text-xs font-mono text-primary">12 modules · 4 tiers</span>
+          </div>
+          <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+            {[
+              { n: "Tier 1", title: "IT Foundations", topic: "Hardware, networking & operating systems" },
+              { n: "Tier 2", title: "Cloud & Identity", topic: "Entra ID, Intune enrolment & profiles" },
+              { n: "Tier 3", title: "Management & Compliance", topic: "Policies, app management & Autopilot" },
+              { n: "Tier 4", title: "Automation, Security & Cert Prep", topic: "PowerShell, Defender & MD-102 capstone" },
+            ].map((t) => (
+              <li key={t.n} className="flex items-center gap-3 rounded-xl border bg-background/60 px-3 py-2.5">
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-primary/10 text-xs font-bold text-primary">{t.n.split(" ")[1]}</span>
+                <div>
+                  <div className="text-sm font-semibold">{t.n} — {t.title}</div>
+                  <div className="text-xs text-muted-foreground">{t.topic}</div>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <Button asChild><Link to="/courses">Explore IT Courses <ArrowRight className="ml-1 h-4 w-4" /></Link></Button>
+            <ConsultationModal trigger={<Button variant="outline">Book a free consultation</Button>} />
+          </div>
         </div>
       </section>
 

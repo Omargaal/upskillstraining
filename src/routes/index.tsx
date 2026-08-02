@@ -41,7 +41,7 @@ function Index() {
                 <Link to="/pco-licence">Explore PCO Licence</Link>
               </Button>
               <Button asChild size="lg" variant="outline">
-                <Link to="/courses" search={{ category: "it" }}>Explore IT Courses</Link>
+                <Link to="/courses">Explore IT Courses</Link>
               </Button>
               <ConsultationModal
                 trigger={<Button size="lg" variant="accent">Book a Free Consultation <ArrowRight className="h-4 w-4" /></Button>}
@@ -159,7 +159,7 @@ function Index() {
               Build a career in IT support and systems administration. Each course can be taken individually or as a full pathway.
             </p>
           </div>
-          <Link to="/courses" search={{ category: "it" }} className="text-sm font-semibold text-primary hover:underline">
+          <Link to="/courses" className="text-sm font-semibold text-primary hover:underline">
             View all IT courses →
           </Link>
         </div>

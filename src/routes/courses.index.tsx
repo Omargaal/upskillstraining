@@ -40,7 +40,7 @@ function CoursesPage() {
             <div>
               <h1 className="font-display text-4xl font-extrabold sm:text-5xl">IT Training Courses</h1>
               <p className="mt-3 max-w-2xl text-muted-foreground">
-                IT training courses you can book on their own, with a free consultation to make sure they're right for you. PCO Licence training has moved to its own page.
+                IT training courses you can book on their own, with a free consultation to make sure they're right for you.
               </p>
               <div className="mt-6 inline-flex rounded-full border bg-background p-1 shadow-card">
                 {TABS.map((t) => (

@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, BadgeCheck, GraduationCap, HeartHandshake, Sparkles, Users } from "lucide-react";
+import { ArrowRight, Award, BadgeCheck, GraduationCap, HeartHandshake, Layers, PlayCircle, Sparkles, Users, Video } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { CourseCard } from "@/components/CourseCard";

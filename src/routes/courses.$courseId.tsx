@@ -31,7 +31,7 @@ function CourseNotFound() {
     <div className="mx-auto max-w-3xl px-6 py-24 text-center">
       <h1 className="font-display text-3xl font-bold">Course not found</h1>
       <p className="mt-2 text-muted-foreground">The course you're looking for doesn't exist.</p>
-      <Button asChild className="mt-6"><Link to="/courses" search={{ category: "all" }}>Browse all courses</Link></Button>
+      <Button asChild className="mt-6"><Link to="/courses">Browse all courses</Link></Button>
     </div>
   );
 }
@@ -42,7 +42,7 @@ function CourseDetail() {
     <>
       <section className="bg-gradient-to-b from-primary-soft to-background">
         <div className="mx-auto max-w-5xl px-6 py-3">
-          <Link to="/courses" search={{ category: course.category }} className="inline-flex items-center gap-1 text-sm text-primary font-medium hover:underline">
+          <Link to="/courses" className="inline-flex items-center gap-1 text-sm text-primary font-medium hover:underline">
             <ArrowLeft className="h-4 w-4" /> Back to {course.category === "pco" ? "PCO" : "IT"} courses
           </Link>
           <div className="mt-4 flex items-center gap-2">

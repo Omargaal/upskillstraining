@@ -2,7 +2,7 @@ import { useState } from "react";
 import {
   ArrowRight, Sparkles, CheckCircle2, Clock, Layers, Cloud, Shield,
   Terminal, Monitor, Users, Video, GraduationCap, Award, PlayCircle,
-  BookOpen, ChevronDown, TrendingUp, Headphones,
+  BookOpen, ChevronDown, TrendingUp, Headphones, FileText, MessageSquare, Search,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";

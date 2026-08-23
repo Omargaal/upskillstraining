@@ -151,6 +151,7 @@ export function ITTrainingLanding() {
       <Pricing />
       <Module0 />
       <CareerOutcomes />
+      <CareerServices />
       <FAQ />
       <FinalCTA />
     </>

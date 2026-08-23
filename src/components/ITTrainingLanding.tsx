@@ -487,6 +487,74 @@ function CareerOutcomes() {
   );
 }
 
+const CAREER_SERVICES = [
+  {
+    icon: FileText,
+    title: "CV Clinic",
+    body: "One-to-one CV review and rewrite for IT roles — tailored to Intune, endpoint and service-desk job descriptions with ATS-friendly formatting.",
+    points: ["1-to-1 CV review and rewrite", "Keyword tuning for ATS screening", "LinkedIn profile optimisation"],
+  },
+  {
+    icon: MessageSquare,
+    title: "Interview Prep",
+    body: "Mock technical and competency interviews with structured feedback so you walk in confident and answer with real examples from your labs.",
+    points: ["Mock technical + competency interviews", "STAR answer coaching", "Lab work turned into interview stories"],
+  },
+  {
+    icon: Search,
+    title: "Job Search Session",
+    body: "A guided session on where and how to apply — job boards, agencies, umbrella vs permanent roles, and a weekly application plan that actually gets replies.",
+    points: ["Where to find real IT vacancies", "Agency and recruiter strategy", "Weekly application action plan"],
+  },
+];
+
+function CareerServices() {
+  return (
+    <section id="career-services" className="bg-muted/30 py-16">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="max-w-2xl">
+          <Badge variant="secondary" className="mb-3">Included with every tier</Badge>
+          <h2 className="font-display text-3xl font-extrabold sm:text-4xl">
+            CV Clinic, Interview Prep &amp; Job Search Sessions
+          </h2>
+          <p className="mt-3 text-muted-foreground">
+            Training is only half the job. Our career services get your CV in front of the right people and get you ready for the interview.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
+          {CAREER_SERVICES.map((s) => (
+            <div key={s.title} className="flex flex-col rounded-2xl border bg-card p-6 shadow-card">
+              <div className="grid h-11 w-11 place-items-center rounded-xl bg-primary/10 text-primary">
+                <s.icon className="h-5 w-5" />
+              </div>
+              <h3 className="mt-4 font-display text-lg font-bold">{s.title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{s.body}</p>
+              <ul className="mt-4 space-y-2 text-sm">
+                {s.points.map((p) => (
+                  <li key={p} className="flex gap-2">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                    <span>{p}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-8 flex flex-wrap items-center gap-4 rounded-2xl border bg-card px-5 py-4 shadow-card">
+          <p className="text-sm">
+            <strong>Ready when you are.</strong> Career sessions run online or in-class in London, and are included with every tier.
+          </p>
+          <ConsultationModal
+            trigger={<Button variant="accent" size="sm">Book a career session</Button>}
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function FAQ() {
   return (
     <section className="mx-auto max-w-4xl px-6 py-16">

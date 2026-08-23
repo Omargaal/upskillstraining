@@ -148,12 +148,13 @@ export function ITTrainingLanding() {
       <Pillars />
       <Curriculum />
       <DeliveryModes />
+      <CareerServices />
       <Pricing />
       <Module0 />
       <CareerOutcomes />
-      <CareerServices />
       <FAQ />
       <FinalCTA />
+
     </>
   );
 }

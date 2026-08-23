@@ -67,29 +67,30 @@ export function Header() {
         </div>
       </div>
 
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-2">
-        <div className="flex items-center gap-4">
+      <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-4 px-2">
+        <div className="flex items-center">
           <Logo className="bg-background rounded-md" />
-          <nav className="hidden lg:flex items-center gap-4">
-            <Link to="/" className={navLink}>Home</Link>
-            <DropdownMenu>
-              <DropdownMenuTrigger className={`${navLink} inline-flex items-center gap-1 outline-none`}>
-                Courses <ChevronDown className="h-3.5 w-3.5" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="w-64">
-                <DropdownMenuItem asChild>
-                  <Link to="/pco-licence">PCO Licence</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/courses">IT Training Courses</Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <Link to="/about" className={navLink}>About</Link>
-            <Link to="/blog" className={navLink}>Blog</Link>
-            <Link to="/contact" className={navLink}>Contact</Link>
-          </nav>
         </div>
+
+        <nav className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-4">
+          <Link to="/" className={navLink}>Home</Link>
+          <DropdownMenu>
+            <DropdownMenuTrigger className={`${navLink} inline-flex items-center gap-1 outline-none`}>
+              Courses <ChevronDown className="h-3.5 w-3.5" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="center" className="w-64">
+              <DropdownMenuItem asChild>
+                <Link to="/pco-licence">PCO Licence</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/courses">IT Training Courses</Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <Link to="/about" className={navLink}>About</Link>
+          <Link to="/blog" className={navLink}>Blog</Link>
+          <Link to="/contact" className={navLink}>Contact</Link>
+        </nav>
 
         <div className="hidden lg:flex items-center gap-3">
           {signedIn ? (

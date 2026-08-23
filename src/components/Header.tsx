@@ -67,12 +67,12 @@ export function Header() {
         </div>
       </div>
 
-      <div className="mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-4 px-2">
+      <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-4 px-2">
         <div className="flex items-center">
           <Logo className="bg-background rounded-md" />
         </div>
 
-        <nav className="hidden lg:flex items-center justify-center gap-4">
+        <nav className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-4">
           <Link to="/" className={navLink}>Home</Link>
           <DropdownMenu>
             <DropdownMenuTrigger className={`${navLink} inline-flex items-center gap-1 outline-none`}>

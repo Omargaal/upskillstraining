@@ -7,7 +7,7 @@ import { ConsultationModal } from "@/components/ConsultationModal";
 import { Newsletter } from "@/components/Newsletter";
 import { HeroSlideshow } from "@/components/HeroSlideshow";
 import { pcoCourses } from "@/lib/courses";
-import heroLogo from "@/assets/hero-logo.png.asset.json";
+import heroSomITLady from "@/assets/hero-som-it-lady.jpg.asset.json";
 import heroPco from "@/assets/hero-pco.jpg";
 import heroPcoPass from "@/assets/hero-pco-pass.jpg";
 import heroPcoUpload from "@/assets/hero-pco-upload.png.asset.json";
@@ -63,7 +63,7 @@ function Index() {
             <div className="block overflow-hidden rounded-3xl shadow-elevated">
               <HeroSlideshow
                 images={[
-                  { src: heroLogo.url, alt: "UpskillsTraining logo — UK training provider for PCO Licence and IT courses", fit: "contain" },
+                  { src: heroSomITLady.url, alt: "IT support professional working in a modern tech training environment", fit: "cover" },
                   { src: heroPco, alt: "PCO SERU training classroom with learners studying for the TfL test", fit: "fill" },
                   { src: heroPcoPass, alt: "Proud learner holding her PCO licence after passing the TfL exam", fit: "fill" },
                   { src: heroPcoUpload.url, alt: "London PCO Licence application costs and step-by-step requirements guide", fit: "fill" },

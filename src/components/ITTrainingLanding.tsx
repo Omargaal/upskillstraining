@@ -31,7 +31,7 @@ const TIERS: Tier[] = [
     icon: Monitor,
     accent: "text-sky-600",
     ring: "border-sky-200",
-    price: { online: 159, live: 219, inclass: 249 },
+    price: { online: 159, live: 219, inclass: 349 },
     modules: [
       { n: "01", title: "IT Fundamentals", topic: "Hardware, software and IT career paths.", lab: "Build & document a PC teardown" },
       { n: "02", title: "Networking Basics", topic: "IP, DNS, DHCP and common topologies.", lab: "Design a small office network" },

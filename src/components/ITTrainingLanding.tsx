@@ -20,7 +20,7 @@ type Tier = {
   accent: string; // tailwind text color for numerals + icon
   ring: string;   // border color for tier block
   modules: { n: string; title: string; topic: string; lab: string }[];
-  price: { online: number; live: number; inclass: number };
+  price: number;
 };
 
 const TIERS: Tier[] = [
@@ -31,7 +31,7 @@ const TIERS: Tier[] = [
     icon: Monitor,
     accent: "text-sky-600",
     ring: "border-sky-200",
-    price: { online: 209, live: 259, inclass: 349 },
+    price: 349,
     modules: [
       { n: "01", title: "IT Fundamentals", topic: "Hardware, software and IT career paths.", lab: "Build & document a PC teardown" },
       { n: "02", title: "Networking Basics", topic: "IP, DNS, DHCP and common topologies.", lab: "Design a small office network" },
@@ -45,7 +45,7 @@ const TIERS: Tier[] = [
     icon: Cloud,
     accent: "text-blue-700",
     ring: "border-blue-200",
-    price: { online: 249, live: 299, inclass: 349 },
+    price: 399,
     modules: [
       { n: "04", title: "Cloud Identity", topic: "Entra ID users, groups and licences.", lab: "Configure Entra ID tenant + groups" },
       { n: "05", title: "Intune Fundamentals", topic: "Admin centre, enrolment, MDM vs MAM.", lab: "Enrol a Windows device in Intune" },
@@ -59,7 +59,7 @@ const TIERS: Tier[] = [
     icon: Shield,
     accent: "text-indigo-700",
     ring: "border-indigo-200",
-    price: { online: 249, live: 299, inclass: 349 },
+    price: 449,
     modules: [
       { n: "07", title: "Compliance Policies", topic: "Rules, remediation and reporting.", lab: "Build a compliance policy set" },
       { n: "08", title: "Application Management", topic: "Store apps and Win32 packaging.", lab: "Package & deploy a Win32 app" },
@@ -73,7 +73,7 @@ const TIERS: Tier[] = [
     icon: Terminal,
     accent: "text-violet-700",
     ring: "border-violet-200",
-    price: { online: 309, live: 359, inclass: 399 },
+    price: 499,
     modules: [
       { n: "10", title: "PowerShell & Graph", topic: "Automation essentials with Microsoft Graph.", lab: "Automate a bulk user task" },
       { n: "11", title: "Security & Defender", topic: "Endpoint security and baselines.", lab: "Roll out a security baseline" },
@@ -82,7 +82,7 @@ const TIERS: Tier[] = [
   },
 ];
 
-const BUNDLE = { online: 809, live: 959, inclass: 1099 };
+const BUNDLE_PRICE = 1299;
 
 /* ============================================================ */
 
@@ -91,33 +91,8 @@ const HERO_BADGES = ["Microsoft Intune", "Entra ID", "Windows Autopilot", "MD-10
 const PILLARS = [
   { icon: Layers, title: "4 stackable tiers", body: "Buy one tier at a time or the full bundle. Each tier builds on the last." },
   { icon: PlayCircle, title: "Hands-on labs", body: "12 real labs — build compliance policies, package apps, run Autopilot end-to-end." },
-  { icon: Video, title: "Live or self-paced", body: "Learn online at your own pace, add live labs, or join us in-class in London." },
+  { icon: Users, title: "In-class in London", body: "Small cohort, in-person delivery with direct 1-on-1 instructor time." },
   { icon: Award, title: "MD-102 aligned", body: "Curriculum mapped to Microsoft's Endpoint Administrator certification track." },
-];
-
-const DELIVERY = [
-  {
-    id: "online",
-    name: "Self-paced Online",
-    tagline: "Learn on your own schedule.",
-    icon: Monitor,
-    points: ["Full video lessons + downloadable resources", "Access lab guides 24/7", "Community forum support"],
-  },
-  {
-    id: "live",
-    name: "Online + Live Labs",
-    tagline: "Everything online, plus weekly live sessions.",
-    icon: Video,
-    points: ["Everything in Self-paced", "Weekly 90-min live lab session", "Instructor Q&A + recordings"],
-    highlight: true,
-  },
-  {
-    id: "inclass",
-    name: "In-Class (London)",
-    tagline: "Small cohort, in-person delivery.",
-    icon: Users,
-    points: ["Everything in Live Labs", "In-person classroom in London", "Direct 1-on-1 instructor time"],
-  },
 ];
 
 const CAREER = [
@@ -130,7 +105,7 @@ const CAREER = [
 
 const FAQS = [
   { q: "Do I need IT experience to start?", a: "No. Tier 1 is designed for complete beginners. If you already work in IT support, you can start at Tier 2." },
-  { q: "How long does the full course take?", a: "Self-paced students typically finish in 10–14 weeks. Live and In-Class cohorts run over 12 weeks." },
+  { q: "How long does the full course take?", a: "In-Class cohorts run over 12 weeks, with flexible scheduling available on request." },
   { q: "Is this aligned to MD-102?", a: "Yes. All four tiers together cover the Microsoft Endpoint Administrator (MD-102) exam objectives, with dedicated cert prep in Tier 4." },
   { q: "Can I pay in instalments?", a: "Yes — we offer monthly payment plans on the full bundle. Ask us on your free consultation." },
   { q: "What if I only want one tier?", a: "Every tier can be purchased on its own. If you later upgrade to the bundle we credit what you've already paid." },
@@ -147,14 +122,12 @@ export function ITTrainingLanding() {
       <Hero />
       <Pillars />
       <Curriculum />
-      <DeliveryModes />
       <CareerServices />
       <Pricing />
       <Module0 />
       <CareerOutcomes />
       <FAQ />
       <FinalCTA />
-
     </>
   );
 }
@@ -303,56 +276,14 @@ function Curriculum() {
   );
 }
 
-function DeliveryModes() {
-  return (
-    <section className="mx-auto max-w-6xl px-6 py-16">
-      <div className="mx-auto max-w-2xl text-center">
-        <h2 className="font-display text-3xl font-extrabold sm:text-4xl">Choose how you learn</h2>
-        <p className="mt-3 text-muted-foreground">
-          Same curriculum, three ways to consume it. Switch or upgrade any time.
-        </p>
-      </div>
-      <div className="mt-10 grid gap-6 lg:grid-cols-3">
-        {DELIVERY.map((d) => (
-          <div
-            key={d.id}
-            className={cn(
-              "rounded-2xl border bg-card p-6 shadow-card",
-              d.highlight && "border-primary shadow-elevated ring-2 ring-primary/20"
-            )}
-          >
-            {d.highlight && (
-              <div className="mb-3 inline-flex items-center gap-1 rounded-full bg-primary px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-primary-foreground">
-                Most popular
-              </div>
-            )}
-            <div className="grid h-11 w-11 place-items-center rounded-xl bg-primary/10 text-primary">
-              <d.icon className="h-5 w-5" />
-            </div>
-            <h3 className="mt-4 font-display text-lg font-bold">{d.name}</h3>
-            <p className="mt-1 text-sm text-muted-foreground">{d.tagline}</p>
-            <ul className="mt-4 space-y-2 text-sm">
-              {d.points.map((p) => (
-                <li key={p} className="flex gap-2">
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
-                  <span className="text-foreground/80">{p}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
 
 function Pricing() {
-  const bundleFullOnline = TIERS.reduce((s, t) => s + t.price.online, 0);
-  const bundleSave = bundleFullOnline - BUNDLE.online;
+  const bundleFull = TIERS.reduce((s, t) => s + t.price, 0);
+  const bundleSave = bundleFull - BUNDLE_PRICE;
 
   return (
     <section id="pricing" className="border-y bg-slate-50/60 py-16">
-      <div className="mx-auto max-w-6xl px-6">
+      <div className="mx-auto max-w-4xl px-6">
         <div className="mx-auto max-w-2xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full border bg-background px-3 py-1 text-xs font-semibold text-primary">
             <Award className="h-3.5 w-3.5" /> Transparent pricing
@@ -364,22 +295,18 @@ function Pricing() {
         </div>
 
         <div className="mt-10 overflow-hidden rounded-3xl border bg-card shadow-card">
-          <div className="hidden grid-cols-[1.6fr_repeat(3,1fr)_auto] gap-4 border-b bg-slate-100/70 px-6 py-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground md:grid">
+          <div className="hidden grid-cols-[1fr_auto_auto] gap-4 border-b bg-slate-100/70 px-6 py-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground md:grid">
             <div>Tier</div>
-            <div className="text-right">Online</div>
-            <div className="text-right">Online + Live Labs</div>
             <div className="text-right">In-Class</div>
             <div />
           </div>
           {TIERS.map((t) => (
-            <div key={t.id} className="grid grid-cols-1 gap-3 border-b px-6 py-5 md:grid-cols-[1.6fr_repeat(3,1fr)_auto] md:items-center md:gap-4">
+            <div key={t.id} className="grid grid-cols-1 gap-3 border-b px-6 py-5 md:grid-cols-[1fr_auto_auto] md:items-center md:gap-6">
               <div>
                 <div className="font-display text-base font-bold">{t.name}</div>
                 <div className="text-xs text-muted-foreground">3 modules · hands-on labs</div>
               </div>
-              <PriceCell amount={t.price.online} label="Online" />
-              <PriceCell amount={t.price.live} label="Live Labs" />
-              <PriceCell amount={t.price.inclass} label="In-Class" />
+              <PriceCell amount={t.price} label="In-Class" />
               <div className="md:justify-self-end">
                 <ConsultationModal
                   courseId={t.id}
@@ -389,7 +316,7 @@ function Pricing() {
             </div>
           ))}
 
-          <div className="grid grid-cols-1 gap-3 bg-gradient-to-r from-primary/5 to-transparent px-6 py-6 md:grid-cols-[1.6fr_repeat(3,1fr)_auto] md:items-center md:gap-4">
+          <div className="grid grid-cols-1 gap-3 bg-gradient-to-r from-primary/5 to-transparent px-6 py-6 md:grid-cols-[1fr_auto_auto] md:items-center md:gap-6">
             <div>
               <div className="flex items-center gap-2">
                 <span className="rounded-md bg-primary px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary-foreground">Best value</span>
@@ -397,9 +324,7 @@ function Pricing() {
               </div>
               <div className="mt-1 text-xs text-muted-foreground">All 12 modules · capstone project · certificate</div>
             </div>
-            <PriceCell amount={BUNDLE.online} label="Online" strong />
-            <PriceCell amount={BUNDLE.live} label="Live Labs" strong />
-            <PriceCell amount={BUNDLE.inclass} label="In-Class" strong />
+            <PriceCell amount={BUNDLE_PRICE} label="In-Class" strong />
             <div className="md:justify-self-end">
               <ConsultationModal
                 courseId="it-bundle"
@@ -545,7 +470,7 @@ function CareerServices() {
 
         <div className="mt-8 flex flex-wrap items-center gap-4 rounded-2xl border bg-card px-5 py-4 shadow-card">
           <p className="text-sm">
-            <strong>Ready when you are.</strong> Career sessions run online or in-class in London, and are included with every tier.
+            <strong>Ready when you are.</strong> Career sessions run in-class in London and are included with every tier.
           </p>
           <ConsultationModal
             trigger={<Button variant="accent" size="sm">Book a career session</Button>}
@@ -591,7 +516,7 @@ function FinalCTA() {
           <div className="max-w-2xl">
             <h2 className="font-display text-3xl font-extrabold sm:text-4xl">Ready to build a career in Modern Endpoint Management?</h2>
             <p className="mt-3 text-muted-foreground">
-              Book a free, no-obligation consultation. We'll help you pick the right tier and delivery mode for your goals.
+              Book a free, no-obligation consultation. We'll help you pick the right tier for your goals.
             </p>
           </div>
           <div className="flex flex-wrap gap-3">

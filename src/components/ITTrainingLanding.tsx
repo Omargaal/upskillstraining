@@ -122,14 +122,12 @@ export function ITTrainingLanding() {
       <Hero />
       <Pillars />
       <Curriculum />
-      <DeliveryModes />
       <CareerServices />
       <Pricing />
       <Module0 />
       <CareerOutcomes />
       <FAQ />
       <FinalCTA />
-
     </>
   );
 }

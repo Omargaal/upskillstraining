@@ -105,7 +105,7 @@ const CAREER = [
 
 const FAQS = [
   { q: "Do I need IT experience to start?", a: "No. Tier 1 is designed for complete beginners. If you already work in IT support, you can start at Tier 2." },
-  { q: "How long does the full course take?", a: "Self-paced students typically finish in 10–14 weeks. Live and In-Class cohorts run over 12 weeks." },
+  { q: "How long does the full course take?", a: "In-Class cohorts run over 12 weeks, with flexible scheduling available on request." },
   { q: "Is this aligned to MD-102?", a: "Yes. All four tiers together cover the Microsoft Endpoint Administrator (MD-102) exam objectives, with dedicated cert prep in Tier 4." },
   { q: "Can I pay in instalments?", a: "Yes — we offer monthly payment plans on the full bundle. Ask us on your free consultation." },
   { q: "What if I only want one tier?", a: "Every tier can be purchased on its own. If you later upgrade to the bundle we credit what you've already paid." },
@@ -470,7 +470,7 @@ function CareerServices() {
 
         <div className="mt-8 flex flex-wrap items-center gap-4 rounded-2xl border bg-card px-5 py-4 shadow-card">
           <p className="text-sm">
-            <strong>Ready when you are.</strong> Career sessions run online or in-class in London, and are included with every tier.
+            <strong>Ready when you are.</strong> Career sessions run in-class in London and are included with every tier.
           </p>
           <ConsultationModal
             trigger={<Button variant="accent" size="sm">Book a career session</Button>}
@@ -516,7 +516,7 @@ function FinalCTA() {
           <div className="max-w-2xl">
             <h2 className="font-display text-3xl font-extrabold sm:text-4xl">Ready to build a career in Modern Endpoint Management?</h2>
             <p className="mt-3 text-muted-foreground">
-              Book a free, no-obligation consultation. We'll help you pick the right tier and delivery mode for your goals.
+              Book a free, no-obligation consultation. We'll help you pick the right tier for your goals.
             </p>
           </div>
           <div className="flex flex-wrap gap-3">

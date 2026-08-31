@@ -91,33 +91,8 @@ const HERO_BADGES = ["Microsoft Intune", "Entra ID", "Windows Autopilot", "MD-10
 const PILLARS = [
   { icon: Layers, title: "4 stackable tiers", body: "Buy one tier at a time or the full bundle. Each tier builds on the last." },
   { icon: PlayCircle, title: "Hands-on labs", body: "12 real labs — build compliance policies, package apps, run Autopilot end-to-end." },
-  { icon: Video, title: "Live or self-paced", body: "Learn online at your own pace, add live labs, or join us in-class in London." },
+  { icon: Users, title: "In-class in London", body: "Small cohort, in-person delivery with direct 1-on-1 instructor time." },
   { icon: Award, title: "MD-102 aligned", body: "Curriculum mapped to Microsoft's Endpoint Administrator certification track." },
-];
-
-const DELIVERY = [
-  {
-    id: "online",
-    name: "Self-paced Online",
-    tagline: "Learn on your own schedule.",
-    icon: Monitor,
-    points: ["Full video lessons + downloadable resources", "Access lab guides 24/7", "Community forum support"],
-  },
-  {
-    id: "live",
-    name: "Online + Live Labs",
-    tagline: "Everything online, plus weekly live sessions.",
-    icon: Video,
-    points: ["Everything in Self-paced", "Weekly 90-min live lab session", "Instructor Q&A + recordings"],
-    highlight: true,
-  },
-  {
-    id: "inclass",
-    name: "In-Class (London)",
-    tagline: "Small cohort, in-person delivery.",
-    icon: Users,
-    points: ["Everything in Live Labs", "In-person classroom in London", "Direct 1-on-1 instructor time"],
-  },
 ];
 
 const CAREER = [

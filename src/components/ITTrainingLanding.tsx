@@ -20,7 +20,7 @@ type Tier = {
   accent: string; // tailwind text color for numerals + icon
   ring: string;   // border color for tier block
   modules: { n: string; title: string; topic: string; lab: string }[];
-  price: { online: number; live: number; inclass: number };
+  price: number;
 };
 
 const TIERS: Tier[] = [
@@ -31,7 +31,7 @@ const TIERS: Tier[] = [
     icon: Monitor,
     accent: "text-sky-600",
     ring: "border-sky-200",
-    price: { online: 209, live: 259, inclass: 349 },
+    price: 349,
     modules: [
       { n: "01", title: "IT Fundamentals", topic: "Hardware, software and IT career paths.", lab: "Build & document a PC teardown" },
       { n: "02", title: "Networking Basics", topic: "IP, DNS, DHCP and common topologies.", lab: "Design a small office network" },
@@ -45,7 +45,7 @@ const TIERS: Tier[] = [
     icon: Cloud,
     accent: "text-blue-700",
     ring: "border-blue-200",
-    price: { online: 249, live: 299, inclass: 349 },
+    price: 399,
     modules: [
       { n: "04", title: "Cloud Identity", topic: "Entra ID users, groups and licences.", lab: "Configure Entra ID tenant + groups" },
       { n: "05", title: "Intune Fundamentals", topic: "Admin centre, enrolment, MDM vs MAM.", lab: "Enrol a Windows device in Intune" },
@@ -59,7 +59,7 @@ const TIERS: Tier[] = [
     icon: Shield,
     accent: "text-indigo-700",
     ring: "border-indigo-200",
-    price: { online: 249, live: 299, inclass: 349 },
+    price: 449,
     modules: [
       { n: "07", title: "Compliance Policies", topic: "Rules, remediation and reporting.", lab: "Build a compliance policy set" },
       { n: "08", title: "Application Management", topic: "Store apps and Win32 packaging.", lab: "Package & deploy a Win32 app" },
@@ -73,7 +73,7 @@ const TIERS: Tier[] = [
     icon: Terminal,
     accent: "text-violet-700",
     ring: "border-violet-200",
-    price: { online: 309, live: 359, inclass: 399 },
+    price: 499,
     modules: [
       { n: "10", title: "PowerShell & Graph", topic: "Automation essentials with Microsoft Graph.", lab: "Automate a bulk user task" },
       { n: "11", title: "Security & Defender", topic: "Endpoint security and baselines.", lab: "Roll out a security baseline" },
@@ -82,7 +82,7 @@ const TIERS: Tier[] = [
   },
 ];
 
-const BUNDLE = { online: 809, live: 959, inclass: 1099 };
+const BUNDLE_PRICE = 1299;
 
 /* ============================================================ */
 

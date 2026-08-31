@@ -276,48 +276,6 @@ function Curriculum() {
   );
 }
 
-function DeliveryModes() {
-  return (
-    <section className="mx-auto max-w-6xl px-6 py-16">
-      <div className="mx-auto max-w-2xl text-center">
-        <h2 className="font-display text-3xl font-extrabold sm:text-4xl">Choose how you learn</h2>
-        <p className="mt-3 text-muted-foreground">
-          Same curriculum, three ways to consume it. Switch or upgrade any time.
-        </p>
-      </div>
-      <div className="mt-10 grid gap-6 lg:grid-cols-3">
-        {DELIVERY.map((d) => (
-          <div
-            key={d.id}
-            className={cn(
-              "rounded-2xl border bg-card p-6 shadow-card",
-              d.highlight && "border-primary shadow-elevated ring-2 ring-primary/20"
-            )}
-          >
-            {d.highlight && (
-              <div className="mb-3 inline-flex items-center gap-1 rounded-full bg-primary px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-primary-foreground">
-                Most popular
-              </div>
-            )}
-            <div className="grid h-11 w-11 place-items-center rounded-xl bg-primary/10 text-primary">
-              <d.icon className="h-5 w-5" />
-            </div>
-            <h3 className="mt-4 font-display text-lg font-bold">{d.name}</h3>
-            <p className="mt-1 text-sm text-muted-foreground">{d.tagline}</p>
-            <ul className="mt-4 space-y-2 text-sm">
-              {d.points.map((p) => (
-                <li key={p} className="flex gap-2">
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
-                  <span className="text-foreground/80">{p}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
 
 function Pricing() {
   const bundleFullOnline = TIERS.reduce((s, t) => s + t.price.online, 0);

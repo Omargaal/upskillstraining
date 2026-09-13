@@ -54,9 +54,12 @@ export function Header() {
       <div className="hidden sm:block bg-primary text-primary-foreground text-xs">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-1.5">
           <div className="flex items-center gap-5">
-            <a href="tel:+442039166417" className="inline-flex items-center gap-1.5 hover:opacity-80">
-              <Phone className="h-3.5 w-3.5" /> 0203 916 6417
-            </a>
+            <span className="inline-flex items-center gap-1.5">
+              <Phone className="h-3.5 w-3.5" />
+              <a href="tel:+442039166417" className="hover:opacity-80">0203 916 6417</a>
+              <span className="opacity-70">or</span>
+              <a href="tel:+447805187213" className="hover:opacity-80">07805187213</a>
+            </span>
             <a href="mailto:info@upskillstraining.co.uk" className="inline-flex items-center gap-1.5 hover:opacity-80">
               <Mail className="h-3.5 w-3.5" /> info@upskillstraining.co.uk
             </a>

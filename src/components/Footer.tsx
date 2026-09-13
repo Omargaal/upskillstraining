@@ -37,7 +37,7 @@ export function Footer() {
         <div>
           <h4 className="font-bold mb-4">Contact</h4>
           <ul className="space-y-3 text-sm text-primary-foreground/80">
-            <li className="flex items-start gap-2"><Phone className="h-4 w-4 mt-0.5 shrink-0" /> 0203 916 6417</li>
+            <li className="flex items-start gap-2"><Phone className="h-4 w-4 mt-0.5 shrink-0" /> <a href="tel:+442039166417" className="hover:underline">0203 916 6417</a> or <a href="tel:+447805187213" className="hover:underline">07805187213</a></li>
             <li className="flex items-start gap-2"><Mail className="h-4 w-4 mt-0.5 shrink-0" /> info@upskillstraining.co.uk</li>
             <li className="flex items-start gap-2"><MapPin className="h-4 w-4 mt-0.5 shrink-0" /> Office No 6 @ 1 Empire Mews, London SW16 2BF</li>
           </ul>

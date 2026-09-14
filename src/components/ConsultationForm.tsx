@@ -15,7 +15,7 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
-import { courses } from "@/lib/courses";
+import { consultationCourses } from "@/lib/courses";
 import { saveConsultation } from "@/lib/consultation-store";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -38,7 +38,7 @@ export function ConsultationForm({ defaultCourseId, compact, footer }: Props) {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [courseId, setCourseId] = useState(defaultCourseId ?? courses[0].id);
+  const [courseId, setCourseId] = useState(defaultCourseId ?? consultationCourses[0].id);
   const [fmt, setFmt] = useState<"phone" | "video" | "in-person">("video");
   const [date, setDate] = useState<Date | undefined>();
   const [slot, setSlot] = useState(TIME_SLOTS[0]);
@@ -107,7 +107,7 @@ export function ConsultationForm({ defaultCourseId, compact, footer }: Props) {
         <Select value={courseId} onValueChange={setCourseId}>
           <SelectTrigger><SelectValue /></SelectTrigger>
           <SelectContent className="max-h-72">
-            {courses.map((c) => (
+            {consultationCourses.map((c) => (
               <SelectItem key={c.id} value={c.id}>{c.title}</SelectItem>
             ))}
           </SelectContent>

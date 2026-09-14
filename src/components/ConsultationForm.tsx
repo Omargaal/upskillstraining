@@ -107,7 +107,7 @@ export function ConsultationForm({ defaultCourseId, compact, footer }: Props) {
         <Select value={courseId} onValueChange={setCourseId}>
           <SelectTrigger><SelectValue /></SelectTrigger>
           <SelectContent className="max-h-72">
-            {courses.map((c) => (
+            {consultationCourses.map((c) => (
               <SelectItem key={c.id} value={c.id}>{c.title}</SelectItem>
             ))}
           </SelectContent>

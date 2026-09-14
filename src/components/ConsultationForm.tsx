@@ -15,7 +15,7 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
-import { courses } from "@/lib/courses";
+import { consultationCourses } from "@/lib/courses";
 import { saveConsultation } from "@/lib/consultation-store";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";

@@ -293,3 +293,12 @@ export const courses: Course[] = [
 export const getCourse = (id: string) => courses.find((c) => c.id === id);
 export const pcoCourses = () => courses.filter((c) => c.category === "pco");
 export const itCourses = () => courses.filter((c) => c.category === "it");
+
+export const consultationCourses = [
+  ...pcoCourses().map((c) => ({ id: c.id, title: c.title })),
+  { id: "t1", title: "Tier 1 — IT Foundations" },
+  { id: "t2", title: "Tier 2 — Cloud & Identity" },
+  { id: "t3", title: "Tier 3 — Management & Compliance" },
+  { id: "t4", title: "Tier 4 — Automation, Security & Cert Prep" },
+  { id: "it-bundle", title: "Full Bundle — All 4 Tiers" },
+];

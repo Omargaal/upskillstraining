@@ -38,7 +38,7 @@ export function ConsultationForm({ defaultCourseId, compact, footer }: Props) {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [courseId, setCourseId] = useState(defaultCourseId ?? courses[0].id);
+  const [courseId, setCourseId] = useState(defaultCourseId ?? consultationCourses[0].id);
   const [fmt, setFmt] = useState<"phone" | "video" | "in-person">("video");
   const [date, setDate] = useState<Date | undefined>();
   const [slot, setSlot] = useState(TIME_SLOTS[0]);
